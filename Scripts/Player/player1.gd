@@ -19,6 +19,7 @@ var has_double_jump : bool = false
 
 func _ready():
 	muzzle_position = muzzle.position
+	GameManager.playerBody = self
 
 func _physics_process(delta):
 	# Add the gravity.

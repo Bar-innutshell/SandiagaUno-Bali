@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://blfd7677sm8yl"]
+[gd_scene load_steps=29 format=3 uid="uid://blfd7677sm8yl"]
 
 [ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="1_4lpad"]
 [ext_resource type="Script" path="res://Scripts/Enemies/burung_rusdi.gd" id="1_vw73c"]
@@ -188,21 +188,39 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y44jt"]
-radius = 19.0263
+radius = 13.0
 
-[node name="BurungRusdi" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijmf3"]
+radius = 20.0
+
+[node name="BurungRusdi" type="CharacterBody2D" groups=["Enemy"]]
+position = Vector2(0, -10)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_vw73c")
+speed = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5r0w")
 animation = &"fly"
-autoplay = "fly"
 frame = 2
 frame_progress = 0.365766
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -3)
 shape = SubResource("CircleShape2D_y44jt")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_ijmf3")
+debug_color = Color(0.774743, 0.419454, 0.37698, 0.42)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

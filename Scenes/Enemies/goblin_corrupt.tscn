@@ -1,0 +1,146 @@
+[gd_scene load_steps=21 format=3 uid="uid://c3frk2g8q8dts"]
+
+[ext_resource type="Texture2D" uid="uid://cpvyd2qugodyp" path="res://Assets/enemy_SEED/goblin/die/coruptedbiasa-die.png" id="1_06027"]
+[ext_resource type="Texture2D" uid="uid://70ypcpixwxap" path="res://Assets/enemy_SEED/goblin/coruptedgoblin2-idle.png" id="2_0dp7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd5oa"]
+atlas = ExtResource("1_06027")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xgic"]
+atlas = ExtResource("1_06027")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w41j"]
+atlas = ExtResource("1_06027")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrgak"]
+atlas = ExtResource("1_06027")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_144i4"]
+atlas = ExtResource("1_06027")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2tnr"]
+atlas = ExtResource("1_06027")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv2lm"]
+atlas = ExtResource("1_06027")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7ikf"]
+atlas = ExtResource("1_06027")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46a0g"]
+atlas = ExtResource("1_06027")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajoft"]
+atlas = ExtResource("1_06027")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uaak"]
+atlas = ExtResource("1_06027")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vujaj"]
+atlas = ExtResource("1_06027")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uswua"]
+atlas = ExtResource("2_0dp7p")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amm07"]
+atlas = ExtResource("2_0dp7p")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oade"]
+atlas = ExtResource("2_0dp7p")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfl7t"]
+atlas = ExtResource("2_0dp7p")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_awuvg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd5oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xgic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w41j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrgak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_144i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2tnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv2lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7ikf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46a0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajoft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uaak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vujaj")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uswua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amm07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oade")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfl7t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0rhs"]
+size = Vector2(15, 23)
+
+[node name="GoblinCorrupt" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_awuvg")
+animation = &"die"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -11.5)
+shape = SubResource("RectangleShape2D_l0rhs")
+
+[node name="Timer" type="Timer" parent="."]

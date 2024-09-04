@@ -3,8 +3,13 @@ extends Node
 var main_menu_screen = preload("res://ui/main_menu_screen.tscn")
 var pause_menu_screen = preload("res://ui/pause_menu_screen.tscn")
 
+#wave
 var current_wave : int
 var moving_to_next_wave : bool
+
+#enemiesChasing
+var playerBody: CharacterBody2D
+var playerWeaponEquip: bool
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.44,0.12,0.53,1.00))

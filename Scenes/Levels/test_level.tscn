@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://dhvpdxw00bmvt"]
+[gd_scene load_steps=7 format=4 uid="uid://dhvpdxw00bmvt"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_c36qg"]
 [ext_resource type="PackedScene" uid="uid://daje703bakkv2" path="res://Scenes/Env/health_pickup.tscn" id="2_v1rxr"]
 [ext_resource type="PackedScene" uid="uid://6n1oi11jo3ff" path="res://collectibles/blue_coin/blue_coin.tscn" id="5_ekqoi"]
+[ext_resource type="PackedScene" uid="uid://blfd7677sm8yl" path="res://Scenes/Enemies/burung_rusdi.tscn" id="6_r8ilh"]
 [ext_resource type="PackedScene" uid="uid://k4qmylidb7fm" path="res://collectibles/green_diamond/green_diamond.tscn" id="7_58e3b"]
 [ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
 
@@ -41,3 +42,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAANAAgAAAAAAAEAAAANAAkAAAAAAAIAAAANAAo
 
 [node name="Player" parent="." index="5"]
 position = Vector2(82, -16)
+
+[node name="BurungRusdi" parent="." index="7" instance=ExtResource("6_r8ilh")]
+position = Vector2(223, -149)

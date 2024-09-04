@@ -10,7 +10,7 @@
             "request": "launch",
             "project": "${workspaceFolder}",
             "address": "127.0.0.1",
-            "port": 6007,
+            "port": 6005,
             "scene": "main|current|pinned|<path>",
             "editor_path": "<path>",
             // engine command line flags
