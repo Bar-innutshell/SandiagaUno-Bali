@@ -1,7 +1,5 @@
 extends Node2D
 
-extends Node2D
-
 var current_wave : int
 @export var crab_scene : PackedScene
 @export var dino_scene : PackedScene
