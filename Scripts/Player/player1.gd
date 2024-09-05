@@ -13,6 +13,18 @@ var muzzle_position
 @export var double_jump_velocity : float = -90000
 @export var max_vertical_speed : int = 300
 var has_double_jump : bool = false
+@export var wallJump = 700
+@export var jumpWall = -350
+@export var wall_slide_gravity = 100
+var is_wall_sliding = false
+
+@export var DASHSPEED = 500000.0
+var dashing = false
+var can_dash = true
+var isAttacking = false
+
+var damage_amount : int = 1
+
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_animation_player = $HitAnimationPlayer
@@ -20,6 +32,7 @@ var has_double_jump : bool = false
 func _ready():
 	muzzle_position = muzzle.position
 	GameManager.playerBody = self
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,6 +52,16 @@ func _physics_process(delta):
 			velocity.y = double_jump_velocity * delta
 			velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
 			has_double_jump = true
+		if is_on_wall_only() and nextToRightWall():
+			velocity.x -= wallJump
+			velocity.y = jumpWall
+		if is_on_wall_only() and nextToLeftWall():
+			velocity.x += wallJump
+			velocity.y = jumpWall
+	wall_slide(delta)
+	
+	if Input.is_action_just_pressed("attack"):
+		hit_animation_player.play("punch")
 
 	# Handle Running
 	var run_multiplier = 1
@@ -46,7 +69,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("run"):
 		run_multiplier = 2
 
-	# Get the input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	# Flip the Sprite
@@ -65,6 +87,8 @@ func _physics_process(delta):
 			animated_sprite.play("run")
 	else:
 		animated_sprite.play("jump")
+		
+		
 	
 	# Shooting
 	if direction != 0 and Input.is_action_just_pressed("shot"):
@@ -78,11 +102,18 @@ func _physics_process(delta):
 		muzzle.position.x = muzzle_position.x
 	elif direction < 0:
 		muzzle.position.x = -muzzle_position.x
-			
+	
 	# Apply movement
 	if direction != 0:
-		velocity.x += direction * SPEED * run_multiplier * delta
-		velocity.x = clamp(velocity.x, -max_horizontal_speed * run_multiplier, max_horizontal_speed * run_multiplier)
+		if Input.is_action_just_pressed("dash") and can_dash and is_on_floor_only():
+			dashing = true
+			velocity.x += direction * DASHSPEED * delta
+			can_dash = false
+			$dash.start()
+			$can_dash.start()
+		else:
+			velocity.x += direction * SPEED * run_multiplier * delta
+			velocity.x = clamp(velocity.x, -max_horizontal_speed * run_multiplier, max_horizontal_speed * run_multiplier)
 	else:
 		velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
 
@@ -102,3 +133,35 @@ func _on_hurtbox_body_entered(body : Node2D):
 		
 	if HealthManager.current_health == 0:
 		player_death()
+
+
+func nextToWall():
+	return nextToRightWall() or nextToLeftWall()
+
+func nextToRightWall():
+	return $RightWall.is_colliding()
+
+func nextToLeftWall():
+	return $LeftWall.is_colliding()
+
+func wall_slide(delta):
+	if is_on_wall_only():
+		if nextToRightWall() and Input.is_action_pressed("move_right") or nextToLeftWall() and Input.is_action_pressed("move_left"):
+			is_wall_sliding = true
+		else :
+			is_wall_sliding = false
+	else:
+		is_wall_sliding = false
+	
+	if is_wall_sliding:
+		velocity.y += (wall_slide_gravity * delta)
+		velocity.y = min(velocity.y, wall_slide_gravity)
+
+func _on_dash_timeout() -> void:
+	dashing = false
+
+func _on_can_dash_timeout() -> void:
+	can_dash = true
+
+func attacking() -> int:
+	return damage_amount

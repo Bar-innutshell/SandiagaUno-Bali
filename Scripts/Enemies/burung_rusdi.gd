@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var enemy_death_effect = preload("res://Scenes/Enemies/enemy_death_effect.tscn")
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var dir: Vector2
 @export var speed = 30
@@ -9,6 +9,7 @@ var dir: Vector2
 
 var is_bat_chase: bool
 var is_roaming: bool = true
+var is_dying: bool = false
 
 var player: CharacterBody2D
 
@@ -16,6 +17,8 @@ func _ready():
 	is_bat_chase = true
 
 func _process(delta):
+	if is_dying:
+		return
 	player = GameManager.playerBody
 	if player != null:
 		move(delta)
@@ -36,25 +39,41 @@ func _on_timer_timeout():
 		dir = choose([Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT])
 
 func handle_animation():
-	var animated_sprite = $AnimatedSprite2D
-	animated_sprite.play("fly")
-	if dir.x == -1:
-		animated_sprite.flip_h = true
-	elif dir.x == 1:
-		animated_sprite.flip_h = false
+	if is_dying:
+		animated_sprite.play("death")
+	elif health_amount <= 0:
+		start_death()
+	else:
+		animated_sprite.play("fly")
+		if dir.x == -1:
+			animated_sprite.flip_h = true
+		elif dir.x == 1:
+			animated_sprite.flip_h = false
+
+func start_death():
+	is_dying = true
+	animated_sprite.play("death")
+    # Wait for the animation to finish
+	await animated_sprite.animation_finished
+	queue_free()
 
 func choose(array):
 	array.shuffle()
 	return array.front()
 
 func _on_hurtbox_area_entered(area):
-	print("Bullet area entered")
+	if is_dying:
+		return
 	if area.get_parent().has_method("get_damage_amount"):
+		print("Bullet area entered")
 		var node = area.get_parent() as Node
 		health_amount -= node.damage_amount
 		print("Health amount: ", health_amount)
 		if health_amount <= 0:
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
-			get_parent().add_child(enemy_death_effect_instance)
-			queue_free()
+			start_death()
+	if area.is_in_group("attack"):
+		var node = area.get_parent() as Node
+		health_amount -= node.damage_amount
+		print("Health amount: ", health_amount)
+		if health_amount <= 0:
+			start_death()

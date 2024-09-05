@@ -36,8 +36,6 @@ animations = [{
 [node name="EnemyDeathEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_e1ooi")
 autoplay = "default"
-frame = 5
-frame_progress = 1.0
 script = ExtResource("6_wjc04")
 
 [node name="Timer" type="Timer" parent="."]
