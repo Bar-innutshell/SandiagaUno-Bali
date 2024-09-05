@@ -16,14 +16,16 @@ func _ready():
 	is_bat_chase = true
 
 func _process(delta):
-	move(delta)
+	player = GameManager.playerBody
+	if player != null:
+		move(delta)
 	handle_animation()
 
 func move(delta):
 	if is_bat_chase:
-		player = GameManager.playerBody
-		velocity = position.direction_to(player.position) * speed
-		dir.x = abs(velocity.x) / velocity.x
+		if player != null:
+			velocity = position.direction_to(player.position) * speed
+			dir.x = abs(velocity.x) / velocity.x
 	elif !is_bat_chase:
 		velocity += dir * speed * delta
 	move_and_slide()

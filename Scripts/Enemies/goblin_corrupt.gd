@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-class_name GoblinEnemy
-
 @export var speed = 30
 var dir: Vector2
 var direction: int
