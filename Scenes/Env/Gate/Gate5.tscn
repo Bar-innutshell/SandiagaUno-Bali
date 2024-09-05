@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://g0kmt21rpeu7"]
+
+[ext_resource type="Script" path="res://Scenes/Env/Gate/gate_1.gd" id="1_in2ui"]
+[ext_resource type="Texture2D" uid="uid://cvbb5bkq2h11j" path="res://Assets/environment_SEED/walawe.png" id="2_ouukq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j10j"]
+atlas = ExtResource("2_ouukq")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2dk5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j10j")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4rhb"]
+size = Vector2(53, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03tco"]
+size = Vector2(19, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oooqm"]
+size = Vector2(52, 45.5)
+
+[node name="Gate1" type="StaticBody2D"]
+z_index = 1
+position = Vector2(0, 4)
+script = ExtResource("1_in2ui")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -96)
+sprite_frames = SubResource("SpriteFrames_a2dk5")
+animation = &"open"
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(62.5, -27)
+shape = SubResource("RectangleShape2D_c4rhb")
+
+[node name="ExitArea2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea2D"]
+position = Vector2(62, -19)
+shape = SubResource("RectangleShape2D_03tco")
+debug_color = Color(0.74902, 0.447059, 0.32549, 0.419608)
+
+[node name="ActivateDoorArea2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateDoorArea2D"]
+position = Vector2(10, -27.25)
+shape = SubResource("RectangleShape2D_oooqm")
+debug_color = Color(0.427451, 0.592157, 0.32549, 0.419608)
+
+[connection signal="body_entered" from="ExitArea2D" to="." method="_on_exit_area_2d_body_entered"]
+[connection signal="body_entered" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_entered"]
+[connection signal="body_exited" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_exited"]

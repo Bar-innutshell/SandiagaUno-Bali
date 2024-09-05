@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3kjsg1mcp8px"]
+[gd_scene load_steps=7 format=3 uid="uid://cnnj1uc5jyjj0"]
 
-[ext_resource type="Script" path="res://Scenes/Env/BreakableObject/box.gd" id="1_ssmop"]
-[ext_resource type="Texture2D" uid="uid://c41f07v4iamu0" path="res://Assets/environment_SEED/box.png" id="1_yrebn"]
-[ext_resource type="Texture2D" uid="uid://8hxwel4y76h4" path="res://Assets/environment_SEED/box break.png" id="2_u6ke0"]
+[ext_resource type="Script" path="res://Scenes/Env/BreakableObject/box.gd" id="1_tqiab"]
+[ext_resource type="Texture2D" uid="uid://dwdymhj7hvphn" path="res://Assets/environment_SEED/jungle vas.png" id="2_a1pdj"]
+[ext_resource type="Texture2D" uid="uid://dq6fubl638ypj" path="res://Assets/environment_SEED/jungle vas break.png" id="3_7e3tv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fujm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_yrebn")
+"texture": ExtResource("2_a1pdj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_u6ke0")
+"texture": ExtResource("3_7e3tv")
 }],
 "loop": false,
 "name": &"Broken",
@@ -19,13 +19,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ks2d"]
-size = Vector2(16, 14)
+size = Vector2(16, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yrdp"]
-size = Vector2(18, 15)
+size = Vector2(18, 16)
 
 [node name="Box" type="StaticBody2D"]
-script = ExtResource("1_ssmop")
+script = ExtResource("1_tqiab")
 
 [node name="Object" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -34,7 +34,7 @@ sprite_frames = SubResource("SpriteFrames_3fujm")
 animation = &"Broken"
 
 [node name="BreakableCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
+position = Vector2(0, -15)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5ks2d")
 
@@ -45,7 +45,6 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3yrdp")
 debug_color = Color(0.774743, 0.419454, 0.37698, 0.42)
 
