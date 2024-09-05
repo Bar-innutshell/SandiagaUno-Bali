@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3frk2g8q8dts"]
+[gd_scene load_steps=23 format=3 uid="uid://c3frk2g8q8dts"]
 
 [ext_resource type="Texture2D" uid="uid://cpvyd2qugodyp" path="res://Assets/enemy_SEED/goblin/die/coruptedbiasa-die.png" id="1_06027"]
+[ext_resource type="Script" path="res://Scripts/Enemies/goblin_corrupt.gd" id="1_y4k04"]
 [ext_resource type="Texture2D" uid="uid://70ypcpixwxap" path="res://Assets/enemy_SEED/goblin/coruptedgoblin2-idle.png" id="2_0dp7p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd5oa"]
@@ -131,7 +132,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0rhs"]
 size = Vector2(15, 23)
 
-[node name="GoblinCorrupt" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ppv"]
+size = Vector2(17, 24)
+
+[node name="GoblinCorrupt" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_y4k04")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -144,3 +151,14 @@ position = Vector2(-0.5, -11.5)
 shape = SubResource("RectangleShape2D_l0rhs")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_q0ppv")
+debug_color = Color(0.774743, 0.419454, 0.37698, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
