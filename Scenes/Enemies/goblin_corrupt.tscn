@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c3frk2g8q8dts"]
+[gd_scene load_steps=22 format=3 uid="uid://c3frk2g8q8dts"]
 
 [ext_resource type="Texture2D" uid="uid://cpvyd2qugodyp" path="res://Assets/enemy_SEED/goblin/die/coruptedbiasa-die.png" id="1_06027"]
 [ext_resource type="Script" path="res://Scripts/Enemies/goblin_corrupt.gd" id="1_y4k04"]
@@ -47,10 +47,6 @@ region = Rect2(288, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1uaak"]
 atlas = ExtResource("1_06027")
 region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vujaj"]
-atlas = ExtResource("1_06027")
-region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uswua"]
 atlas = ExtResource("2_0dp7p")
@@ -103,13 +99,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1uaak")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vujaj")
 }],
 "loop": false,
 "name": &"death",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -145,6 +138,8 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_awuvg")
 animation = &"death"
 autoplay = "idle"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -11.5)

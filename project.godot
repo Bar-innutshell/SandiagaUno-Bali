@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="chronosigma"
-run/main_scene="res://Scenes/Levels/test_level.tscn"
+run/main_scene="res://Scenes/Dungeon/1st_tut_dungeon.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 

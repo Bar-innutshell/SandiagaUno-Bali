@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemies/king_sigma.gd" id="1_h0y2x"]
 [ext_resource type="Texture2D" uid="uid://b82pu1il8jriu" path="res://Scenes/Enemies/idle-nugget.png" id="8_jnwcr"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/state_machine_controller.gd" id="12_7s4m3"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/gravity.gd" id="12_jjsd7"]
+[ext_resource type="Script" path="res://Scenes/Enemies/KingSigma/state_machine_controller.gd" id="12_7s4m3"]
+[ext_resource type="Script" path="res://Scenes/Enemies/KingSigma/gravity.gd" id="12_jjsd7"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/node_finite_state_machine.gd" id="13_121a3"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/idle_state.gd" id="14_c2lcj"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/attack_state.gd" id="15_0e3ah"]
+[ext_resource type="Script" path="res://Scenes/Enemies/KingSigma/idle_state.gd" id="14_c2lcj"]
+[ext_resource type="Script" path="res://Scenes/Enemies/KingSigma/attack_state.gd" id="15_0e3ah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c65wf"]
 atlas = ExtResource("8_jnwcr")

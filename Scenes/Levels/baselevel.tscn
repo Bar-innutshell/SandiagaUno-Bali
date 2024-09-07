@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cylg42rx2nkxq" path="res://Assets/environment/layers/walls.png" id="2_kk6m7"]
 [ext_resource type="PackedScene" uid="uid://dputwpr3lovr" path="res://Scenes/Player/player.tscn" id="2_web4r"]
 [ext_resource type="Texture2D" uid="uid://bixoqafv36oa" path="res://Assets/environment/layers/props.png" id="4_vk0qu"]
-[ext_resource type="Script" path="res://Scripts/Player/player_camera_2d.gd" id="8_iuldu"]
+[ext_resource type="PackedScene" uid="uid://bukmrd5n4hmig" path="res://Scenes/Player/player_camera_2d.tscn" id="7_3aifj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4pgc6"]
 texture = ExtResource("2_kk6m7")
@@ -319,15 +319,4 @@ tile_set = SubResource("TileSet_ym0p3")
 [node name="Player" parent="." instance=ExtResource("2_web4r")]
 position = Vector2(-5, 0)
 
-[node name="PlayerCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(-5, -22)
-limit_left = 0
-limit_top = -300
-limit_bottom = 0
-limit_smoothed = true
-position_smoothing_speed = 14.0
-rotation_smoothing_speed = 12.0
-script = ExtResource("8_iuldu")
-player = NodePath("../Player")
-smoothing_enable = true
-smoothing_distance = 2
+[node name="PlayerCamera2D" parent="." instance=ExtResource("7_3aifj")]

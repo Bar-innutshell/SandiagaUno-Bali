@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bukmrd5n4hmig"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player_camera_2d.gd" id="1_r38c5"]
+
+[node name="PlayerCamera2D" type="Camera2D"]
+position = Vector2(-5, -22)
+limit_left = 0
+limit_top = -300
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_speed = 14.0
+rotation_smoothing_speed = 12.0
+script = ExtResource("1_r38c5")
+smoothing_enable = true
+smoothing_distance = 2

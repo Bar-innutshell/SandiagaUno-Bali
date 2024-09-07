@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dhvpdxw00bmvt"]
+[gd_scene load_steps=7 format=4 uid="uid://dhvpdxw00bmvt"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_c36qg"]
 [ext_resource type="PackedScene" uid="uid://daje703bakkv2" path="res://Scenes/Env/health_pickup.tscn" id="2_v1rxr"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cg05lsiyyb2nx" path="res://Scenes/Env/Gate/Gate1.tscn" id="6_fgtc8"]
 [ext_resource type="PackedScene" uid="uid://k4qmylidb7fm" path="res://collectibles/green_diamond/green_diamond.tscn" id="7_58e3b"]
 [ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
-[ext_resource type="PackedScene" uid="uid://c3frk2g8q8dts" path="res://Scenes/Enemies/goblin_corrupt.tscn" id="9_cnhla"]
-[ext_resource type="PackedScene" uid="uid://b8qdk7so7i43o" path="res://Scenes/Enemies/KingSigma/king_sigma.tscn" id="10_wkbfj"]
 
 [node name="TestLevel" instance=ExtResource("1_c36qg")]
 
@@ -48,9 +46,3 @@ position = Vector2(82, -16)
 [node name="Gate1" parent="." index="7" instance=ExtResource("6_fgtc8")]
 position = Vector2(1346, -13)
 next_scene = "Level1"
-
-[node name="GoblinCorrupt" parent="." index="8" instance=ExtResource("9_cnhla")]
-position = Vector2(191, -17)
-
-[node name="King_sigma" parent="." index="9" instance=ExtResource("10_wkbfj")]
-position = Vector2(1173, -17)
