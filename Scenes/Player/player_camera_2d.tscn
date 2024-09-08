@@ -4,8 +4,6 @@
 
 [node name="PlayerCamera2D" type="Camera2D"]
 position = Vector2(-5, -22)
-limit_left = 0
-limit_top = -300
 limit_bottom = 0
 limit_smoothed = true
 position_smoothing_speed = 14.0

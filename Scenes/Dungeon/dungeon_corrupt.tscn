@@ -68,6 +68,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pewce")
 
 [node name="Dungeon Corrupt" type="Node2D"]
+position = Vector2(0, -332)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mybg2")
@@ -81,28 +82,28 @@ tile_set = SubResource("TileSet_mybg2")
 [node name="Pickups" type="Node" parent="."]
 
 [node name="HealthPickup" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(-79, -111)
+position = Vector2(-79, -443)
 
 [node name="HealthPickup2" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(841, -34)
+position = Vector2(841, -366)
 
 [node name="HealthPickup3" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(1161, -32)
+position = Vector2(1161, -364)
 
 [node name="HealthPickup4" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(1361, -32)
+position = Vector2(1361, -364)
 
 [node name="HealthPickup5" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(1841, 67)
+position = Vector2(1841, -265)
 
 [node name="HealthPickup6" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(2083, 66)
+position = Vector2(2083, -266)
 
 [node name="HealthPickup7" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(2116, 209)
+position = Vector2(2116, -123)
 
 [node name="HealthPickup8" parent="Pickups" instance=ExtResource("3_oc0jv")]
-position = Vector2(1865, -273)
+position = Vector2(1865, -605)
 
 [node name="Gate1" parent="." instance=ExtResource("3_7urp6")]
 z_index = -1

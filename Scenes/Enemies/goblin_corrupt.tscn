@@ -138,8 +138,6 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_awuvg")
 animation = &"death"
 autoplay = "idle"
-frame = 10
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -11.5)

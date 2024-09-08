@@ -24,7 +24,8 @@ size = Vector2(16, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yrdp"]
 size = Vector2(18, 16)
 
-[node name="Box" type="StaticBody2D"]
+[node name="Jungle_vas" type="StaticBody2D"]
+collision_layer = 0
 script = ExtResource("1_tqiab")
 
 [node name="Object" type="AnimatedSprite2D" parent="."]

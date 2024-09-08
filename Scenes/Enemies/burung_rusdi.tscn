@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://blfd7677sm8yl"]
+[gd_scene load_steps=28 format=3 uid="uid://blfd7677sm8yl"]
 
 [ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="1_4lpad"]
 [ext_resource type="Script" path="res://Scripts/Enemies/burung_rusdi.gd" id="1_vw73c"]
@@ -48,10 +48,6 @@ region = Rect2(576, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_plmhg"]
 atlas = ExtResource("1_4lpad")
 region = Rect2(640, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfvyb"]
-atlas = ExtResource("1_4lpad")
-region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qa7fp"]
 atlas = ExtResource("2_jar76")
@@ -124,13 +120,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_plmhg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hfvyb")
 }],
 "loop": false,
 "name": &"death",
-"speed": 8.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -204,8 +197,6 @@ speed = 50
 sprite_frames = SubResource("SpriteFrames_p5r0w")
 animation = &"death"
 autoplay = "fly"
-frame = 11
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -3)

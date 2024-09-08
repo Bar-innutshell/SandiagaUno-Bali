@@ -39,7 +39,7 @@ texture = ExtResource("2_kk6m7")
 [sub_resource type="TileSet" id="TileSet_084ad"]
 sources/0 = SubResource("TileSetAtlasSource_4pgc6")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_31nhg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_12b41"]
 texture = ExtResource("1_qloy6")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -218,7 +218,7 @@ texture = ExtResource("1_qloy6")
 
 [sub_resource type="TileSet" id="TileSet_5iqen"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_31nhg")
+sources/0 = SubResource("TileSetAtlasSource_12b41")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obgqp"]
 texture = ExtResource("4_vk0qu")
@@ -319,4 +319,5 @@ tile_set = SubResource("TileSet_ym0p3")
 [node name="Player" parent="." instance=ExtResource("2_web4r")]
 position = Vector2(-5, 0)
 
-[node name="PlayerCamera2D" parent="." instance=ExtResource("7_3aifj")]
+[node name="PlayerCamera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_3aifj")]
+player = NodePath("../Player")

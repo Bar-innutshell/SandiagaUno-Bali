@@ -70,6 +70,7 @@ sources/0 = SubResource("TileSetAtlasSource_5w1ub")
 size = Vector2(46, 10)
 
 [node name="Dungeon Corrupt 2" type="Node2D"]
+position = Vector2(33, -728)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_aehd4")

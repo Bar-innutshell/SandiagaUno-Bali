@@ -1,41 +1,73 @@
-[gd_scene load_steps=8 format=3 uid="uid://03kghts1vfxb"]
+[gd_scene load_steps=11 format=3 uid="uid://03kghts1vfxb"]
 
-[ext_resource type="Texture2D" uid="uid://bdnyful2s26gi" path="res://Assets/sprites/Fx/enemy-death/enemy-death-1.png" id="1_wha02"]
-[ext_resource type="Texture2D" uid="uid://dmflbmj8micfg" path="res://Assets/sprites/Fx/enemy-death/enemy-death-2.png" id="2_v575r"]
-[ext_resource type="Texture2D" uid="uid://ccvcplrja2y0y" path="res://Assets/sprites/Fx/enemy-death/enemy-death-3.png" id="3_rtw1s"]
-[ext_resource type="Texture2D" uid="uid://b72u2741ik11d" path="res://Assets/sprites/Fx/enemy-death/enemy-death-4.png" id="4_vbql4"]
-[ext_resource type="Texture2D" uid="uid://m3o3xv75aji3" path="res://Assets/sprites/Fx/enemy-death/enemy-death-5.png" id="5_gca85"]
+[ext_resource type="Texture2D" uid="uid://bxw6weoft0w8r" path="res://Assets/enemy_SEED/goblin/attack/meletup.png" id="1_t3f58"]
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_death_effect.gd" id="6_wjc04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c45fd"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx5ew"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn5gb"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n4lp"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvjul"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyj77"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71xi"]
+atlas = ExtResource("1_t3f58")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1ooi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_wha02")
+"texture": SubResource("AtlasTexture_c45fd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_v575r")
+"texture": SubResource("AtlasTexture_kx5ew")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_rtw1s")
+"texture": SubResource("AtlasTexture_gn5gb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_vbql4")
+"texture": SubResource("AtlasTexture_7n4lp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_gca85")
+"texture": SubResource("AtlasTexture_nvjul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyj77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71xi")
 }, {
 "duration": 1.0,
 "texture": null
 }],
 "loop": false,
 "name": &"default",
-"speed": 12.0
+"speed": 8.0
 }]
 
 [node name="EnemyDeathEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_e1ooi")
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 script = ExtResource("6_wjc04")
 
 [node name="Timer" type="Timer" parent="."]
