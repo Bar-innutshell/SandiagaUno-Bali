@@ -4,7 +4,7 @@ var bullet_impact_effect = preload("res://Scenes/Weapon/bullet_impact.tscn")
 
 var speed : int = 300
 var direction : int
-var damage_amount : int = 1
+@export var damage_amount : int = 1
 
 func _physics_process(delta):
 	move_local_x(direction * speed * delta)
@@ -21,7 +21,7 @@ func _on_hitbox_body_entered(body):
 	bullet_impact()
 
 func get_damage_amount() -> int:
-	return damage_amount
+	return damage_amount + GameManager.damage_upgrade
 	
 func bullet_impact():
 	var bullet_impact_instance = bullet_impact_effect.instantiate() as Node2D

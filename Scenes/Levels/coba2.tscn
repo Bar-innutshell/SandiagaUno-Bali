@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=4 uid="uid://du7y6uy64g6l"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_fu27v"]
-[ext_resource type="PackedScene" uid="uid://ben7m854ljv7h" path="res://Scenes/Enemies/LebahKuning.tscn" id="2_q67ol"]
-[ext_resource type="PackedScene" uid="uid://blfd7677sm8yl" path="res://Scenes/Enemies/burung_rusdi.tscn" id="3_7b3ts"]
+[ext_resource type="PackedScene" uid="uid://ben7m854ljv7h" path="res://Scenes/Enemies/Chase/LebahKuning.tscn" id="2_q67ol"]
+[ext_resource type="PackedScene" uid="uid://blfd7677sm8yl" path="res://Scenes/Enemies/Chase/burung_rusdi.tscn" id="3_7b3ts"]
 
 [node name="Baselevel" instance=ExtResource("1_fu27v")]
 

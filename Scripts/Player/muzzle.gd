@@ -1,7 +1,7 @@
 extends Marker2D
 
 
-var damage_amount: int = 1
+var damage_amount: int = 1 + GameManager.damage_upgrade
 var dir = 1
 
 

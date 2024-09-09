@@ -56,6 +56,7 @@ func take_damage(damage):
 		var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
 		enemy_death_effect_instance.global_position = global_position
 		get_parent().add_child(enemy_death_effect_instance)
+		HitStopManager.hit_stop_long()
 		queue_free()
 
 func _on_hurtbox_body_entered(body):

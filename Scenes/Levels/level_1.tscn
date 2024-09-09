@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://dd5gpjtiw6m8b"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_tslsy"]
-[ext_resource type="PackedScene" uid="uid://dgbsewj66lght" path="res://Scenes/Enemies/mr_crab.tscn" id="2_0kt6m"]
+[ext_resource type="PackedScene" uid="uid://dgbsewj66lght" path="res://Scenes/Enemies/BolakBalikWall/mr_crab.tscn" id="2_0kt6m"]
 [ext_resource type="PackedScene" uid="uid://7pyg1q5x1xse" path="res://Scenes/Env/door.tscn" id="2_sbmpt"]
 [ext_resource type="PackedScene" uid="uid://cxilejs35uqha" path="res://Scenes/keys/key.tscn" id="3_nxxk0"]
 [ext_resource type="PackedScene" uid="uid://k4qmylidb7fm" path="res://collectibles/green_diamond/green_diamond.tscn" id="5_sbyil"]

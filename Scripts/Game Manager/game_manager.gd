@@ -3,6 +3,10 @@ extends Node
 var main_menu_screen = preload("res://ui/main_menu_screen.tscn")
 var pause_menu_screen = preload("res://ui/pause_menu_screen.tscn")
 
+#player upgrade
+var damage_upgrade : int = 0
+var health_upgrade : int = 0
+
 #wave
 var current_wave : int
 var moving_to_next_wave : bool
@@ -28,6 +32,9 @@ func start_game():
 func exit_game():
 	get_tree().quit()
 
+func upgrade_player():
+	damage_upgrade += 1
+	health_upgrade += 1
 
 func pause_game():
 	get_tree().paused = true

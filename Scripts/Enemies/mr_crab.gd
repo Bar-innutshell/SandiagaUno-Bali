@@ -61,7 +61,7 @@ func _physics_process(delta) :
 			knockback = false
 			knockback_velocity = Vector2.ZERO
 	else:
-        # Normal movement
+		# Normal movement
 		velocity.x = direction * SPEED * delta
 		
 	position.x += direction * SPEED * delta
@@ -79,6 +79,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
 			enemy_death_effect_instance.global_position = global_position
 			get_parent().add_child(enemy_death_effect_instance)
+			HitStopManager.hit_stop_short()
 			queue_free()
 	if area.is_in_group("attack"):
 		var node = area.get_parent() as Node
@@ -91,6 +92,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
 			enemy_death_effect_instance.global_position = global_position
 			get_parent().add_child(enemy_death_effect_instance)
+			HitStopManager.hit_stop_short()
 			queue_free()
 			
 func apply_knockback(delta: float):
