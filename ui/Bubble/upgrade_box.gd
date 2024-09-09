@@ -8,6 +8,7 @@ func _on_upgrade_button_pressed():
 	upgrade_count += 1
 	if upgrade_count == 1:
 		queue_free()
+		upgrade_count = 0
 
 func _on_close_button_pressed():
 	queue_free()

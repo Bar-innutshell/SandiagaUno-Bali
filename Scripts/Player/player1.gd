@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 var current_delta: float = 0.0
 
+#Audio
+@onready var audio_stream_jumping: AudioStreamPlayer2D = $AudioStreamPlayer2D_Jumping
+@onready var audio_stream_walking: AudioStreamPlayer2D = $AudioStreamPlayer2D_walking
+
 #bullet
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
 var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
@@ -46,6 +50,8 @@ func _ready():
 	GameManager.playerBody = self
 
 func _physics_process(delta):
+	var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
+	var playerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
 	current_delta = delta
 
 	# Handle knockback
@@ -79,18 +85,13 @@ func _physics_process(delta):
 		if is_on_wall_only() and nextToLeftWall():
 			velocity.x += wallJump
 			velocity.y = jumpWall
+		audio_stream_jumping.play()
 	wall_slide(delta)
 	 
 	if Input.is_action_just_pressed("attack"):
 		isAttacking = true
 		hit_animation_player.play("punch")
 		animated_sprite.play("attack")
-
-	# Handle Running
-	var run_multiplier = 1
-	
-	if Input.is_action_pressed("run"):
-		run_multiplier = 2
 
 	if Input.is_action_pressed("move_left"):
 		direction = -1
@@ -142,7 +143,7 @@ func _physics_process(delta):
 			knockback = false
 			knockback_velocity = Vector2.ZERO
 	
-	# Apply movement
+	# Apply movement right or left and dash
 	if direction != 0:
 		if Input.is_action_just_pressed("dash") and can_dash and is_on_floor_only():
 			dashing = true
@@ -151,10 +152,16 @@ func _physics_process(delta):
 			$dash.start()
 			$can_dash.start()
 		else:
-			velocity.x += direction * SPEED * run_multiplier * delta
-			velocity.x = clamp(velocity.x, -max_horizontal_speed * run_multiplier, max_horizontal_speed * run_multiplier)
+			velocity.x += direction * SPEED * delta
+			velocity.x = clamp(velocity.x, -max_horizontal_speed, max_horizontal_speed)
+			if is_on_floor():
+				if !audio_stream_walking.playing:
+					audio_stream_walking.stream = (playerGrassWalkingSound)
+					audio_stream_walking.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
+		if !is_on_floor():
+			audio_stream_walking.stop()
 
 	move_and_slide()
 

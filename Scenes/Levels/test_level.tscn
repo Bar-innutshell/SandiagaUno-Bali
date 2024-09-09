@@ -1,16 +1,22 @@
-[gd_scene load_steps=10 format=4 uid="uid://dhvpdxw00bmvt"]
+[gd_scene load_steps=11 format=4 uid="uid://dhvpdxw00bmvt"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_c36qg"]
+[ext_resource type="Script" path="res://Scenes/Levels/test_level.gd" id="2_k30re"]
 [ext_resource type="PackedScene" uid="uid://daje703bakkv2" path="res://Scenes/Env/health_pickup.tscn" id="2_v1rxr"]
 [ext_resource type="PackedScene" uid="uid://6n1oi11jo3ff" path="res://collectibles/blue_coin/blue_coin.tscn" id="5_ekqoi"]
 [ext_resource type="PackedScene" uid="uid://cg05lsiyyb2nx" path="res://Scenes/Env/Gate/Gate1.tscn" id="6_fgtc8"]
 [ext_resource type="PackedScene" uid="uid://sb13y80hsoh5" path="res://Interact/tes_npc.tscn" id="7_3nltf"]
 [ext_resource type="PackedScene" uid="uid://k4qmylidb7fm" path="res://collectibles/green_diamond/green_diamond.tscn" id="7_58e3b"]
-[ext_resource type="PackedScene" uid="uid://b83gsjeg4ywin" path="res://ui/Bubble/upgrade_box.tscn" id="8_65jvt"]
 [ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
-[ext_resource type="PackedScene" uid="uid://dgbsewj66lght" path="res://Scenes/Enemies/BolakBalikWall/mr_crab.tscn" id="9_7aam4"]
+[ext_resource type="AudioStream" uid="uid://cfkswgk88eaej" path="res://Assets/Sound/Synthwave/videoplayback (6).mp3" id="9_aons2"]
+[ext_resource type="PackedScene" uid="uid://bywlvth5fwimu" path="res://ui/menu/sound_menu.tscn" id="10_7lani"]
 
 [node name="TestLevel" instance=ExtResource("1_c36qg")]
+script = ExtResource("2_k30re")
+
+[node name="SoundMenu" parent="GameScreen" index="1" instance=ExtResource("10_7lani")]
+offset_top = 206.0
+offset_bottom = 206.0
 
 [node name="Coins" type="Node" parent="." index="2"]
 
@@ -56,7 +62,7 @@ next_scene = "Level1"
 [node name="tes_npc" parent="." index="8" instance=ExtResource("7_3nltf")]
 position = Vector2(197, -16)
 
-[node name="UpgradeBox" parent="tes_npc" index="2" instance=ExtResource("8_65jvt")]
-
-[node name="MrCrab" parent="." index="9" instance=ExtResource("9_7aam4")]
-position = Vector2(432, -15)
+[node name="AudioStreamPlayer_BGM" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("9_aons2")
+volume_db = -10.0
+bus = &"Music"

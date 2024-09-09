@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://sb13y80hsoh5"]
+[gd_scene load_steps=6 format=3 uid="uid://sb13y80hsoh5"]
 
 [ext_resource type="Texture2D" uid="uid://bp85wc3a8b3e5" path="res://Assets/Enemies Pack FIles/Sprites/Dino/dino2.png" id="1_fku2f"]
 [ext_resource type="Script" path="res://Scripts/Env/tes_npc.gd" id="1_ymn68"]
 [ext_resource type="PackedScene" uid="uid://b0w30x5itoepo" path="res://Interact/interactionArea.tscn" id="2_e7225"]
+[ext_resource type="PackedScene" uid="uid://b83gsjeg4ywin" path="res://ui/Bubble/upgrade_box.tscn" id="2_s1enn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lb2aq"]
 size = Vector2(55, 20)
 
 [node name="tes_npc" type="Node2D"]
 script = ExtResource("1_ymn68")
+
+[node name="UpgradeBox" parent="." instance=ExtResource("2_s1enn")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -13)
@@ -20,3 +23,5 @@ position = Vector2(-1, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0.5, -10)
 shape = SubResource("RectangleShape2D_lb2aq")
+
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

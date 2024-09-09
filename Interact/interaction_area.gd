@@ -6,7 +6,6 @@ class_name InteractionArea
 var interact: Callable = func():
 	pass
 
-
 func _on_body_entered(body: Node2D):
 	InteractionManager.register_area(self)
 

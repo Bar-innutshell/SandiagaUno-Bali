@@ -24,7 +24,7 @@ size = Vector2(11, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yrdp"]
 size = Vector2(13, 16)
 
-[node name="Winter_vas" type="StaticBody2D"]
+[node name="Winter_vas" type="StaticBody2D" groups=["Items"]]
 collision_layer = 0
 script = ExtResource("1_gat4f")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bip1f6rhcaibn"]
 
-[ext_resource type="Script" path="res://ui/pause_menu_screen.gd" id="1_6benx"]
+[ext_resource type="Script" path="res://ui/menu/pause_menu_screen.gd" id="1_6benx"]
 [ext_resource type="Theme" uid="uid://drv8uvn23ptbt" path="res://ui/theme/game_theme.tres" id="2_3x2ud"]
 
 [node name="PauseMenuScreen" type="CanvasLayer"]

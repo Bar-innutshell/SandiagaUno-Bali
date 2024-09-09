@@ -1,7 +1,7 @@
 extends Node
 
-var main_menu_screen = preload("res://ui/main_menu_screen.tscn")
-var pause_menu_screen = preload("res://ui/pause_menu_screen.tscn")
+var main_menu_screen = preload("res://ui/menu/main_menu_screen.tscn")
+var pause_menu_screen = preload("res://ui/menu/pause_menu_screen.tscn")
 
 #player upgrade
 var damage_upgrade : int = 0

@@ -1,192 +1,110 @@
-#buat perbandingan kode
+#save file
 
-extends CharacterBody2D
+MainScene (Node2D)
+├── Player (CharacterBody2D)
+├── Bullets (Node2D or another appropriate type)
+├── Muzzle (Node2D or another appropriate type)
+├── Enemies (Node2D)
+│   ├── Enemy1 (CharacterBody2D)
+│   ├── Enemy2 (CharacterBody2D)
+│   └── ...
+├── Items (Node2D)
+│   ├── Item1 (Node2D)
+│   ├── Item2 (Node2D)
+│   └── ...
 
-var bullet = preload("res://Scenes/Weapon/bullets.tscn")
-var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
-@onready var muzzle : Marker2D = $Muzzle
-var muzzle_position
+extends CanvasLayer
 
-@export var SPEED = 1000
-@export var max_horizontal_speed : int = 180
-@export var slowdown_speed : int = 1800 
+var save_path = "user://game_data/variable.save"
 
-@export var JUMP_VELOCITY = -90000
-@export var double_jump_velocity : float = -90000
-@export var max_vertical_speed : int = 300
-var has_double_jump : bool = false
-@export var wallJump = 700
-@export var jumpWall = -350
-@export var wall_slide_gravity = 100
-var is_wall_sliding = false
+func _on_upgrade_button_pressed():
+    save()
 
-const DASHSPEED = 6000.0
-var dashing = false
-var can_dash = true
-var isAttacking = false
+func _on_close_button_pressed():
+    load_data()
 
-var knockback_dir
-var knockback = false
-var enemy_dir
-var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-var knockback_strength: float = 100.0  # Besar knockback
-var knockback_decay: float = 5.0  # Kecepatan peluruhan knockback
-var direction = 0
-
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var hit_animation_player = $HitAnimationPlayer
-
-func _ready():
-    muzzle_position = muzzle.position
-
-func _physics_process(delta):
-    # Add the gravity.
-    if not is_on_floor():
-        velocity += get_gravity() * delta
-    else:
-        has_double_jump = false
-
-    # Handle jump.
-    if Input.is_action_just_pressed("jump"):
-        if is_on_floor():
-            # Normal jump
-            velocity.y = JUMP_VELOCITY * delta
-            velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-        elif not has_double_jump:
-            # Double jump in air
-            velocity.y = double_jump_velocity * delta
-            velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-            has_double_jump = true
-        if is_on_wall_only() and nextToRightWall():
-            velocity.x -= wallJump
-            velocity.y = jumpWall
-        if is_on_wall_only() and nextToLeftWall():
-            velocity.x += wallJump
-            velocity.y = jumpWall
-    wall_slide(delta)
-     
-    if Input.is_action_just_pressed("attack"):
-        isAttacking = true
-        hit_animation_player.play("punch")
-        animated_sprite.play("attack")
+func save():
+    var file = FileAccess.open(save_path, FileAccess.WRITE)
+    file.store_var(HealthManager.current_health)
+    file.store_var(HealthManager.max_health)
+    file.store_var(GameManager.damage_upgrade)
+    file.store_var(GameManager.current_wave)
+    file.store_var(CollectibleManager.total_award_amount)
     
-    # Handle Running
-    var run_multiplier = 1
+    # Save player position
+    var player = get_tree().get_root().get_node("Player")
+    file.store_var(player.global_position)
     
-    if Input.is_action_pressed("run"):
-        run_multiplier = 2
-
-    if Input.is_action_pressed("move_left"):
-        direction = -1
-    elif Input.is_action_pressed("move_right"):
-        direction = 1
-    else:
-        direction = 0
-
-    # Flip the Sprite
-    if direction > 0:
-        animated_sprite.flip_h = false
-    elif direction < 0:
-        animated_sprite.flip_h = true
+    # Save bullets damage amount
+    var bullets = get_tree().get_root().get_node("Bullets")
+    file.store_var(bullets.damage_amount)
     
-    # Play animations
-    if is_on_floor():
-        if direction == 0:
-            if isAttacking:
-                animated_sprite.play("attack")
-            else:
-                animated_sprite.play("idle")
-        elif Input.is_action_pressed("shot"):
-            animated_sprite.play("run-shot")
-        else:
-            animated_sprite.play("run")
-    else:
-        animated_sprite.play("jump")
+    # Save muzzle damage amount
+    var muzzle = get_tree().get_root().get_node("Muzzle")
+    file.store_var(muzzle.damage_amount)
+    
+    # Save enemies positions and states
+    var enemies = get_tree().get_nodes_in_group("Enemy")
+    var enemies_data = []
+    for enemy in enemies:
+        enemies_data.append({
+            "position": enemy.global_position,
+            "health": enemy.health,
+            "state": enemy.state
+        })
+    file.store_var(enemies_data)
+    
+    # Save items positions and states
+    var items = get_tree().get_nodes_in_group("Items")
+    var items_data = []
+    for item in items:
+        items_data.append({
+            "position": item.global_position,
+            "condition": item.condition
+        })
+    file.store_var(items_data)
+
+func load_data():
+    if FileAccess.file_exists(save_path):
+        var file = FileAccess.open(save_path, FileAccess.READ)
+        HealthManager.current_health = file.get_var()
+        HealthManager.max_health = file.get_var()
+        GameManager.damage_upgrade = file.get_var()
+        GameManager.current_wave = file.get_var()
+        CollectibleManager.total_award_amount = file.get_var()
         
-    # Shooting
-    if direction != 0 and Input.is_action_just_pressed("shot"):
-        var bullet_instance = bullet.instantiate() as Node2D
-        bullet_instance.direction = direction
-        bullet_instance.global_position = muzzle.global_position
-        get_parent().add_child(bullet_instance)
-    
-    # Muzzle position
-    if direction > 0:
-        muzzle.position.x = muzzle_position.x
-    elif direction < 0:
-        muzzle.position.x = -muzzle_position.x
-    
-    if knockback:
-        knockback_velocity = lerp(knockback_velocity, Vector2.ZERO, knockback_decay * delta)
-        velocity += knockback_velocity
-        if knockback_velocity.length() < 10:
-            knockback = false
-            knockback_velocity = Vector2.ZERO
-    
-    # Apply movement
-    if direction != 0:
-        if Input.is_action_just_pressed("dash") and can_dash and is_on_floor_only():
-            dashing = true
-            velocity.x += direction * DASHSPEED
-            can_dash = false
-            $dash.start()
-            $can_dash.start()
-        else:
-            velocity.x += direction * SPEED * run_multiplier * delta
-            velocity.x = clamp(velocity.x, -max_horizontal_speed * run_multiplier, max_horizontal_speed * run_multiplier)
-    else:
-        velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
-
-    move_and_slide()
-
-func player_death():
-    var player_death_effect_instance = player_death_effect.instantiate() as Node2D
-    player_death_effect_instance.global_position = global_position
-    get_parent().add_child(player_death_effect_instance)
-    queue_free()
-
-func _on_hurtbox_body_entered(body : CharacterBody2D):
-    if body.is_in_group("Enemy"):
-        print("Enemy Entered ", body.damage_amount)
-        animated_sprite.play("hit")  # Play "hit" animation from animated_sprite
-        enemy_dir = body.direction
-        knockback_dir = enemy_dir
-        direction = knockback_dir * -1
-        apply_knockback()
-        HealthManager.decrease_health(body.damage_amount)
+        # Load player position
+        var player = get_tree().get_root().get_node("Player")
+        player.global_position = file.get_var()
         
-    if HealthManager.current_health == 0:
-        player_death()
-
-func nextToWall():
-    return nextToRightWall() or nextToLeftWall()
-
-func nextToRightWall():
-    return $RightWall.is_colliding()
-
-func nextToLeftWall():
-    return $LeftWall.is_colliding()
-
-func wall_slide(delta):
-    if is_on_wall_only():
-        if nextToRightWall() and Input.is_action_pressed("move_right") or nextToLeftWall() and Input.is_action_pressed("move_left"):
-            is_wall_sliding = true
-        else :
-            is_wall_sliding = false
+        # Load bullets damage amount
+        var bullets = get_tree().get_root().get_node("Bullets")
+        bullets.damage_amount = file.get_var()
+        
+        # Load muzzle damage amount
+        var muzzle = get_tree().get_root().get_node("Muzzle")
+        muzzle.damage_amount = file.get_var()
+        
+        # Load enemies positions and states
+        var enemies_data = file.get_var()
+        var enemies = get_tree().get_nodes_in_group("Enemy")
+        for i in range(len(enemies)):
+            enemies[i].global_position = enemies_data[i]["position"]
+            enemies[i].health = enemies_data[i]["health"]
+            enemies[i].state = enemies_data[i]["state"]
+        
+        # Load items positions and states
+        var items_data = file.get_var()
+        var items = get_tree().get_nodes_in_group("Items")
+        for i in range(len(items)):
+            items[i].global_position = items_data[i]["position"]
+            items[i].condition = items_data[i]["condition"]
     else:
-        is_wall_sliding = false
-    
-    if is_wall_sliding:
-        velocity.y += (wall_slide_gravity * delta)
-        velocity.y = min(velocity.y, wall_slide_gravity)
-
-func _on_dash_timeout() -> void:
-    dashing = false
-
-func _on_can_dash_timeout() -> void:
-    can_dash = true
-    
-func apply_knockback():
-    knockback = true
-    knockback_velocity.y = -25  # Knockback vertikal jika perlu
-    knockback_velocity.x = knockback_strength * knockback_dir  # Tentukan arah knockback
+        print("No save file found.")
+        HealthManager.current_health = 3
+        HealthManager.max_health = 3
+        GameManager.damage_upgrade = 0
+        GameManager.current_wave = 0
+        CollectibleManager.total_award_amount = 0
+        bullets.damage_amount = 1
+        muzzle.damage_amount = 1

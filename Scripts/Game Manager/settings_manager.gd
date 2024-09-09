@@ -6,6 +6,29 @@ var settings_data : SettingsDataResource
 var save_settings_path = "user://game_data/"
 var save_file_name = "settings_data.tres"
 
+var config = ConfigFile.new()
+const SETTINGS_FILE_PATH = "user://settings.ini"
+
+func _ready():
+	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
+		config.set_value("keybinding", "move_left", "A")
+		config.set_value("keybinding", "move_left", "Left")
+		config.set_value("keybinding", "move_right", "D")
+		config.set_value("keybinding", "move_right", "Right")
+		config.set_value("keybinding", "jump", "W")
+		config.set_value("keybinding", "jump", "Space")
+		config.set_value("keybinding", "interact", "E")
+		config.set_value("keybinding", "shot", "Q")
+		config.set_value("keybinding", "attack", "F")
+		config.set_value("keybinding", "dash", "Shift")
+
+		config.set_value("audio", "master_volume", 1.0)
+		config.set_value("audio", "sfx_volume", 1.0)
+		config.set_value("audio", "music_volume", 1.0)
+
+		config.save(SETTINGS_FILE_PATH)
+	else:
+		config.load(SETTINGS_FILE_PATH)
 
 func load_settings():
 	if !DirAccess.dir_exists_absolute(save_settings_path):

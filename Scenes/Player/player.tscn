@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=85 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bir5yn4avevcx" path="res://Assets/Player_SEED/Knight/Walk/knightwalk-toright.png" id="5_afstp"]
 [ext_resource type="Texture2D" uid="uid://bwkgfm8j5equf" path="res://Assets/Player_SEED/Knight/Walk/knightwalk-revised-toright.png" id="6_povp2"]
 [ext_resource type="Texture2D" uid="uid://da8wbcppque21" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright.png" id="17_6m2j1"]
+[ext_resource type="AudioStream" uid="uid://cicgu2eypyc3h" path="res://Assets/Sound/SFX/player_walking.mp3" id="20_27fxe"]
+[ext_resource type="AudioStream" uid="uid://b2n5mprv4otj4" path="res://Assets/Sound/SFX/player_jumping.mp3" id="21_om87s"]
 [ext_resource type="Texture2D" uid="uid://wi02bahs31oj" path="res://Assets/sprites/player/player-run-shot/player-run-shot-1.png" id="22_4r21t"]
 [ext_resource type="Texture2D" uid="uid://cafk8u8viusml" path="res://Assets/sprites/player/player-run-shot/player-run-shot-2.png" id="23_4whto"]
 [ext_resource type="Texture2D" uid="uid://bqalsjivs5j20" path="res://Assets/sprites/player/player-run-shot/player-run-shot-3.png" id="24_430xq"]
@@ -606,6 +608,14 @@ one_shot = true
 [node name="can_dash" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AudioStreamPlayer2D_walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_27fxe")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D_Jumping" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_om87s")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="dash" to="." method="_on_dash_timeout"]

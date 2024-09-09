@@ -24,7 +24,7 @@ size = Vector2(14, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yrdp"]
 size = Vector2(17, 17)
 
-[node name="Desert_vas" type="StaticBody2D"]
+[node name="Desert_vas" type="StaticBody2D" groups=["Items"]]
 collision_layer = 0
 script = ExtResource("1_l825l")
 
