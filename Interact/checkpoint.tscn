@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce40f5tfnulmp"]
+
+[ext_resource type="Script" path="res://Interact/checkpoint.gd" id="1_2h4wt"]
+[ext_resource type="Texture2D" uid="uid://bxw5c7npraxmp" path="res://Assets/environment/props/stone-head.png" id="2_1bvkh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbp3g"]
+size = Vector2(49, 56)
+
+[sub_resource type="Animation" id="Animation_1swig"]
+resource_name = "activated"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_1bvkh")]
+}
+
+[sub_resource type="Animation" id="Animation_hl0n6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_1bvkh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tv8b6"]
+_data = {
+"RESET": SubResource("Animation_hl0n6"),
+"activated": SubResource("Animation_1swig")
+}
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_2h4wt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1bvkh")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_lbp3g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tv8b6")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

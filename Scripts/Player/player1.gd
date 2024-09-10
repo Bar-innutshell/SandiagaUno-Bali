@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 var current_delta: float = 0.0
 
 #Audio
@@ -52,10 +54,11 @@ var isAttacking: bool = false
 func _ready():
 	muzzle_position = muzzle.position
 	GameManager.playerBody = self
+	GameManager.player = self
 
 func _physics_process(delta):
 	var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
-	var playerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
+	var _add_constant_forceplayerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
 	current_delta = delta
 
 	# Handle knockback
@@ -162,6 +165,9 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	if position.y >= 1000:
+		player_death()
+
 func start_dash(dir):
 	dashing = true
 	can_dash = false
@@ -180,7 +186,8 @@ func player_death():
 	var player_death_effect_instance = player_death_effect.instantiate() as Node2D
 	player_death_effect_instance.global_position = global_position
 	get_parent().add_child(player_death_effect_instance)
-	queue_free()
+	GameManager.respawn_player()
+	HealthManager.current_health = 1
 
 func _on_hurtbox_body_entered(body : CharacterBody2D):
 	if body.is_in_group("Enemy"):

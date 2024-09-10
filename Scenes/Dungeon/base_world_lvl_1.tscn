@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c3pjx8unb1tm3"]
+[gd_scene load_steps=19 format=4 uid="uid://c3pjx8unb1tm3"]
 
 [ext_resource type="Texture2D" uid="uid://b5vrqkq2a24e1" path="res://Assets/Tilemap/fixed_tileset_.png" id="1_7751u"]
 [ext_resource type="Texture2D" uid="uid://bgvw3xxeqmceo" path="res://Assets/Tilemap/sapling.png" id="3_ac8qy"]
@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c45ncee7fvbyv" path="res://Scenes/Env/Gate/Gate4.tscn" id="6_jyapn"]
 [ext_resource type="PackedScene" uid="uid://g0kmt21rpeu7" path="res://Scenes/Env/Gate/Gate5.tscn" id="7_paf0v"]
 [ext_resource type="PackedScene" uid="uid://bivdy0usqp44c" path="res://Scenes/Env/Gate/Gate6.tscn" id="8_kh36x"]
+[ext_resource type="PackedScene" uid="uid://ben7m854ljv7h" path="res://Scenes/Enemies/Chase/LebahKuning.tscn" id="9_7g0wm"]
 [ext_resource type="PackedScene" uid="uid://dputwpr3lovr" path="res://Scenes/Player/player.tscn" id="9_fqb0l"]
 [ext_resource type="PackedScene" uid="uid://bukmrd5n4hmig" path="res://Scenes/Player/player_camera_2d.tscn" id="10_358p3"]
+[ext_resource type="PackedScene" uid="uid://blfd7677sm8yl" path="res://Scenes/Enemies/Chase/burung_rusdi.tscn" id="10_g3fyg"]
+[ext_resource type="PackedScene" uid="uid://p8kvd2r2yd8v" path="res://Scenes/Enemies/Chase/LebahIreng.tscn" id="11_acdw6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqnx2"]
 texture = ExtResource("1_7751u")
@@ -136,6 +139,15 @@ position = Vector2(-364, -99)
 
 [node name="Gate5" parent="Nigger" instance=ExtResource("8_kh36x")]
 position = Vector2(555, -18)
+
+[node name="LebahIkterus" parent="Nigger" instance=ExtResource("9_7g0wm")]
+position = Vector2(129, -243)
+
+[node name="BurungRusdi" parent="Nigger" instance=ExtResource("10_g3fyg")]
+position = Vector2(37, -268)
+
+[node name="LebahAfrica" parent="Nigger" instance=ExtResource("11_acdw6")]
+position = Vector2(210, -238)
 
 [node name="Player" parent="." instance=ExtResource("9_fqb0l")]
 position = Vector2(-17, 8)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=86 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -543,6 +543,10 @@ _data = {
 "punch": SubResource("Animation_gu4qd")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ox0tx"]
+radius = 7.0
+height = 24.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 position = Vector2(0, 8)
@@ -617,7 +621,13 @@ bus = &"SFX"
 stream = ExtResource("21_om87s")
 bus = &"SFX"
 
-[node name="RespawnTimer" type="Timer" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_ox0tx")
+debug_color = Color(0.190877, 0.641939, 0, 0.42)
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="dash" to="." method="_on_dash_timeout"]
