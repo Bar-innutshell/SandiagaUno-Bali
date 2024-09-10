@@ -18,13 +18,14 @@ var muzzle_position
 @export var slowdown_speed : int = 1800 
 
 #jump
-@export var JUMP_VELOCITY = -90000
-@export var double_jump_velocity : float = -90000
+@export var JUMP_VELOCITY = -100000
 @export var max_vertical_speed : int = 300
-var has_double_jump : bool = false
+
+#Wall Jump
 @export var wallJump = 700
 @export var jumpWall = -350
 @export var wall_slide_gravity = 100
+@export var wall_slide_speed = 50
 var is_wall_sliding = false
 
 #dash
@@ -68,8 +69,6 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	else:
-		has_double_jump = false
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
@@ -77,19 +76,7 @@ func _physics_process(delta):
 			# Normal jump
 			velocity.y = JUMP_VELOCITY * delta
 			velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-		elif not has_double_jump:
-			# Double jump in air
-			velocity.y = double_jump_velocity * delta
-			velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-			has_double_jump = true
-		if is_on_wall_only() and nextToRightWall():
-			velocity.x -= wallJump
-			velocity.y = jumpWall
-		if is_on_wall_only() and nextToLeftWall():
-			velocity.x += wallJump
-			velocity.y = jumpWall
 		audio_stream_jumping.play()
-	wall_slide(delta)
 	 
 	if Input.is_action_just_pressed("attack"):
 		isAttacking = true
@@ -170,6 +157,9 @@ func _physics_process(delta):
 		else:
 			end_dash()
 	
+	# Handle wall sliding
+	handle_wall_slide(delta)
+
 	move_and_slide()
 
 func start_dash(dir):
@@ -208,24 +198,34 @@ func _on_hurtbox_body_entered(body : CharacterBody2D):
 func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
 
+func handle_wall_slide(delta):
+	is_wall_sliding = false
+
+	if is_on_wall() and !is_on_floor():
+		if (Input.is_action_pressed("move_right") and nextToRightWall()) or (Input.is_action_pressed("move_left") and nextToLeftWall()):
+			is_wall_sliding = true
+	
+	if is_wall_sliding:
+		if velocity.y > wall_slide_speed:
+			velocity.y = wall_slide_speed
+		else:
+			velocity.y += (wall_slide_gravity * delta)
+			velocity.y = min(velocity.y, wall_slide_gravity)
+	
+	if Input.is_action_just_pressed("jump") and nextToWall() and !is_on_floor():
+		velocity.y = JUMP_VELOCITY * delta
+		velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
+		if nextToRightWall():
+			velocity.x = -wallJump
+		elif nextToLeftWall():
+			velocity.x = wallJump
+		is_wall_sliding = false
+
 func nextToRightWall():
 	return $RightWall.is_colliding()
 
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
-
-func wall_slide(delta):
-	if is_on_wall_only():
-		if nextToRightWall() or nextToLeftWall():
-			is_wall_sliding = true
-		else :
-			is_wall_sliding = false
-	else:
-		is_wall_sliding = false
-	
-	if is_wall_sliding:
-		velocity.y += (wall_slide_gravity * delta)
-		velocity.y = min(velocity.y, wall_slide_gravity)
 	
 func apply_knockback(delta: float):
 	knockback = true

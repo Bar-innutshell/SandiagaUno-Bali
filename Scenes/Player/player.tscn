@@ -594,12 +594,12 @@ libraries = {
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(0, 15)
+target_position = Vector2(5.81741e-05, 16)
 
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(0, -15)
+target_position = Vector2(-5.81741e-05, -16)
 
 [node name="dash" type="Timer" parent="."]
 wait_time = 0.2
