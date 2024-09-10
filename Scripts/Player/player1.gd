@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -100000
 const MAX_VERTICAL_SPEED = 300
 const WALL_JUMP = 700
 const JUMP_WALL = -350
-const WALL_SLIDE_GRAVITY = 150
+const WALL_SLIDE_GRAVITY = 10
 const WALL_SLIDE_SPEED = 30
 const DASH_SPEED = 800.0
 const DASH_DURATION = 0.2
@@ -55,6 +55,9 @@ var shoot_cooldown_timer = 0.0
 func _ready():
 	GameManager.playerBody = self
 	GameManager.player = self
+	set_collision_mask_value(1, true)  # Adjust the mask value as needed
+	set_collision_layer_value(1, true)
+	set_safe_margin(1.0)  # Adjust as needed
 
 func _physics_process(delta):
 	handle_input()
@@ -93,8 +96,13 @@ func handle_wall_slide(delta):
 	is_wall_sliding = false
 
 	if is_on_wall() and !is_on_floor():
+		is_wall_sliding = true
 		if (Input.is_action_pressed("move_right") and nextToRightWall()) or (Input.is_action_pressed("move_left") and nextToLeftWall()):
-			is_wall_sliding = true
+			print("Wall sliding activated at position: ", global_position)
+		else:
+			print("On wall but not sliding. Right wall: ", nextToRightWall(), " Left wall: ", nextToLeftWall())
+	else:
+		print("Not on wall or on floor. On wall: ", is_on_wall(), " On floor: ", is_on_floor())
 	
 	if is_wall_sliding:
 		if velocity.y > WALL_SLIDE_SPEED:
@@ -234,10 +242,10 @@ func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
 
 func nextToRightWall():
-	return $RightWall.is_colliding()
+	return $RightWall.is_colliding() and $RightWall2.is_colliding() and $RightWall3.is_colliding()
 
 func nextToLeftWall():
-	return $LeftWall.is_colliding()
+	return $LeftWall.is_colliding() and $LeftWall2.is_colliding() and $LeftWall3.is_colliding()
 
 func _on_can_dash_timeout():
 	can_dash = true

@@ -264,7 +264,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -299,7 +299,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 14.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,7 +331,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -360,7 +360,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 9.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -411,9 +411,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5bhyi")
 }],
-"loop": false,
+"loop": true,
 "name": &"run",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -443,7 +443,7 @@ var direction : int
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5luq"]
-size = Vector2(31, 25)
+size = Vector2(22, 25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_63q46"]
 height = 34.0
@@ -529,8 +529,9 @@ script = ExtResource("1_7sjdf")
 material = SubResource("ShaderMaterial_m7vsi")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"hit"
+animation = &"wall_slide"
 autoplay = "idle"
+frame_progress = 0.300011
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)
@@ -547,7 +548,7 @@ collision_mask = 4
 script = SubResource("GDScript_72e63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle/AttackArea"]
-position = Vector2(19.5, -20.5)
+position = Vector2(15, -20.5)
 shape = SubResource("RectangleShape2D_i5luq")
 disabled = true
 
@@ -568,12 +569,32 @@ libraries = {
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(5.81741e-05, 16)
+target_position = Vector2(6.19888e-05, 17)
+
+[node name="LeftWall2" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+rotation = 1.5708
+target_position = Vector2(13.0001, 15)
+
+[node name="LeftWall3" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+rotation = 1.5708
+target_position = Vector2(-13.9999, 15.0001)
 
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
 target_position = Vector2(-5.81741e-05, -16)
+
+[node name="RightWall2" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+rotation = 1.5708
+target_position = Vector2(12.9999, -15)
+
+[node name="RightWall3" type="RayCast2D" parent="."]
+position = Vector2(0, -20)
+rotation = 1.5708
+target_position = Vector2(-15.0001, -14.9999)
 
 [node name="dash" type="Timer" parent="."]
 wait_time = 0.2
