@@ -28,10 +28,12 @@ var has_double_jump : bool = false
 var is_wall_sliding = false
 
 #dash
-const DASHSPEED = 6000.0
+const DASH_SPEED = 1000.0
+const DASH_DURATION = 0.2
 var dashing = false
 var can_dash = true
-var isAttacking: bool = false
+var dash_timer = 0.0
+var dash_direction = Vector2.ZERO
 
 #knockback
 var knockback_dir
@@ -41,6 +43,7 @@ var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
 @export var knockback_strength: float = 4000.0  # Besar knockback
 @export var knockback_decay: float = 10.0  # Kecepatan peluruhan knockback
 var direction = 0
+var isAttacking: bool = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_animation_player = $HitAnimationPlayer
@@ -146,11 +149,7 @@ func _physics_process(delta):
 	# Apply movement right or left and dash
 	if direction != 0:
 		if Input.is_action_just_pressed("dash") and can_dash and is_on_floor_only():
-			dashing = true
-			velocity.x += direction * DASHSPEED
-			can_dash = false
-			$dash.start()
-			$can_dash.start()
+			start_dash(direction)
 		else:
 			velocity.x += direction * SPEED * delta
 			velocity.x = clamp(velocity.x, -max_horizontal_speed, max_horizontal_speed)
@@ -162,8 +161,30 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
 		if !is_on_floor():
 			audio_stream_walking.stop()
-
+			
+	#handle dash
+	if dashing:
+		dash_timer += delta
+		if dash_timer < DASH_DURATION:
+			velocity = dash_direction * DASH_SPEED
+		else:
+			end_dash()
+	
 	move_and_slide()
+
+func start_dash(dir):
+	dashing = true
+	can_dash = false
+	dash_timer = 0.0
+	dash_direction = Vector2(dir, 0).normalized()
+	$can_dash.start()
+
+func end_dash():
+	dashing = false
+	velocity = dash_direction * max_horizontal_speed
+
+func _on_can_dash_timeout() -> void:
+	can_dash = true
 
 func player_death():
 	var player_death_effect_instance = player_death_effect.instantiate() as Node2D
@@ -205,12 +226,6 @@ func wall_slide(delta):
 	if is_wall_sliding:
 		velocity.y += (wall_slide_gravity * delta)
 		velocity.y = min(velocity.y, wall_slide_gravity)
-
-func _on_dash_timeout() -> void:
-	dashing = false
-
-func _on_can_dash_timeout() -> void:
-	can_dash = true
 	
 func apply_knockback(delta: float):
 	knockback = true

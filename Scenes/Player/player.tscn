@@ -617,6 +617,8 @@ bus = &"SFX"
 stream = ExtResource("21_om87s")
 bus = &"SFX"
 
+[node name="RespawnTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="dash" to="." method="_on_dash_timeout"]
 [connection signal="timeout" from="can_dash" to="." method="_on_can_dash_timeout"]
