@@ -195,7 +195,7 @@ speed = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p5r0w")
-animation = &"death"
+animation = &"fly"
 autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -2,14 +2,13 @@ extends NodeState
 
 @export var character_body_2d : CharacterBody2D
 @export var animated_sprite_2d : AnimatedSprite2D
-@export var speed : int
+@export var speed : int = 1
 
 var player : CharacterBody2D
 var max_speed : int
 
 func on_process(delta : float):
 	pass
-
 
 func on_physics_process(delta : float):
 	var direction : int
@@ -23,15 +22,14 @@ func on_physics_process(delta : float):
 	
 	animated_sprite_2d.play("attack")
 	
+	# Set the velocity directly based on the direction and speed
 	character_body_2d.velocity.x += direction * speed * delta
 	character_body_2d.velocity.x = clamp(character_body_2d.velocity.x, -max_speed, max_speed)
 	character_body_2d.move_and_slide()
 
-
 func enter():
 	player = get_tree().get_nodes_in_group("Player")[0] as CharacterBody2D
-	max_speed = speed + 20
-
+	max_speed = speed * 2
 
 func exit():
 	pass

@@ -529,9 +529,9 @@ script = ExtResource("1_7sjdf")
 material = SubResource("ShaderMaterial_m7vsi")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"wall_slide"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.300011
+frame_progress = 0.924946
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)

@@ -97,12 +97,6 @@ func handle_wall_slide(delta):
 
 	if is_on_wall() and !is_on_floor():
 		is_wall_sliding = true
-		if (Input.is_action_pressed("move_right") and nextToRightWall()) or (Input.is_action_pressed("move_left") and nextToLeftWall()):
-			print("Wall sliding activated at position: ", global_position)
-		else:
-			print("On wall but not sliding. Right wall: ", nextToRightWall(), " Left wall: ", nextToLeftWall())
-	else:
-		print("Not on wall or on floor. On wall: ", is_on_wall(), " On floor: ", is_on_floor())
 	
 	if is_wall_sliding:
 		if velocity.y > WALL_SLIDE_SPEED:
