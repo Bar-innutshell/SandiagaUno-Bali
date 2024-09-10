@@ -161,7 +161,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
 		if !is_on_floor():
 			audio_stream_walking.stop()
-			
+
 	#handle dash
 	if dashing:
 		dash_timer += delta
@@ -216,7 +216,7 @@ func nextToLeftWall():
 
 func wall_slide(delta):
 	if is_on_wall_only():
-		if nextToRightWall() and Input.is_action_pressed("move_right") or nextToLeftWall() and Input.is_action_pressed("move_left"):
+		if nextToRightWall() or nextToLeftWall():
 			is_wall_sliding = true
 		else :
 			is_wall_sliding = false
