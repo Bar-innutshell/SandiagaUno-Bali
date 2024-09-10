@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=76 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -10,16 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://da8wbcppque21" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright.png" id="17_6m2j1"]
 [ext_resource type="AudioStream" uid="uid://cicgu2eypyc3h" path="res://Assets/Sound/SFX/player_walking.mp3" id="20_27fxe"]
 [ext_resource type="AudioStream" uid="uid://b2n5mprv4otj4" path="res://Assets/Sound/SFX/player_jumping.mp3" id="21_om87s"]
-[ext_resource type="Texture2D" uid="uid://wi02bahs31oj" path="res://Assets/sprites/player/player-run-shot/player-run-shot-1.png" id="22_4r21t"]
-[ext_resource type="Texture2D" uid="uid://cafk8u8viusml" path="res://Assets/sprites/player/player-run-shot/player-run-shot-2.png" id="23_4whto"]
-[ext_resource type="Texture2D" uid="uid://bqalsjivs5j20" path="res://Assets/sprites/player/player-run-shot/player-run-shot-3.png" id="24_430xq"]
-[ext_resource type="Texture2D" uid="uid://cifj5h2flab7x" path="res://Assets/sprites/player/player-run-shot/player-run-shot-4.png" id="25_umvc3"]
-[ext_resource type="Texture2D" uid="uid://be7maaba603n2" path="res://Assets/sprites/player/player-run-shot/player-run-shot-5.png" id="26_pnyaj"]
-[ext_resource type="Texture2D" uid="uid://eg6w4kiff1ae" path="res://Assets/sprites/player/player-run-shot/player-run-shot-6.png" id="27_8fvpk"]
-[ext_resource type="Texture2D" uid="uid://cu6rkfyagyuwj" path="res://Assets/sprites/player/player-run-shot/player-run-shot-7.png" id="28_t6w4x"]
-[ext_resource type="Texture2D" uid="uid://bhdnuy7vf4i8s" path="res://Assets/sprites/player/player-run-shot/player-run-shot-8.png" id="29_2bu5e"]
-[ext_resource type="Texture2D" uid="uid://bftl8ic0n1v3f" path="res://Assets/sprites/player/player-run-shot/player-run-shot-9.png" id="30_885mv"]
-[ext_resource type="Texture2D" uid="uid://c4slqlck2t2s" path="res://Assets/sprites/player/player-run-shot/player-run-shot-10.png" id="31_fw8xg"]
 [ext_resource type="Script" path="res://Scripts/Player/muzzle.gd" id="36_4b631"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7vsi"]
@@ -427,38 +417,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_4r21t")
+"texture": SubResource("AtlasTexture_g8oxa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_4whto")
+"texture": SubResource("AtlasTexture_4qikn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_430xq")
+"texture": SubResource("AtlasTexture_s7ajf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("25_umvc3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_pnyaj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_8fvpk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_t6w4x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_2bu5e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_885mv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_fw8xg")
+"texture": SubResource("AtlasTexture_hdtgi")
 }],
 "loop": true,
-"name": &"run-shot",
-"speed": 14.0
+"name": &"wall_slide",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxg5v"]
@@ -557,10 +529,8 @@ script = ExtResource("1_7sjdf")
 material = SubResource("ShaderMaterial_m7vsi")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"run"
+animation = &"hit"
 autoplay = "idle"
-frame = 15
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -21)

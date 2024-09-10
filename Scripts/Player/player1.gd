@@ -1,209 +1,93 @@
 extends CharacterBody2D
-
 class_name Player
 
-var current_delta: float = 0.0
+# Constants
+const SPEED = 1000
+const MAX_HORIZONTAL_SPEED = 180
+const SLOWDOWN_SPEED = 1800
+const JUMP_VELOCITY = -100000
+const MAX_VERTICAL_SPEED = 300
+const WALL_JUMP = 700
+const JUMP_WALL = -350
+const WALL_SLIDE_GRAVITY = 150
+const WALL_SLIDE_SPEED = 30
+const DASH_SPEED = 800.0
+const DASH_DURATION = 0.2
+const KNOCKBACK_STRENGTH = 25.0
+const KNOCKBACK_DECAY = 45.0
+const SHOOT_COOLDOWN = 1.0
 
-#Audio
-@onready var audio_stream_jumping: AudioStreamPlayer2D = $AudioStreamPlayer2D_Jumping
-@onready var audio_stream_walking: AudioStreamPlayer2D = $AudioStreamPlayer2D_walking
+# Node references
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var hit_animation_player = $HitAnimationPlayer
+@onready var audio_stream_jumping = $AudioStreamPlayer2D_Jumping
+@onready var audio_stream_walking = $AudioStreamPlayer2D_walking
+@onready var muzzle: Marker2D = $Muzzle
+@onready var can_dash_timer = $can_dash
 
-#bullet
+# Preloaded scenes
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
 var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
-@onready var muzzle : Marker2D = $Muzzle
-var muzzle_position
 
-#speed
-@export var SPEED = 1000
-@export var max_horizontal_speed : int = 180
-@export var slowdown_speed : int = 1800 
+# sound
+var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
+var playerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
 
-#jump
-@export var JUMP_VELOCITY = -100000
-@export var max_vertical_speed : int = 300
-
-#Wall Jump
-@export var wallJump = 700
-@export var jumpWall = -350
-@export var wall_slide_gravity = 100
-@export var wall_slide_speed = 50
+# Movement variables
+var direction = 0
 var is_wall_sliding = false
 
-#dash
-const DASH_SPEED = 1000.0
-const DASH_DURATION = 0.2
+# Dash variables
 var dashing = false
 var can_dash = true
 var dash_timer = 0.0
 var dash_direction = Vector2.ZERO
 
-#knockback
-var knockback_dir
+# Knockback variables
+var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback = false
-var enemy_dir
-var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-@export var knockback_strength: float = 4000.0  # Besar knockback
-@export var knockback_decay: float = 10.0  # Kecepatan peluruhan knockback
-var direction = 0
-var isAttacking: bool = false
 
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var hit_animation_player = $HitAnimationPlayer
+# Animation and action flags
+var is_attacking = false
+var current_animation = ""
+var shoot_cooldown_timer = 0.0
 
 func _ready():
-	muzzle_position = muzzle.position
 	GameManager.playerBody = self
 	GameManager.player = self
 
 func _physics_process(delta):
-	var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
-	var _add_constant_forceplayerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
-	current_delta = delta
+	handle_input()
+	apply_gravity(delta)
+	handle_jump(delta)
+	handle_wall_slide(delta)
+	handle_dash(delta)
+	handle_knockback(delta)
+	handle_movement(delta)
+	update_animation()
+	update_muzzle_position()
+	move_and_slide()
+	check_fall_death()
 
-	# Handle knockback
-	if knockback:
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-		velocity += knockback_velocity
-		if knockback_velocity.length() < 10:
-			knockback = false
-			knockback_velocity = Vector2.ZERO
+func handle_input():
+	direction = Input.get_axis("move_left", "move_right")
+	
+	if Input.is_action_just_pressed("attack"):
+		start_attack()
+	
+	if Input.is_action_just_pressed("shot") and shoot_cooldown_timer <= 0:
+		shoot()
 
-	# Add the gravity.
+func apply_gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
+func handle_jump(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
-			# Normal jump
 			velocity.y = JUMP_VELOCITY * delta
-			velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-		audio_stream_jumping.play()
-	 
-	if Input.is_action_just_pressed("attack"):
-		isAttacking = true
-		hit_animation_player.play("punch")
-		animated_sprite.play("attack")
-
-	if Input.is_action_pressed("move_left"):
-		direction = -1
-	elif Input.is_action_pressed("move_right"):
-		direction = 1
-	else:
-		direction = 0
-	
-	# Flip the Sprite
-	if direction > 0:
-		animated_sprite.flip_h = false
-	elif direction < 0:
-		animated_sprite.flip_h = true
-	
-	# Play animations
-	if not animated_sprite.animation == "hit":
-		if is_on_floor():
-			if direction == 0:
-				if isAttacking:
-					animated_sprite.play("attack")
-					await animated_sprite.animation_finished
-					isAttacking = false
-				else:
-					animated_sprite.play("idle")
-			elif Input.is_action_pressed("shot"):
-				animated_sprite.play("run-shot")
-			else:
-				animated_sprite.play("run")
-		else:
-			animated_sprite.play("jump")
-	
-	# Shooting
-	if Input.is_action_just_pressed("shot"):
-		var bullet_instance = bullet.instantiate() as Node2D
-		bullet_instance.direction = muzzle.dir
-		bullet_instance.global_position = muzzle.global_position
-		get_parent().add_child(bullet_instance)
-	
-	# Muzzle position
-	if direction > 0:
-		muzzle.position.x = muzzle_position.x
-	elif direction < 0:
-		muzzle.position.x = -muzzle_position.x
-	
-	if knockback:
-		knockback_velocity = lerp(knockback_velocity, Vector2.ZERO, knockback_decay * delta)
-		velocity += knockback_velocity
-		if knockback_velocity.length() < 10:
-			knockback = false
-			knockback_velocity = Vector2.ZERO
-	
-	# Apply movement right or left and dash
-	if direction != 0:
-		if Input.is_action_just_pressed("dash") and can_dash and is_on_floor_only():
-			start_dash(direction)
-		else:
-			velocity.x += direction * SPEED * delta
-			velocity.x = clamp(velocity.x, -max_horizontal_speed, max_horizontal_speed)
-			if is_on_floor():
-				if !audio_stream_walking.playing:
-					audio_stream_walking.stream = (playerGrassWalkingSound)
-					audio_stream_walking.play()
-	else:
-		velocity.x = move_toward(velocity.x, 0, slowdown_speed * delta)
-		if !is_on_floor():
-			audio_stream_walking.stop()
-
-	#handle dash
-	if dashing:
-		dash_timer += delta
-		if dash_timer < DASH_DURATION:
-			velocity = dash_direction * DASH_SPEED
-		else:
-			end_dash()
-	
-	# Handle wall sliding
-	handle_wall_slide(delta)
-
-	move_and_slide()
-
-	if position.y >= 1000:
-		player_death()
-
-func start_dash(dir):
-	dashing = true
-	can_dash = false
-	dash_timer = 0.0
-	dash_direction = Vector2(dir, 0).normalized()
-	$can_dash.start()
-
-func end_dash():
-	dashing = false
-	velocity = dash_direction * max_horizontal_speed
-
-func _on_can_dash_timeout() -> void:
-	can_dash = true
-
-func player_death():
-	var player_death_effect_instance = player_death_effect.instantiate() as Node2D
-	player_death_effect_instance.global_position = global_position
-	get_parent().add_child(player_death_effect_instance)
-	GameManager.respawn_player()
-	HealthManager.current_health = 1
-
-func _on_hurtbox_body_entered(body : CharacterBody2D):
-	if body.is_in_group("Enemy"):
-		print("Enemy Entered ", body.damage_amount)
-		animated_sprite.play("hit")
-		enemy_dir = body.direction
-		knockback_dir = (global_position - body.global_position).normalized()
-		apply_knockback(current_delta)
-		HealthManager.decrease_health(body.damage_amount)
-		
-	if HealthManager.current_health == 0:
-		player_death()
-
-
-func nextToWall():
-	return nextToRightWall() or nextToLeftWall()
+			velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+			audio_stream_jumping.play()
 
 func handle_wall_slide(delta):
 	is_wall_sliding = false
@@ -213,29 +97,147 @@ func handle_wall_slide(delta):
 			is_wall_sliding = true
 	
 	if is_wall_sliding:
-		if velocity.y > wall_slide_speed:
-			velocity.y = wall_slide_speed
+		if velocity.y > WALL_SLIDE_SPEED:
+			velocity.y = WALL_SLIDE_SPEED
 		else:
-			velocity.y += (wall_slide_gravity * delta)
-			velocity.y = min(velocity.y, wall_slide_gravity)
+			velocity.y += (WALL_SLIDE_GRAVITY * delta)
+			velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
 	
 	if Input.is_action_just_pressed("jump") and nextToWall() and !is_on_floor():
-		velocity.y = JUMP_VELOCITY * delta
-		velocity.y = clamp(velocity.y, -max_vertical_speed, max_vertical_speed)
-		if nextToRightWall():
-			velocity.x = -wallJump
-		elif nextToLeftWall():
-			velocity.x = wallJump
-		is_wall_sliding = false
+		wall_jump(delta)
+
+func wall_jump(delta):
+	velocity.y = JUMP_VELOCITY * delta
+	velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+	if nextToRightWall():
+		velocity.x = -WALL_JUMP
+	elif nextToLeftWall():
+		velocity.x = WALL_JUMP
+	is_wall_sliding = false
+
+func handle_dash(delta):
+	if Input.is_action_just_pressed("dash") and can_dash and is_on_floor():
+		start_dash()
+	
+	if dashing:
+		dash_timer += delta
+		if dash_timer < DASH_DURATION:
+			velocity = dash_direction * DASH_SPEED
+		else:
+			end_dash()
+
+func start_dash():
+	dashing = true
+	can_dash = false
+	dash_timer = 0.0
+	dash_direction = Vector2(direction, 0).normalized()
+	can_dash_timer.start()
+
+func end_dash():
+	dashing = false
+	velocity = dash_direction * MAX_HORIZONTAL_SPEED
+
+func handle_knockback(delta):
+	if knockback:
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
+		velocity += knockback_velocity
+		if knockback_velocity.length() < 10:
+			knockback = false
+			knockback_velocity = Vector2.ZERO
+
+func handle_movement(delta):
+	if not dashing and not knockback:
+		if direction != 0:
+			velocity.x += direction * SPEED * delta
+			velocity.x = clamp(velocity.x, -MAX_HORIZONTAL_SPEED, MAX_HORIZONTAL_SPEED)
+			if is_on_floor() and not audio_stream_walking.playing:
+				audio_stream_walking.play()
+		else:
+			velocity.x = move_toward(velocity.x, 0, SLOWDOWN_SPEED * delta)
+			if not is_on_floor() or velocity.x == 0:
+				audio_stream_walking.stop()
+
+func update_animation():
+	var new_animation = ""
+	
+	if is_attacking:
+		new_animation = "attack"
+	elif knockback:
+		new_animation = "hit"
+	elif is_wall_sliding:
+		new_animation = "wall_slide"
+	elif not is_on_floor():
+		new_animation = "jump"
+	elif abs(velocity.x) > 0:
+		new_animation = "run" if shoot_cooldown_timer > 0 else "run"
+	else:
+		new_animation = "idle"
+	
+	if new_animation != current_animation:
+		animated_sprite.play(new_animation)
+		current_animation = new_animation
+	
+	animated_sprite.flip_h = direction < 0 if direction != 0 else animated_sprite.flip_h
+
+func update_muzzle_position():
+	muzzle.position.x = abs(muzzle.position.x) * sign(direction) if direction != 0 else muzzle.position.x
+
+func shoot():
+	var bullet_instance = bullet.instantiate()
+	bullet_instance.direction = 1 if not animated_sprite.flip_h else -1
+	bullet_instance.global_position = muzzle.global_position
+	get_parent().add_child(bullet_instance)
+	shoot_cooldown_timer = SHOOT_COOLDOWN
+
+func start_attack():
+	if not is_attacking:
+		is_attacking = true
+		hit_animation_player.play("punch")
+		animated_sprite.play("attack")
+		await animated_sprite.animation_finished
+		is_attacking = false
+
+func apply_knockback(attacker_position: Vector2):
+	knockback = true
+	var knockback_direction = (global_position - attacker_position).normalized()
+	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
+	knockback_velocity.y -= 20
+
+func player_death():
+	# Reset knockback variables
+	knockback = false
+	knockback_velocity = Vector2.ZERO
+	
+	# Instantiate death effect
+	var effect_instance = player_death_effect.instantiate()
+	effect_instance.global_position = global_position
+	get_parent().add_child(effect_instance)
+	
+	# Respawn player and reset health
+	GameManager.respawn_player()
+	HealthManager.current_health = 1
+
+func check_fall_death():
+	if position.y >= 1000:
+		player_death()
+
+func _on_hurtbox_body_entered(body: CharacterBody2D):
+	if body.is_in_group("Enemy"):
+		animated_sprite.play("hit")
+		apply_knockback(body.global_position)
+		HealthManager.decrease_health(body.damage_amount)
+		
+	if HealthManager.current_health == 0:
+		player_death()
+
+func nextToWall():
+	return nextToRightWall() or nextToLeftWall()
 
 func nextToRightWall():
 	return $RightWall.is_colliding()
 
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
-	
-func apply_knockback(delta: float):
-	knockback = true
-	knockback_velocity.y -= 25  # Add a small upward component to the knockback
-	knockback_velocity = knockback_dir * knockback_strength * delta
-	
+
+func _on_can_dash_timeout():
+	can_dash = true

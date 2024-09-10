@@ -2,8 +2,8 @@ extends AnimatedSprite2D
 
 var bullet_impact_effect = preload("res://Scenes/Weapon/bullet_impact.tscn")
 
-var speed : int = 300
-var direction : int
+@export var speed : int = 300
+var direction : int = 1  # Default direction is right
 @export var damage_amount : int = 1
 
 func _physics_process(delta):
@@ -22,7 +22,7 @@ func _on_hitbox_body_entered(body):
 
 func get_damage_amount() -> int:
 	return damage_amount + GameManager.damage_upgrade
-	
+
 func bullet_impact():
 	var bullet_impact_instance = bullet_impact_effect.instantiate() as Node2D
 	bullet_impact_instance.global_position = global_position
