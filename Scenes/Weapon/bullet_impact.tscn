@@ -1,29 +1,59 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpye0m01kyt8f"]
+[gd_scene load_steps=11 format=3 uid="uid://cpye0m01kyt8f"]
 
-[ext_resource type="Texture2D" uid="uid://5uisfwluo8k" path="res://Assets/sprites/Fx/impact/impact-1.png" id="1_41ivt"]
-[ext_resource type="Texture2D" uid="uid://dxetohfrwnrmq" path="res://Assets/sprites/Fx/impact/impact-2.png" id="2_7lroa"]
-[ext_resource type="Texture2D" uid="uid://i44iyq7jhx7q" path="res://Assets/sprites/Fx/impact/impact-3.png" id="3_qnbof"]
-[ext_resource type="Texture2D" uid="uid://q7s0wkl13r7s" path="res://Assets/sprites/Fx/impact/impact-4.png" id="4_gqtu1"]
-[ext_resource type="Texture2D" uid="uid://dfhexufrt12je" path="res://Assets/sprites/Fx/impact/impact-5.png" id="5_6ksf2"]
+[ext_resource type="Texture2D" uid="uid://bxw6weoft0w8r" path="res://Assets/enemy_SEED/goblin/attack/meletup.png" id="1_qwsj5"]
 [ext_resource type="Script" path="res://Scripts/Weapons/bullet_impact.gd" id="6_r6l5m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i07ut"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i83cv"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rni7g"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1dd2"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u54rj"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trx1a"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt8yj"]
+atlas = ExtResource("1_qwsj5")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ved14"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_41ivt")
+"texture": SubResource("AtlasTexture_i07ut")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_7lroa")
+"texture": SubResource("AtlasTexture_i83cv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_qnbof")
+"texture": SubResource("AtlasTexture_rni7g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_gqtu1")
+"texture": SubResource("AtlasTexture_r1dd2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_6ksf2")
+"texture": SubResource("AtlasTexture_u54rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trx1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt8yj")
 }],
 "loop": false,
 "name": &"default",
@@ -33,7 +63,7 @@ animations = [{
 [node name="BulletImpact" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ved14")
 autoplay = "default"
-frame = 4
+frame = 6
 frame_progress = 1.0
 script = ExtResource("6_r6l5m")
 

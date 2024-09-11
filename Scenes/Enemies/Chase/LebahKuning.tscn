@@ -1,37 +1,50 @@
-[gd_scene load_steps=28 format=3 uid="uid://ben7m854ljv7h"]
+[gd_scene load_steps=32 format=3 uid="uid://ben7m854ljv7h"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/burung_rusdi.gd" id="1_egqpf"]
+[ext_resource type="Texture2D" uid="uid://bderi0o8lb7n3" path="res://Assets/enemy_SEED/lebah suka/lebah-mati.png" id="2_jysvq"]
 [ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="2_l1lp0"]
 [ext_resource type="Texture2D" uid="uid://caj3qu1p1an6v" path="res://Assets/enemy_SEED/lebah suka/bee-idle-right.png" id="3_2kjjh"]
 [ext_resource type="Texture2D" uid="uid://b3dqxym6320ho" path="res://Assets/enemy_SEED/lebah suka/burung-idle1.png" id="4_sbwk0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v2x1"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(256, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ukxb"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wifst"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(320, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ls4"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0vos"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(384, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_usype"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1vhw"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(448, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb0d7"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_klssp"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(512, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha56f"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq7hc"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(576, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_obtv5"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_plmhg"]
-atlas = ExtResource("2_l1lp0")
-region = Rect2(640, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycabq"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbkv7"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxpd5"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7xw1"]
+atlas = ExtResource("2_jysvq")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8u25u"]
 atlas = ExtResource("3_2kjjh")
@@ -89,25 +102,34 @@ region = Rect2(256, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0v2x1")
+"texture": SubResource("AtlasTexture_6ukxb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wifst")
+"texture": SubResource("AtlasTexture_56ls4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p0vos")
+"texture": SubResource("AtlasTexture_usype")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l1vhw")
+"texture": SubResource("AtlasTexture_gb0d7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_klssp")
+"texture": SubResource("AtlasTexture_ha56f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bq7hc")
+"texture": SubResource("AtlasTexture_obtv5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_plmhg")
+"texture": SubResource("AtlasTexture_ycabq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbkv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxpd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7xw1")
 }],
 "loop": false,
 "name": &"death",
@@ -180,6 +202,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_egqpf")
 speed = 50
+health_amount = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)

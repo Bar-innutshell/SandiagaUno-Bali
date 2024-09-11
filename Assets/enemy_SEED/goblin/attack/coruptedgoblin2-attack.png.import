@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mhux5r3uhn0b"
-path="res://.godot/imported/dino.png-bce7eae3147a45ee4d36e8257621f47f.ctex"
+uid="uid://dye5ho4u7glpp"
+path="res://.godot/imported/coruptedgoblin2-attack.png-45c232a982e4859aa9e277c017081384.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Enemies/Areachase/dino/dino.png"
-dest_files=["res://.godot/imported/dino.png-bce7eae3147a45ee4d36e8257621f47f.ctex"]
+source_file="res://Assets/enemy_SEED/goblin/attack/coruptedgoblin2-attack.png"
+dest_files=["res://.godot/imported/coruptedgoblin2-attack.png-45c232a982e4859aa9e277c017081384.ctex"]
 
 [params]
 

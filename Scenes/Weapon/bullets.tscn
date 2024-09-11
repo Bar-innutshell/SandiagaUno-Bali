@@ -1,17 +1,73 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1q52psxe6tua"]
+[gd_scene load_steps=14 format=3 uid="uid://b1q52psxe6tua"]
 
-[ext_resource type="Texture2D" uid="uid://dg0c0kj1dgjj5" path="res://Assets/sprites/Fx/shot/shot-1.png" id="1_d7th6"]
-[ext_resource type="Texture2D" uid="uid://b4gm8cl03x5uu" path="res://Assets/sprites/Fx/shot/shot-2.png" id="2_rllm2"]
+[ext_resource type="Texture2D" uid="uid://caf0e0nulsqd8" path="res://Assets/enemy_SEED/goblin/attack/meluncur-kanan.png" id="1_icnof"]
 [ext_resource type="Script" path="res://Scripts/Weapons/bullets.gd" id="3_0axe2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhoox"]
+atlas = ExtResource("1_icnof")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqd1v"]
+atlas = ExtResource("1_icnof")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0yyo"]
+atlas = ExtResource("1_icnof")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yidqi"]
+atlas = ExtResource("1_icnof")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwkb7"]
+atlas = ExtResource("1_icnof")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrjoa"]
+atlas = ExtResource("1_icnof")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq4xl"]
+atlas = ExtResource("1_icnof")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqqte"]
+atlas = ExtResource("1_icnof")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gux4w"]
+atlas = ExtResource("1_icnof")
+region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d3aos"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_d7th6")
+"texture": SubResource("AtlasTexture_lhoox")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rllm2")
+"texture": SubResource("AtlasTexture_iqd1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0yyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yidqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwkb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrjoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq4xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqqte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gux4w")
 }],
 "loop": true,
 "name": &"default",
@@ -19,23 +75,26 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xho8w"]
-radius = 3.0
+radius = 5.0
 
 [node name="Bullets" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_d3aos")
-frame_progress = 0.156797
+autoplay = "default"
+frame_progress = 0.807653
 script = ExtResource("3_0axe2")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.386
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-2, 0)
 collision_layer = 2
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, -8.74228e-08)
 shape = SubResource("CircleShape2D_xho8w")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

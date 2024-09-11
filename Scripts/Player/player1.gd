@@ -207,7 +207,7 @@ func apply_knockback(attacker_position: Vector2):
 	knockback = true
 	var knockback_direction = (global_position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
-	knockback_velocity.y -= 20
+	knockback_velocity.y -= 10
 
 func player_death():
 	# Reset knockback variables
@@ -240,10 +240,10 @@ func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
 
 func nextToRightWall():
-	return $RightWall.is_colliding() and $RightWall2.is_colliding() and $RightWall3.is_colliding()
+	return $RightWall.is_colliding() or $RightWall2.is_colliding() or $RightWall3.is_colliding()
 
 func nextToLeftWall():
-	return $LeftWall.is_colliding() and $LeftWall2.is_colliding() and $LeftWall3.is_colliding()
+	return $LeftWall.is_colliding() or $LeftWall2.is_colliding() or $LeftWall3.is_colliding()
 
 func _on_can_dash_timeout():
 	can_dash = true

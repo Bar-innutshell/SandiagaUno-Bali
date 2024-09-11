@@ -6,9 +6,20 @@ var bullet_impact_effect = preload("res://Scenes/Weapon/bullet_impact.tscn")
 var direction : int = 1  # Default direction is right
 @export var damage_amount : int = 1
 
+func _ready():
+	update_sprite_direction()
+
+func set_direction(new_direction: int):
+	direction = new_direction
+	update_sprite_direction()
+
+func update_sprite_direction():
+	# Flip the sprite when moving left
+	flip_h = direction == -1
+
 func _physics_process(delta):
 	move_local_x(direction * speed * delta)
-
+	
 func _on_timer_timeout():
 	queue_free()
 

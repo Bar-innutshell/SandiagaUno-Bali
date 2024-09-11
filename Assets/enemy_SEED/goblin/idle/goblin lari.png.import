@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctlwfgof1a2ac"
-path="res://.godot/imported/dino-idle.png-74ffe5eca7d3945190a8bda28f6b9d63.ctex"
+uid="uid://bvaj8qigpydpt"
+path="res://.godot/imported/goblin lari.png-5669adb63d2efd3386ca8bf56cb5a9f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Enemies/Areachase/dino/dino-idle.png"
-dest_files=["res://.godot/imported/dino-idle.png-74ffe5eca7d3945190a8bda28f6b9d63.ctex"]
+source_file="res://Assets/enemy_SEED/goblin/idle/goblin lari.png"
+dest_files=["res://.godot/imported/goblin lari.png-5669adb63d2efd3386ca8bf56cb5a9f3.ctex"]
 
 [params]
 

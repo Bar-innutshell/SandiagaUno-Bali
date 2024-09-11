@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmv4k2t3gmp5" path="res://Scenes/Env/BreakableObject/winter_vas.tscn" id="17_6bkkx"]
 [ext_resource type="PackedScene" uid="uid://p8kvd2r2yd8v" path="res://Scenes/Enemies/Chase/LebahIreng.tscn" id="18_0u1q5"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="19_sxh1p"]
-[ext_resource type="PackedScene" uid="uid://chaea5jl4jhtf" path="res://Scenes/Enemies/Areachase/dino/enemy_dino.tscn" id="20_inwyl"]
+[ext_resource type="PackedScene" uid="uid://chaea5jl4jhtf" path="res://Scenes/Enemies/Areachase/GoblinPedang/goblin_pedang.tscn" id="20_inwyl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0orkr"]
 texture = ExtResource("1_b6gb0")

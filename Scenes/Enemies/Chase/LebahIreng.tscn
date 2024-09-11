@@ -1,37 +1,50 @@
-[gd_scene load_steps=28 format=3 uid="uid://p8kvd2r2yd8v"]
+[gd_scene load_steps=32 format=3 uid="uid://p8kvd2r2yd8v"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/burung_rusdi.gd" id="1_mm1dc"]
 [ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="2_o2417"]
+[ext_resource type="Texture2D" uid="uid://sm2cpxuvy0s1" path="res://Assets/enemy_SEED/lebah suka/lebahcorupted-mati.png" id="2_wkr3g"]
 [ext_resource type="Texture2D" uid="uid://80enusvg8n8e" path="res://Assets/enemy_SEED/lebah suka/bee-idle-left.png" id="3_gu4un"]
 [ext_resource type="Texture2D" uid="uid://b3dqxym6320ho" path="res://Assets/enemy_SEED/lebah suka/burung-idle1.png" id="4_h4ufy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v2x1"]
-atlas = ExtResource("2_o2417")
-region = Rect2(256, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jko1l"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wifst"]
-atlas = ExtResource("2_o2417")
-region = Rect2(320, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vlgv"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0vos"]
-atlas = ExtResource("2_o2417")
-region = Rect2(384, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_22r03"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1vhw"]
-atlas = ExtResource("2_o2417")
-region = Rect2(448, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oug1t"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_klssp"]
-atlas = ExtResource("2_o2417")
-region = Rect2(512, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjrym"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq7hc"]
-atlas = ExtResource("2_o2417")
-region = Rect2(576, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qocda"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_plmhg"]
-atlas = ExtResource("2_o2417")
-region = Rect2(640, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2h42"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8a1q"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eufn5"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7p6b"]
+atlas = ExtResource("2_wkr3g")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q3vim"]
 atlas = ExtResource("3_gu4un")
@@ -89,25 +102,34 @@ region = Rect2(256, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0v2x1")
+"texture": SubResource("AtlasTexture_jko1l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wifst")
+"texture": SubResource("AtlasTexture_4vlgv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p0vos")
+"texture": SubResource("AtlasTexture_22r03")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l1vhw")
+"texture": SubResource("AtlasTexture_oug1t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_klssp")
+"texture": SubResource("AtlasTexture_hjrym")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bq7hc")
+"texture": SubResource("AtlasTexture_qocda")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_plmhg")
+"texture": SubResource("AtlasTexture_r2h42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8a1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eufn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7p6b")
 }],
 "loop": false,
 "name": &"death",
@@ -179,7 +201,7 @@ position = Vector2(0, -10)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_mm1dc")
-speed = 50
+speed = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)

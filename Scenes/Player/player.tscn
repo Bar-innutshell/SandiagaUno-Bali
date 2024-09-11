@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=75 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -436,12 +436,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxg5v"]
 size = Vector2(14, 26)
 
-[sub_resource type="GDScript" id="GDScript_72e63"]
-script/source = "extends Area2D
-
-var direction : int
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5luq"]
 size = Vector2(22, 25)
 
@@ -516,13 +510,14 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ox0tx"]
-radius = 7.0
+radius = 3.0
 height = 24.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 position = Vector2(0, 8)
 collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_7sjdf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -538,17 +533,16 @@ position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_mxg5v")
 
 [node name="Muzzle" type="Marker2D" parent="." groups=["attack"]]
-position = Vector2(16, -20)
+position = Vector2(27, -20)
 script = ExtResource("36_4b631")
 
 [node name="AttackArea" type="Area2D" parent="Muzzle" groups=["attack"]]
-position = Vector2(-16, 20)
+position = Vector2(-17, 20)
 collision_layer = 2
 collision_mask = 4
-script = SubResource("GDScript_72e63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle/AttackArea"]
-position = Vector2(15, -20.5)
+position = Vector2(8, -21)
 shape = SubResource("RectangleShape2D_i5luq")
 disabled = true
 
@@ -569,32 +563,32 @@ libraries = {
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(6.19888e-05, 17)
+target_position = Vector2(-10.9999, 18)
 
 [node name="LeftWall2" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(13.0001, 15)
+target_position = Vector2(11.0001, 16)
 
 [node name="LeftWall3" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(-13.9999, 15.0001)
+target_position = Vector2(-18, 13.0001)
 
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(-5.81741e-05, -16)
+target_position = Vector2(-11, -18)
 
 [node name="RightWall2" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(12.9999, -15)
+target_position = Vector2(10.9999, -16)
 
 [node name="RightWall3" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 rotation = 1.5708
-target_position = Vector2(-15.0001, -14.9999)
+target_position = Vector2(-18, -13)
 
 [node name="dash" type="Timer" parent="."]
 wait_time = 0.2
@@ -613,6 +607,8 @@ stream = ExtResource("21_om87s")
 bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

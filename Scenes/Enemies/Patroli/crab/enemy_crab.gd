@@ -1,144 +1,102 @@
 extends CharacterBody2D
 
-var enemy_death_effect = preload("res://Scenes/Enemies/enemy_death_effect.tscn")
-
 const NAME = "enemy"
-var current_delta: float = 0.0
 
 @export var patrol_points : Node
-@export var speed : int = 1500
-@export var wait_time : int = 3
+@export var speed : float = 50.0
+@export var wait_time : float = 1.0
 @export var health_amount : int = 3
 @export var damage_amount : int = 1
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var timer = $Timer
 
-const GRAVITY = 1000
+enum State { Idle, Move }
+var current_state : State = State.Idle
+var point_positions : Array[Vector2] = []
+var current_point_index : int = 0
+var can_move : bool = true
 
-enum State { Idle, Walk }
-var current_state : State
-var direction : Vector2 = Vector2.LEFT
-var number_of_points : int
-var point_positions : Array[Vector2]
-var current_point : Vector2
-var current_point_position : int
-var can_walk : bool
+var knockback_velocity: Vector2 = Vector2.ZERO
+@export var knockback_strength: float = 100.0
+@export var knockback_decay: float = 200.0
 
-var direction_knockback = 1
-var knockback_dir
-var knockback = false
-var player_dir
-var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-@export var knockback_strength: float = 5000.0  # Besar knockback
-@export var knockback_decay: float = 50.0  # Kecepatan peluruhan knockback
+const ARRIVAL_THRESHOLD : float = 0.1  # Increased precision
 
 func _ready():
-	if patrol_points != null:
-		number_of_points = patrol_points.get_children().size()
+	print("Bee enemy initialized")
+	if patrol_points and patrol_points.get_child_count() > 0:
 		for point in patrol_points.get_children():
 			point_positions.append(point.global_position)
-		current_point = point_positions[current_point_position]
+		print("Patrol points: ", point_positions)
+		global_position = point_positions[0]  # Start at the first patrol point
 	else:
-		print("No patrol points")
-	
-	timer.wait_time = wait_time
-	
-	current_state = State.Idle
+		print("No valid patrol points found")
 
-
-func _physics_process(delta : float):
-	current_delta = delta
-	enemy_gravity(delta)
-	enemy_idle(delta)
-	enemy_walk(delta)
+func _physics_process(delta: float):
 	handle_knockback(delta)
-
+	
+	if current_state == State.Move and can_move:
+		move_to_next_point(delta)
+	
 	move_and_slide()
+	update_animation()
+
+func move_to_next_point(delta: float):
+	var target_point = point_positions[current_point_index]
+	var distance_to_target = global_position.distance_to(target_point)
 	
-	enemy_animations()
-
-
-func enemy_gravity(delta : float):
-	velocity.y += GRAVITY * delta
-
-func enemy_idle(delta : float):
-	if !can_walk:
-		velocity.x = move_toward(velocity.x, 0, speed * delta)
-		current_state = State.Idle
-
-
-func enemy_walk(delta : float):
-	if !can_walk:
-		return
-	
-	if abs(position.x - current_point.x) > 0.5:
-		velocity.x = direction.x * speed * delta
-		current_state = State.Walk
-	else:
-		current_point_position += 1
-
-		if current_point_position >= number_of_points:
-			current_point_position = 0
-
-		current_point = point_positions[current_point_position];
-
-		if current_point.x > position.x:
-			direction = Vector2.RIGHT
-		else:
-			direction = Vector2.LEFT
+	if distance_to_target > ARRIVAL_THRESHOLD:
+		var direction = (target_point - global_position).normalized()
 		
-		can_walk = false
+		# Use the minimum of the distance to target or full movement this frame
+		var movement_this_frame = min(speed * delta, distance_to_target)
+		velocity = direction * (movement_this_frame / delta)
+	else:
+		# We've reached the point, snap to it precisely
+		global_position = target_point
+		velocity = Vector2.ZERO
+		current_point_index = (current_point_index + 1) % point_positions.size()
+		can_move = false
+		current_state = State.Idle
 		timer.start()
 	
-	animated_sprite_2d.flip_h = direction.x > 0
+	print("Moving to point: ", target_point, " Current position: ", global_position, " Distance: ", distance_to_target)
 
-
-func enemy_animations():
-	if current_state == State.Idle && !can_walk:
+func update_animation():
+	if animated_sprite_2d:
 		animated_sprite_2d.play("idle")
-	elif current_state == State.Walk && can_walk:
-		animated_sprite_2d.play("walk")
+		if velocity.length() > 0:
+			animated_sprite_2d.flip_h = velocity.x < 0
 
 func _on_timer_timeout():
-	can_walk = true
+	can_move = true
+	current_state = State.Move
+	print("Timer timeout, resuming movement to next point")
 
-func handle_knockback(delta):
-	if knockback:
+func handle_knockback(delta: float):
+	if knockback_velocity.length() > 0:
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
 		velocity += knockback_velocity
-		if knockback_velocity.length() < 10:
-			knockback = false
-			knockback_velocity = Vector2.ZERO
+		print("Applying knockback: ", knockback_velocity)
 
-func apply_knockback(delta: float):
-	knockback = true
-	if direction_knockback == player_dir:
-		knockback_dir *= 1
-	knockback_velocity.x = knockback_strength * knockback_dir * delta # Tentukan arah knockback
+func apply_knockback(knockback_direction: Vector2):
+	knockback_velocity = knockback_direction.normalized() * knockback_strength
+	print("Knockback applied: ", knockback_velocity)
 
-func _on_hurtbox_area_entered(area : Area2D):
-	if area.get_parent().has_method("get_damage_amount"):
+func _on_hurtbox_area_entered(area: Area2D):
+	if area.get_parent().has_method("get_damage_amount") or area.is_in_group("attack"):
 		print("Bullet area entered")
-		var node = area.get_parent() as Node
+		var node = area.get_parent()
 		health_amount -= node.damage_amount
 		print("Health amount: ", health_amount)
+		
+		if area.get_parent().has_method("get_knockback_direction"):
+			var knockback_direction = area.get_parent().get_knockback_direction()
+			apply_knockback(knockback_direction)
+		
 		if health_amount <= 0:
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
-			get_parent().add_child(enemy_death_effect_instance)
-			HitStopManager.hit_stop_short()
-			queue_free()
-	if area.is_in_group("attack"):
-		var node = area.get_parent() as Node
-		health_amount -= node.damage_amount
-		player_dir = node.dir
-		knockback_dir = player_dir
-		apply_knockback(current_delta)
-		print("Health amount: ", health_amount)
-		if health_amount <= 0:
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
-			get_parent().add_child(enemy_death_effect_instance)
-			HitStopManager.hit_stop_short()
+			if animated_sprite_2d:
+				animated_sprite_2d.play("death")
+			print("Enemy died")
 			queue_free()

@@ -18,12 +18,15 @@ var health_amount : int = 3
 var knockback_dir
 var knockback = false
 var player_dir
-var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-@export var knockback_strength: float = 8000.0  # Besar knockback
-@export var knockback_decay: float = 50.0  # Kecepatan peluruhan knockback
+var knockback_velocity: Vector2 = Vector2.ZERO
+@export var knockback_strength: float = 8000.0
+@export var knockback_decay: float = 50.0
 
-#buat bolak-balik tanpa perlu wall
-func _physics_process(delta) :
+func _ready():
+	ray_cast_right.collision_mask = 1 << 0
+	ray_cast_left.collision_mask = 1 << 0
+
+func _physics_process(delta):
 	current_delta = delta
 
 	if not is_on_floor():
@@ -43,14 +46,18 @@ func _physics_process(delta) :
 		$RayCast2D.target_position = Vector2(278, 250)
 	
 	if direction > 0:
-		animated_sprite.flip_h = true
-	elif direction < 0:
 		animated_sprite.flip_h = false
+	elif direction < 0:
+		animated_sprite.flip_h = true
 		
-	if not knockback:
-		if ray_cast_right.is_colliding():
+	# Check for wall collisions, ignoring the player
+	if ray_cast_right.is_colliding():
+		var collider = ray_cast_right.get_collider()
+		if collider and not collider.is_in_group("Player"):
 			direction = -1
-		if ray_cast_left.is_colliding():
+	if ray_cast_left.is_colliding():
+		var collider = ray_cast_left.get_collider()
+		if collider and not collider.is_in_group("Player"):
 			direction = 1
 		
 	# Handle knockback
@@ -100,4 +107,3 @@ func apply_knockback(delta: float):
 	if direction == player_dir:
 		knockback_dir *= 1
 	knockback_velocity.x = knockback_strength * knockback_dir * delta # Tentukan arah knockback
-	
