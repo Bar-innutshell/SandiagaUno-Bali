@@ -160,9 +160,11 @@ position = Vector2(196, -187)
 
 [node name="Checkpoint" parent="." instance=ExtResource("19_sxh1p")]
 position = Vector2(-515, -826)
+spawnpoint = null
 
 [node name="Checkpoint2" parent="." instance=ExtResource("19_sxh1p")]
 position = Vector2(1160, -169)
+spawnpoint = null
 
 [node name="EnemyDino" parent="." instance=ExtResource("20_inwyl")]
 position = Vector2(871, -386)

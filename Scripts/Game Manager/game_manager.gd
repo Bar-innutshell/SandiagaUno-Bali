@@ -5,7 +5,7 @@ var pause_menu_screen = preload("res://ui/menu/pause_menu_screen.tscn")
 
 #checkpoint
 var current_checkpoint  : Checkpoint
-var player : Player
+var player : Player1
 
 #player upgrade
 var damage_upgrade : int = 0

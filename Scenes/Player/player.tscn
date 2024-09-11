@@ -538,11 +538,11 @@ position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_mxg5v")
 
 [node name="Muzzle" type="Marker2D" parent="." groups=["attack"]]
-position = Vector2(16, -24)
+position = Vector2(16, -20)
 script = ExtResource("36_4b631")
 
 [node name="AttackArea" type="Area2D" parent="Muzzle" groups=["attack"]]
-position = Vector2(-16, 24)
+position = Vector2(-16, 20)
 collision_layer = 2
 collision_mask = 4
 script = SubResource("GDScript_72e63")

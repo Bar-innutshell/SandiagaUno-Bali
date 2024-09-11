@@ -56,6 +56,7 @@ position = Vector2(431, -16)
 
 [node name="Checkpoint" parent="TileMap" index="4" instance=ExtResource("9_lwtj6")]
 position = Vector2(515, -43)
+spawnpoint = null
 
 [node name="Player" parent="." index="5"]
 position = Vector2(82, -16)

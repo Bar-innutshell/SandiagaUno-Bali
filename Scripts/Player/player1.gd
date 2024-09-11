@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name Player1
 
 # Constants
 const SPEED = 1000
@@ -15,7 +15,7 @@ const DASH_SPEED = 800.0
 const DASH_DURATION = 0.2
 const KNOCKBACK_STRENGTH = 25.0
 const KNOCKBACK_DECAY = 45.0
-const SHOOT_COOLDOWN = 1.0
+const SHOOT_COOLDOWN = 0.8
 
 # Node references
 @onready var animated_sprite = $AnimatedSprite2D
@@ -71,6 +71,10 @@ func _physics_process(delta):
 	update_muzzle_position()
 	move_and_slide()
 	check_fall_death()
+	
+	# Update the shoot cooldown timer
+	if shoot_cooldown_timer > 0:
+		shoot_cooldown_timer -= delta
 
 func handle_input():
 	direction = Input.get_axis("move_left", "move_right")
@@ -189,7 +193,7 @@ func shoot():
 	bullet_instance.direction = 1 if not animated_sprite.flip_h else -1
 	bullet_instance.global_position = muzzle.global_position
 	get_parent().add_child(bullet_instance)
-	shoot_cooldown_timer = SHOOT_COOLDOWN
+	shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
 
 func start_attack():
 	if not is_attacking:
