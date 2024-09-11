@@ -58,26 +58,27 @@ offset_bottom = 62.0
 color = Color(0.227451, 0.227451, 0.227451, 1)
 
 [node name="textBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 60.0
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_right = -62.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="bgLabel" type="Label" parent="textBoxContainer"]
 layout_mode = 2
 text = "Background Music:"
 
-[node name="sfxLabel" type="Label" parent="textBoxContainer"]
-layout_mode = 2
-text = "SFX Music:"
-
-[node name="bgButtonSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(164, 23)
+[node name="bgButtonSprite" type="AnimatedSprite2D" parent="textBoxContainer"]
+position = Vector2(161, 13)
 sprite_frames = SubResource("SpriteFrames_xd87x")
 animation = &"unmute"
 
-[node name="bgButton" type="Button" parent="bgButtonSprite"]
+[node name="bgButton" type="Button" parent="textBoxContainer/bgButtonSprite"]
 offset_left = -7.0
 offset_top = -8.0
 offset_right = 7.0
@@ -89,12 +90,20 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_7485j")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6n1f")
 metadata/_edit_use_anchors_ = true
 
-[node name="sfxButtonSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(164, 49)
+[node name="Label" type="Label" parent="textBoxContainer"]
+layout_mode = 2
+text = "Music:"
+
+[node name="sfxLabel" type="Label" parent="textBoxContainer"]
+layout_mode = 2
+text = "SFX:"
+
+[node name="sfxButtonSprite" type="AnimatedSprite2D" parent="textBoxContainer"]
+position = Vector2(161, 66)
 sprite_frames = SubResource("SpriteFrames_xd87x")
 animation = &"unmute"
 
-[node name="sfxButton" type="Button" parent="sfxButtonSprite"]
+[node name="sfxButton" type="Button" parent="textBoxContainer/sfxButtonSprite"]
 offset_left = -7.0
 offset_top = -8.0
 offset_right = 7.0
@@ -106,5 +115,41 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_wyjm1")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r6n1f")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="bgButtonSprite/bgButton" to="." method="_on_bg_button_pressed"]
-[connection signal="pressed" from="sfxButtonSprite/sfxButton" to="." method="_on_sfx_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 179.0
+offset_right = 481.0
+offset_bottom = -133.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Music"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SFX"
+
+[node name="HSlider3" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="textBoxContainer/bgButtonSprite/bgButton" to="." method="_on_bg_button_pressed"]
+[connection signal="pressed" from="textBoxContainer/sfxButtonSprite/sfxButton" to="." method="_on_sfx_button_pressed"]

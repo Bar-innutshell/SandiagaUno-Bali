@@ -1,17 +1,19 @@
 extends CharacterBody2D
 var enemy_death_effect = preload("res://Scenes/Enemies/enemy_death_effect.tscn")
-@export var health_amount : int = 3
+@export var health_amount : int = 400
 @export var damage_amount : int = 1
 
 var current_delta: float = 0.0
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var knockback_dir = 1
 var knockback = false
 var player_dir = 1
 var direction = 1
 var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-@export var knockback_strength: float = 1000.0  # Besar knockback
-@export var knockback_decay: float = 50.0  # Kecepatan peluruhan knockback
+@export var knockback_strength: float = 3000.0  # Besar knockback
+@export var knockback_decay: float = 20.0  # Kecepatan peluruhan knockback
 
 func _physics_process(delta):
 	current_delta = delta
@@ -34,7 +36,6 @@ func _on_hurtbox_area_entered(area : Area2D):
 			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
 			enemy_death_effect_instance.global_position = global_position
 			get_parent().add_child(enemy_death_effect_instance)
-			HitStopManager.hit_stop_short()
 			queue_free()
 	if area.is_in_group("attack"):
 		var node = area.get_parent() as Node
@@ -47,7 +48,6 @@ func _on_hurtbox_area_entered(area : Area2D):
 			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
 			enemy_death_effect_instance.global_position = global_position
 			get_parent().add_child(enemy_death_effect_instance)
-			HitStopManager.hit_stop_short()
 			queue_free()
 
 func apply_knockback(delta: float):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://cvavo70vltxf4"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/Areachase/GoblinPedang/enemy_dino.gd" id="1_fc3yo"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Areachase/BurungRusdi/burungrusdi.gd" id="1_bfhel"]
 [ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="2_g5ui0"]
 [ext_resource type="Texture2D" uid="uid://dks7efhaup705" path="res://Assets/enemy_SEED/lebah suka/terbang.png" id="3_0kc5x"]
 [ext_resource type="Texture2D" uid="uid://b3dqxym6320ho" path="res://Assets/enemy_SEED/lebah suka/burung-idle1.png" id="4_xjxtv"]
@@ -199,7 +199,7 @@ radius = 109.115
 position = Vector2(0, -3)
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_fc3yo")
+script = ExtResource("1_bfhel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -224,25 +224,22 @@ debug_color = Color(0.631259, 0.460954, 0.690331, 0.42)
 script = ExtResource("5_nta4n")
 node_finite_state_machine = NodePath("../StateMachine")
 
-[node name="Gravity" type="Node" parent="." node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Gravity" type="Node" parent="." node_paths=PackedStringArray("character_body_2d")]
 script = ExtResource("6_vs63u")
 character_body_2d = NodePath("..")
-animated_sprite_2d = NodePath("")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("7_0vpqq")
 initial_node_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
 script = ExtResource("8_iu1qt")
 character_body_2d = NodePath("../..")
-animated_sprite_2d = NodePath("")
 slow_down_speed = 300
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d")]
 script = ExtResource("9_kvi6a")
 character_body_2d = NodePath("../..")
-animated_sprite_2d = NodePath("")
 speed = 100
 
 [node name="AttackArea2D" type="Area2D" parent="."]

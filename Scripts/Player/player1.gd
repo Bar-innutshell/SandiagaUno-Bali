@@ -13,8 +13,8 @@ const WALL_SLIDE_GRAVITY = 10
 const WALL_SLIDE_SPEED = 30
 const DASH_SPEED = 800.0
 const DASH_DURATION = 0.2
-const KNOCKBACK_STRENGTH = 25.0
-const KNOCKBACK_DECAY = 45.0
+const KNOCKBACK_STRENGTH = 30.0
+const KNOCKBACK_DECAY = 50.0
 const SHOOT_COOLDOWN = 0.8
 
 # Node references
@@ -207,7 +207,7 @@ func apply_knockback(attacker_position: Vector2):
 	knockback = true
 	var knockback_direction = (global_position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
-	knockback_velocity.y -= 10
+	knockback_velocity.y -= 5
 
 func player_death():
 	# Reset knockback variables
