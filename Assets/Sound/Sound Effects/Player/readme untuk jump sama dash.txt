@@ -1,0 +1,1 @@
+bisa gonta ganti mau dash suara yg ada di jump vice versa masih kedengeran cocok.

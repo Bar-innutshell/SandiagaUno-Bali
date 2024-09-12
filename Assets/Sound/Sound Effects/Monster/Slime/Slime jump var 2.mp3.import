@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpr0nhxsu32fe"
+path="res://.godot/imported/Slime jump var 2.mp3-6fe0462814f2023e499dc7bee1b4a499.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Sound Effects/Monster/Slime/Slime jump var 2.mp3"
+dest_files=["res://.godot/imported/Slime jump var 2.mp3-6fe0462814f2023e499dc7bee1b4a499.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

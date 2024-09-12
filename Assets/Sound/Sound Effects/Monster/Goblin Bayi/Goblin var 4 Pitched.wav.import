@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhwec5auxkdid"
+path="res://.godot/imported/Goblin var 4 Pitched.wav-06c2f47755a1d1196aada57476943701.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Sound Effects/Monster/Goblin Bayi/Goblin var 4 Pitched.wav"
+dest_files=["res://.godot/imported/Goblin var 4 Pitched.wav-06c2f47755a1d1196aada57476943701.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
