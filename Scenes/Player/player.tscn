@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=76 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://8bu7dtcak04a" path="res://Assets/Player_SEED/Knight/Jump/knightjump-toright.png" id="4_vuwtu"]
 [ext_resource type="Texture2D" uid="uid://bir5yn4avevcx" path="res://Assets/Player_SEED/Knight/Walk/knightwalk-toright.png" id="5_afstp"]
 [ext_resource type="Texture2D" uid="uid://bwkgfm8j5equf" path="res://Assets/Player_SEED/Knight/Walk/knightwalk-revised-toright.png" id="6_povp2"]
+[ext_resource type="AudioStream" uid="uid://do88jsrryhwkt" path="res://Assets/Sound/Sound Effects/Player/Step(Tanah dan Batu)/Grass/2.wav" id="10_pru8p"]
+[ext_resource type="AudioStream" uid="uid://bs6wglhsrnjda" path="res://Assets/Sound/Sound Effects/Player/Jump/3.wav" id="11_7gq72"]
+[ext_resource type="AudioStream" uid="uid://ce041jggu6uup" path="res://Assets/Sound/Sound Effects/Player/Dash/Dash Var 1/2.wav" id="12_8vp5i"]
 [ext_resource type="Texture2D" uid="uid://da8wbcppque21" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright.png" id="17_6m2j1"]
-[ext_resource type="AudioStream" uid="uid://cicgu2eypyc3h" path="res://Assets/Sound/SFX/player_walking.mp3" id="20_27fxe"]
-[ext_resource type="AudioStream" uid="uid://b2n5mprv4otj4" path="res://Assets/Sound/SFX/player_jumping.mp3" id="21_om87s"]
 [ext_resource type="Script" path="res://Scripts/Player/muzzle.gd" id="36_4b631"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7vsi"]
@@ -515,34 +516,32 @@ height = 24.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
-position = Vector2(0, 8)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_7sjdf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_m7vsi")
-position = Vector2(0, -24)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_xco0p")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.924946
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21)
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_mxg5v")
 
 [node name="Muzzle" type="Marker2D" parent="." groups=["attack"]]
-position = Vector2(27, -20)
+position = Vector2(27, -12)
 script = ExtResource("36_4b631")
 
 [node name="AttackArea" type="Area2D" parent="Muzzle" groups=["attack"]]
-position = Vector2(-17, 20)
+position = Vector2(-9, 0)
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle/AttackArea"]
-position = Vector2(8, -21)
 shape = SubResource("RectangleShape2D_i5luq")
 disabled = true
 
@@ -551,7 +550,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -21)
+position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_63q46")
 debug_color = Color(0.668258, 0.424725, 0.73905, 0.42)
 
@@ -561,32 +560,32 @@ libraries = {
 }
 
 [node name="LeftWall" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(-10.9999, 18)
 
 [node name="LeftWall2" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(11.0001, 16)
 
 [node name="LeftWall3" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(-18, 13.0001)
 
 [node name="RightWall" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(-11, -18)
 
 [node name="RightWall2" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(10.9999, -16)
 
 [node name="RightWall3" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 rotation = 1.5708
 target_position = Vector2(-18, -13)
 
@@ -599,12 +598,15 @@ wait_time = 0.5
 one_shot = true
 
 [node name="AudioStreamPlayer2D_walking" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("20_27fxe")
+stream = ExtResource("10_pru8p")
 bus = &"SFX"
 
-[node name="AudioStreamPlayer2D_Jumping" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("21_om87s")
+[node name="AudioStreamPlayer2D_Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_7gq72")
 bus = &"SFX"
+
+[node name="AudioStreamPlayer2D_dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_8vp5i")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 64
@@ -612,7 +614,7 @@ collision_mask = 64
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -20)
+position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_ox0tx")
 debug_color = Color(0.190877, 0.641939, 0, 0.42)
 

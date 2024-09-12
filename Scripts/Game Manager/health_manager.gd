@@ -1,26 +1,21 @@
 extends Node
 
-var max_health : int = 3
-var current_health : int
+signal on_health_changed(new_health: int)
 
-signal on_health_changed
+var max_health: int = 3
+var current_health: int = max_health
 
-func _ready():
-	current_health = max_health
-	
-func decrease_health(health_amount : int):
-	current_health -= health_amount
-	
-	if current_health < 0:
-		current_health = max_health - 1
-	print("decrease_health called")
-	on_health_changed.emit(current_health)
-	
-func increase_health(health_amount : int):
-	current_health += health_amount
-	
-	if current_health > max_health:
-		current_health = max_health
-	
-	print("increase_health called")
-	on_health_changed.emit(current_health)
+func decrease_health(amount: int):
+	current_health = max(0, current_health - amount)
+	emit_signal("on_health_changed", current_health)
+
+func increase_health(amount: int):
+	current_health = min(max_health, current_health + amount)
+	emit_signal("on_health_changed", current_health)
+
+func set_health(new_health: int):
+	current_health = clamp(new_health, 0, max_health)
+	emit_signal("on_health_changed", current_health)
+
+func reset_health():
+	set_health(max_health)

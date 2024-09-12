@@ -20,11 +20,11 @@ const SHOOT_COOLDOWN = 0.8
 # Node references
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_animation_player = $HitAnimationPlayer
-@onready var audio_stream_jumping = $AudioStreamPlayer2D_Jumping
-@onready var audio_stream_walking = $AudioStreamPlayer2D_walking
+@onready var audio_stream_jumping: AudioStreamPlayer2D = $AudioStreamPlayer2D_Jump
+@onready var audio_stream_walking: AudioStreamPlayer2D = $AudioStreamPlayer2D_walking
+@onready var audio_stream_dashing: AudioStreamPlayer2D = $AudioStreamPlayer2D_dash
 @onready var muzzle: Marker2D = $Muzzle
 @onready var can_dash_timer = $can_dash
-
 # Preloaded scenes
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
 var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
@@ -138,6 +138,7 @@ func start_dash():
 	dash_timer = 0.0
 	dash_direction = Vector2(direction, 0).normalized()
 	can_dash_timer.start()
+	audio_stream_dashing.play()
 
 func end_dash():
 	dashing = false
@@ -221,7 +222,7 @@ func player_death():
 	
 	# Respawn player and reset health
 	GameManager.respawn_player()
-	HealthManager.current_health = 1
+	HealthManager.set_health(1)  # Use the new set_health function
 
 func check_fall_death():
 	if position.y >= 1000:

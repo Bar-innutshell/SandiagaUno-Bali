@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cpmrk7tuvuxkj"]
+[gd_scene load_steps=22 format=4 uid="uid://cpmrk7tuvuxkj"]
 
 [ext_resource type="Texture2D" uid="uid://b5vrqkq2a24e1" path="res://Assets/Tilemap/fixed_tileset_.png" id="1_b6gb0"]
 [ext_resource type="PackedScene" uid="uid://ll1w8pmjf7wk" path="res://Scenes/Enemies/Patroli/crab/enemy_crab.tscn" id="2_th750"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bcmv4k2t3gmp5" path="res://Scenes/Env/BreakableObject/winter_vas.tscn" id="17_6bkkx"]
 [ext_resource type="PackedScene" uid="uid://p8kvd2r2yd8v" path="res://Scenes/Enemies/Chase/LebahIreng.tscn" id="18_0u1q5"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="19_sxh1p"]
-[ext_resource type="PackedScene" uid="uid://chaea5jl4jhtf" path="res://Scenes/Enemies/Areachase/GoblinPedang/goblin_pedang.tscn" id="20_inwyl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0orkr"]
 texture = ExtResource("1_b6gb0")
@@ -165,6 +164,3 @@ spawnpoint = null
 [node name="Checkpoint2" parent="." instance=ExtResource("19_sxh1p")]
 position = Vector2(1160, -169)
 spawnpoint = null
-
-[node name="EnemyDino" parent="." instance=ExtResource("20_inwyl")]
-position = Vector2(871, -386)
