@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/Mantul.wav-5ae4e0d0d28b8df48da717d06a9a2bb5.s
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
+force/max_rate=true
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true

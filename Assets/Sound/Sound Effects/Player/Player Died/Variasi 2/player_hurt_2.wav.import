@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/player_hurt_2.wav-5faaed9cbfe61debee55b81df3f
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
+force/max_rate=true
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true

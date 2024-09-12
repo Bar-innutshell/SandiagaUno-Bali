@@ -20,14 +20,18 @@ const SHOOT_COOLDOWN = 0.8
 # Node references
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_animation_player = $HitAnimationPlayer
-@onready var audio_stream_jumping: AudioStreamPlayer2D = $AudioStreamPlayer2D_Jump
-@onready var audio_stream_walking: AudioStreamPlayer2D = $AudioStreamPlayer2D_walking
-@onready var audio_stream_dashing: AudioStreamPlayer2D = $AudioStreamPlayer2D_dash
+@onready var audio_stream_jumping: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_Jump
+@onready var audio_stream_walking: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_walking
+@onready var audio_stream_dashing: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_dash
+@onready var audio_stream_hit: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_hit
+@onready var audio_stream_died: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_died
+@onready var audio_stream_mantul: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_mantul
+@onready var audio_stream_attack: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_attack
 @onready var muzzle: Marker2D = $Muzzle
 @onready var can_dash_timer = $can_dash
+
 # Preloaded scenes
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
-var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
 
 # sound
 var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
@@ -51,6 +55,10 @@ var knockback = false
 var is_attacking = false
 var current_animation = ""
 var shoot_cooldown_timer = 0.0
+
+# Define the combo sequence
+var combo_animations = ["thrust", "uppercut", "swing"]
+var current_combo_step = 0
 
 func _ready():
 	GameManager.playerBody = self
@@ -168,7 +176,7 @@ func update_animation():
 	var new_animation = ""
 	
 	if is_attacking:
-		new_animation = "attack"
+		new_animation = "thrust"
 	elif knockback:
 		new_animation = "hit"
 	elif is_wall_sliding:
@@ -196,12 +204,23 @@ func shoot():
 	get_parent().add_child(bullet_instance)
 	shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
 
+
 func start_attack():
 	if not is_attacking:
 		is_attacking = true
+		play_next_combo_animation()
+
+func play_next_combo_animation():
+	if current_combo_step < combo_animations.size():
+		var animation_name = combo_animations[current_combo_step]
 		hit_animation_player.play("punch")
-		animated_sprite.play("attack")
+		animated_sprite.play(animation_name)
+		current_combo_step += 1
 		await animated_sprite.animation_finished
+		play_next_combo_animation()
+	else:
+		# Reset combo
+		current_combo_step = 0
 		is_attacking = false
 
 func apply_knockback(attacker_position: Vector2):
@@ -215,11 +234,10 @@ func player_death():
 	knockback = false
 	knockback_velocity = Vector2.ZERO
 	
-	# Instantiate death effect
-	var effect_instance = player_death_effect.instantiate()
-	effect_instance.global_position = global_position
-	get_parent().add_child(effect_instance)
-	
+	# play animation
+	animated_sprite.play("death")
+	await animated_sprite.animation_finished
+
 	# Respawn player and reset health
 	GameManager.respawn_player()
 	HealthManager.set_health(1)  # Use the new set_health function
@@ -230,11 +248,13 @@ func check_fall_death():
 
 func _on_hurtbox_body_entered(body: CharacterBody2D):
 	if body.is_in_group("Enemy"):
+		audio_stream_hit.play()
 		animated_sprite.play("hit")
 		apply_knockback(body.global_position)
 		HealthManager.decrease_health(body.damage_amount)
 		
 	if HealthManager.current_health == 0:
+		audio_stream_died.play()
 		player_death()
 
 func nextToWall():

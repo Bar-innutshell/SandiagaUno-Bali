@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/Player Died.wav-baaf0138d7ea2e4e2eed81ad3cee0
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
+force/max_rate=true
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_stream_death: AudioStreamPlayer2D = $AudioStreamPlayer2D_death
 
 @export var speed = 1000
 @export var chase_speed = 2000  # Separate speed for chasing
@@ -81,6 +82,7 @@ func handle_animation():
 
 func start_death():
 	is_dying = true
+	audio_stream_death.play()
 	animated_sprite.play("death")
     # Wait for the animation to finish
 	await animated_sprite.animation_finished

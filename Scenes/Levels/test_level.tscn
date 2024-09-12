@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
 [ext_resource type="AudioStream" uid="uid://cfkswgk88eaej" path="res://Assets/Sound/Synthwave/videoplayback (6).mp3" id="9_aons2"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="9_lwtj6"]
-[ext_resource type="PackedScene" uid="uid://c3frk2g8q8dts" path="res://Scenes/Enemies/Chase/goblin_corrupt.tscn" id="12_kgq78"]
 [ext_resource type="PackedScene" uid="uid://2by1awhy1nq4" path="res://Scenes/Enemies/Patroli/LebahKuning_patroli.tscn" id="12_x2sy3"]
 [ext_resource type="PackedScene" uid="uid://bavqjmvh8prng" path="res://Scenes/Enemies/Patroli/LebahCorrupt_patroli.tscn" id="13_js8t8"]
+[ext_resource type="PackedScene" uid="uid://dfjvm7l3fr5u5" path="res://Scenes/Enemies/Areachase/GoblinCorrupt/goblin_corrupt_area.tscn" id="13_tmj5m"]
 
 [node name="TestLevel" instance=ExtResource("1_c36qg")]
 script = ExtResource("2_k30re")
@@ -89,6 +89,5 @@ position = Vector2(789, -186)
 [node name="Point2" type="Marker2D" parent="LebahCorrupt/PatrolPoints" index="1"]
 position = Vector2(790, -107)
 
-[node name="GoblinCorrupt" parent="." index="11" instance=ExtResource("12_kgq78")]
-position = Vector2(390, -19)
-health_amount = 3
+[node name="GoblinCorrupt2" parent="." index="11" instance=ExtResource("13_tmj5m")]
+position = Vector2(297, -16)

@@ -14,7 +14,7 @@ dest_files=["res://.godot/imported/Hit.wav-94cc67a54909b7e6a0e8f129ab9195b8.samp
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
+force/max_rate=true
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true

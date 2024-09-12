@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfjvm7l3fr5u5"]
+[gd_scene load_steps=37 format=3 uid="uid://dfjvm7l3fr5u5"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Areachase/GoblinCorrupt/goblincorruptarea.gd" id="1_uie7t"]
 [ext_resource type="Texture2D" uid="uid://dye5ho4u7glpp" path="res://Assets/enemy_SEED/goblin/attack/coruptedgoblin2-attack.png" id="2_pnw3l"]
 [ext_resource type="Texture2D" uid="uid://cpvyd2qugodyp" path="res://Assets/enemy_SEED/goblin/die/coruptedbiasa-die.png" id="3_iukph"]
 [ext_resource type="Texture2D" uid="uid://70ypcpixwxap" path="res://Assets/enemy_SEED/goblin/coruptedgoblin2-idle.png" id="4_3gax5"]
+[ext_resource type="AudioStream" uid="uid://bvxp2j84nhomd" path="res://Assets/Sound/Sound Effects/Monster/Goblin/Goblin Var 2/Goblin Hit.wav" id="5_uf04k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvgxf"]
 atlas = ExtResource("2_pnw3l")
@@ -255,6 +256,11 @@ collision_mask = 2
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_m3m4r")
 debug_color = Color(0.729412, 0.470588, 0.101961, 0.419608)
+
+[node name="AudioStreamPlayer2D_death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_uf04k")
+volume_db = 5.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_body_entered"]
