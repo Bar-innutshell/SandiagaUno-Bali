@@ -66,6 +66,9 @@ var combo_input_count = 0
 const WALL_DETECTION_DISTANCE = 10.0
 const WALL_SLIDE_THRESHOLD = 5.0
 
+# Death flag
+var is_dead = false
+
 func _ready():
 	GameManager.playerBody = self
 	GameManager.player = self
@@ -74,6 +77,9 @@ func _ready():
 	set_safe_margin(1.0)  # Adjust as needed
 
 func _physics_process(delta):
+	if is_dead:
+		return  # Skip processing if the player is dead
+	
 	handle_input()
 	apply_gravity(delta)
 	handle_jump(delta)
@@ -91,6 +97,9 @@ func _physics_process(delta):
 		shoot_cooldown_timer -= delta
 
 func handle_input():
+	if is_dead:
+		return  # Skip input handling if the player is dead
+	
 	direction = Input.get_axis("move_left", "move_right")
 	
 	if Input.is_action_just_pressed("attack"):
@@ -106,6 +115,9 @@ func apply_gravity(delta):
 		velocity += get_gravity() * delta
 
 func handle_jump(delta):
+	if is_dead:
+		return  # Skip jump handling if the player is dead
+	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY * delta
@@ -113,6 +125,9 @@ func handle_jump(delta):
 			audio_stream_jumping.play()
 
 func handle_wall_slide(delta):
+	if is_dead:
+		return  # Skip wall slide handling if the player is dead
+	
 	is_wall_sliding = false
 
 	if is_near_wall() and !is_on_floor() and velocity.y > WALL_SLIDE_THRESHOLD:
@@ -140,9 +155,13 @@ func wall_jump(delta):
 		velocity.x = -WALL_JUMP
 	elif nextToLeftWall():
 		velocity.x = WALL_JUMP
+	audio_stream_mantul.play()
 	is_wall_sliding = false
 
 func handle_dash(delta):
+	if is_dead:
+		return  # Skip dash handling if the player is dead
+	
 	if Input.is_action_just_pressed("dash") and can_dash and is_on_floor() and direction != 0:
 		audio_stream_dashing.play()
 		start_dash()
@@ -166,6 +185,9 @@ func end_dash():
 	velocity = dash_direction * MAX_HORIZONTAL_SPEED
 
 func handle_knockback(delta):
+	if is_dead:
+		return  # Skip knockback handling if the player is dead
+	
 	if knockback:
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
 		velocity += knockback_velocity
@@ -174,6 +196,9 @@ func handle_knockback(delta):
 			knockback_velocity = Vector2.ZERO
 
 func handle_movement(delta):
+	if is_dead:
+		return  # Skip movement handling if the player is dead
+	
 	if not dashing and not knockback:
 		if direction != 0:
 			velocity.x += direction * SPEED * delta
@@ -211,6 +236,9 @@ func update_muzzle_position():
 	muzzle.position.x = abs(muzzle.position.x) * sign(direction) if direction != 0 else muzzle.position.x
 
 func shoot():
+	if is_dead:
+		return  # Skip shooting if the player is dead
+	
 	var bullet_instance = bullet.instantiate()
 	bullet_instance.direction = 1 if not animated_sprite.flip_h else -1
 	bullet_instance.global_position = muzzle.global_position
@@ -218,6 +246,9 @@ func shoot():
 	shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
 
 func start_attack():
+	if is_dead:
+		return  # Skip attacking if the player is dead
+	
 	if not is_attacking:
 		is_attacking = true
 		play_next_combo_animation()
@@ -243,23 +274,33 @@ func _on_attack_combo_reset_timeout():
 	is_attacking = false
 
 func apply_knockback(attacker_position: Vector2):
+	if is_dead:
+		return  # Skip knockback if the player is dead
+	
 	knockback = true
 	var knockback_direction = (global_position - attacker_position).normalized()
 	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
 	knockback_velocity.y -= 5
 
 func player_death():
+	# Set the death flag
+	is_dead = true
+	
 	# Reset knockback variables
 	knockback = false
 	knockback_velocity = Vector2.ZERO
 	
-	# play animation
+	# Play animation and audio
 	animated_sprite.play("death")
+	audio_stream_died.play()
 	await animated_sprite.animation_finished
 
 	# Respawn player and reset health
 	GameManager.respawn_player()
 	HealthManager.set_health(1)  # Use the new set_health function
+
+	# Reset the death flag
+	is_dead = false
 
 func check_fall_death():
 	if position.y >= 600:
@@ -273,7 +314,6 @@ func _on_hurtbox_body_entered(body: CharacterBody2D):
 		HealthManager.decrease_health(body.damage_amount)
 		
 	if HealthManager.current_health == 0:
-		audio_stream_died.play()
 		player_death()
 
 func nextToWall():

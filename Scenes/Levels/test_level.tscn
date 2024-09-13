@@ -48,7 +48,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAANAAgAAAAAAAEAAAANAAkAAAAAAAIAAAANAAo
 
 [node name="Checkpoint" parent="TileMap" index="3" instance=ExtResource("9_lwtj6")]
 position = Vector2(515, -43)
-spawnpoint = null
 
 [node name="Player" parent="." index="5"]
 position = Vector2(122, -17)

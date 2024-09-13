@@ -136,8 +136,8 @@ position = Vector2(1415, -380)
 next_scene = "Baseworld"
 
 [node name="Player" parent="." instance=ExtResource("3_kd3f6")]
-position = Vector2(21, 7)
+position = Vector2(1888, -24)
 
 [node name="PlayerCamera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_vo3aa")]
-position = Vector2(16, -23)
+position = Vector2(1883, -54)
 player = NodePath("../Player")
