@@ -15,7 +15,7 @@ const DASH_SPEED = 600.0
 const DASH_DURATION = 0.2
 const KNOCKBACK_STRENGTH = 30.0
 const KNOCKBACK_DECAY = 50.0
-const SHOOT_COOLDOWN = 0.5
+const SHOOT_COOLDOWN = 0.3
 
 # Node references
 @onready var animated_sprite = $AnimatedSprite2D
