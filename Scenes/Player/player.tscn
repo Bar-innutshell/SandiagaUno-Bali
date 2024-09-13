@@ -9,16 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://b5t3vlee72bvn" path="res://Assets/Player_SEED/Knight/Walk/knightwalk-revised2-toright.png" id="7_q5c6i"]
 [ext_resource type="Texture2D" uid="uid://bewlfyrbs8mff" path="res://Assets/Player_SEED/Knight/Attack/knightattack-swing-toright-2.png" id="8_fsgpx"]
 [ext_resource type="Texture2D" uid="uid://cphn0djeml7so" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright-2.png" id="9_evhqf"]
-[ext_resource type="AudioStream" uid="uid://do88jsrryhwkt" path="res://Assets/Sound/Sound Effects/Player/Step(Tanah dan Batu)/Grass/2.wav" id="10_pru8p"]
+[ext_resource type="AudioStream" uid="uid://do88jsrryhwkt" path="res://Sounds/SFX/Player/Step(Tanah dan Batu)/Grass/2.wav" id="10_pru8p"]
 [ext_resource type="Texture2D" uid="uid://c5cy586cn12d" path="res://Assets/Player_SEED/Knight/Attack/knightattack-uppercutswing-toright-2.png" id="10_wv4oy"]
 [ext_resource type="Texture2D" uid="uid://fkf07ajou2se" path="res://Assets/Player_SEED/Knight/Jump/knightjump-toleft.png" id="11_6pnnm"]
-[ext_resource type="AudioStream" uid="uid://bs6wglhsrnjda" path="res://Assets/Sound/Sound Effects/Player/Jump/3.wav" id="11_7gq72"]
-[ext_resource type="AudioStream" uid="uid://ce041jggu6uup" path="res://Assets/Sound/Sound Effects/Player/Dash/Dash Var 1/2.wav" id="12_8vp5i"]
-[ext_resource type="AudioStream" uid="uid://d0e1do3v381w" path="res://Assets/Sound/Sound Effects/Player/Player Hit/Hit.wav" id="13_iuw5c"]
+[ext_resource type="AudioStream" uid="uid://bs6wglhsrnjda" path="res://Sounds/SFX/Player/Jump/3.wav" id="11_7gq72"]
+[ext_resource type="AudioStream" uid="uid://ce041jggu6uup" path="res://Sounds/SFX/Player/Dash/Dash Var 1/2.wav" id="12_8vp5i"]
+[ext_resource type="AudioStream" uid="uid://d0e1do3v381w" path="res://Sounds/SFX/Player/Player Hit/Hit.wav" id="13_iuw5c"]
 [ext_resource type="Script" path="res://Scenes/Player/attack_area.gd" id="13_rnv1o"]
-[ext_resource type="AudioStream" uid="uid://hhc4fu1mjd74" path="res://Assets/Sound/Sound Effects/Player/Player Died/Player Died.wav" id="14_dpr6p"]
-[ext_resource type="AudioStream" uid="uid://ctcg37xb2jofl" path="res://Assets/Sound/Sound Effects/Player/Mantul/Mantul.wav" id="15_8dthq"]
-[ext_resource type="AudioStream" uid="uid://domgdhh70bfom" path="res://Assets/Sound/Sound Effects/Player/Sword/Thrust-3.wav" id="16_ga0o4"]
+[ext_resource type="AudioStream" uid="uid://hhc4fu1mjd74" path="res://Sounds/SFX/Player/Player Died/Player Died.wav" id="14_dpr6p"]
+[ext_resource type="AudioStream" uid="uid://ctcg37xb2jofl" path="res://Sounds/SFX/Player/Mantul/Mantul.wav" id="15_8dthq"]
+[ext_resource type="AudioStream" uid="uid://domgdhh70bfom" path="res://Sounds/SFX/Player/Sword/Thrust-3.wav" id="16_ga0o4"]
 [ext_resource type="Script" path="res://Scripts/Player/muzzle.gd" id="36_4b631"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7vsi"]
@@ -901,27 +901,27 @@ autostart = true
 
 [node name="audio" type="Node" parent="."]
 
-[node name="AudioStreamPlayer2D_walking" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_walking" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("10_pru8p")
 bus = &"SFX"
 
-[node name="AudioStreamPlayer2D_Jump" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_Jump" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("11_7gq72")
 bus = &"SFX"
 
-[node name="AudioStreamPlayer2D_dash" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_dash" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("12_8vp5i")
 
-[node name="AudioStreamPlayer2D_hit" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_hit" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("13_iuw5c")
 
-[node name="AudioStreamPlayer2D_died" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_died" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("14_dpr6p")
 
-[node name="AudioStreamPlayer2D_mantul" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_mantul" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("15_8dthq")
 
-[node name="AudioStreamPlayer2D_attack" type="AudioStreamPlayer2D" parent="audio"]
+[node name="AudioStreamPlayer2D_attack" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("16_ga0o4")
 
 [node name="CheckpointArea" type="Area2D" parent="."]

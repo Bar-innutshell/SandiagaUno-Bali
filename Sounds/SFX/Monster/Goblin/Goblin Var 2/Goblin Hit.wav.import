@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvxp2j84nhomd"
+path="res://.godot/imported/Goblin Hit.wav-c39973d1c012a3d588cf0d3b4e713ed1.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Monster/Goblin/Goblin Var 2/Goblin Hit.wav"
+dest_files=["res://.godot/imported/Goblin Hit.wav-c39973d1c012a3d588cf0d3b4e713ed1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=true
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

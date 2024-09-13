@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d06cbu80k3m0o"
+path="res://.godot/imported/5.wav-60fc96636f7a8f076d049404e5c7a7db.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Player/Step(Tanah dan Batu)/Grass/5.wav"
+dest_files=["res://.godot/imported/5.wav-60fc96636f7a8f076d049404e5c7a7db.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

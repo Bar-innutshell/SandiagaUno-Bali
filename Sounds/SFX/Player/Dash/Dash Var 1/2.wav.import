@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ce041jggu6uup"
+path="res://.godot/imported/2.wav-10b76a75bfe3cffe7ecdce5dbfc48ebf.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Player/Dash/Dash Var 1/2.wav"
+dest_files=["res://.godot/imported/2.wav-10b76a75bfe3cffe7ecdce5dbfc48ebf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=true
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

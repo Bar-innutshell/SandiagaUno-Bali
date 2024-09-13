@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://doqrtttx4tadd"
+path="res://.godot/imported/Slime jump var 1.wav-079790b912393658a03ce0491b2cd101.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Monster/Slime/Slime jump var 1.wav"
+dest_files=["res://.godot/imported/Slime jump var 1.wav-079790b912393658a03ce0491b2cd101.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

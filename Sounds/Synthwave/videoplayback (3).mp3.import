@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqcbd206aqp0p"
+path="res://.godot/imported/videoplayback (3).mp3-7b0aea0db5e52c26da8ed7f668e855dd.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Synthwave/videoplayback (3).mp3"
+dest_files=["res://.godot/imported/videoplayback (3).mp3-7b0aea0db5e52c26da8ed7f668e855dd.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

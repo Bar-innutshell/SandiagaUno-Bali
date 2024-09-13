@@ -25,6 +25,7 @@ InventoryManager="*res://Scripts/Game Manager/inventory_manager.gd"
 CollectibleManager="*res://Scripts/Game Manager/collectible_manager.gd"
 InteractionManager="*res://Interact/interactionManager.tscn"
 HitStopManager="*res://Scripts/Game Manager/HitStopManager.gd"
+AudioGlobal="*res://Sounds/audio_global.gd"
 
 [display]
 

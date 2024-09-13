@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqmc4qmicx4id"
+path="res://.godot/imported/3.wav-fa542056f64ab03d540881c526d88e5b.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Player/Step(Tanah dan Batu)/Stone/3.wav"
+dest_files=["res://.godot/imported/3.wav-fa542056f64ab03d540881c526d88e5b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://7eskhn27vmwm"]
+
+[ext_resource type="Script" path="res://Sounds/world_audio_manager.gd" id="1_31bon"]
+[ext_resource type="AudioStream" uid="uid://di8qwuik85axq" path="res://Sounds/Music/level_theme_alifheimr.mp3" id="2_d3tp5"]
+[ext_resource type="AudioStream" uid="uid://dpmus62eyqgsf" path="res://Sounds/Synthwave/videoplayback (5).mp3" id="3_t672l"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_3i14i"]
+clip_count = 2
+clip_0/name = &"Dungeon1"
+clip_0/stream = ExtResource("2_d3tp5")
+clip_0/auto_advance = 0
+clip_1/name = &"Dungeon 2"
+clip_1/stream = ExtResource("3_t672l")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[node name="WorldAudioManager" type="Node"]
+script = ExtResource("1_31bon")
+
+[node name="AudioStreamPlayer_BGM" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamInteractive_3i14i")
+bus = &"Music"
