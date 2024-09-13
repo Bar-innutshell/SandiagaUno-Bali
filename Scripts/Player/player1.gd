@@ -72,8 +72,6 @@ var is_dead = false
 func _ready():
 	GameManager.playerBody = self
 	GameManager.player = self
-	set_collision_mask_value(1, true)  # Adjust the mask value as needed
-	set_collision_layer_value(1, true)
 	set_safe_margin(1.0)  # Adjust as needed
 
 func _physics_process(delta):

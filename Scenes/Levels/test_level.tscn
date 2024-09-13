@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="9_lwtj6"]
 [ext_resource type="PackedScene" uid="uid://cxilejs35uqha" path="res://Scenes/keys/key.tscn" id="11_dmp0s"]
+[ext_resource type="PackedScene" uid="uid://bm8qe74d6s1v4" path="res://Scenes/Enemies/BolakBalikWall/goblin_dicka.tscn" id="12_murl0"]
 [ext_resource type="PackedScene" uid="uid://2by1awhy1nq4" path="res://Scenes/Enemies/Patroli/LebahKuning_patroli.tscn" id="12_x2sy3"]
 [ext_resource type="PackedScene" uid="uid://bavqjmvh8prng" path="res://Scenes/Enemies/Patroli/LebahCorrupt_patroli.tscn" id="13_js8t8"]
-[ext_resource type="PackedScene" uid="uid://dx2q4h865l1jt" path="res://Scenes/Enemies/Chase/KingSigma.tscn" id="14_yuais"]
 
 [node name="TestLevel" instance=ExtResource("1_c36qg")]
 script = ExtResource("2_k30re")
@@ -90,6 +90,5 @@ position = Vector2(790, -107)
 position = Vector2(165, -30)
 key_id = "69"
 
-[node name="KingSigma" parent="." index="11" instance=ExtResource("14_yuais")]
-position = Vector2(760, -16)
-key_id = "69"
+[node name="GoblinCebol" parent="." index="11" instance=ExtResource("12_murl0")]
+position = Vector2(301, -17)
