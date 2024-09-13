@@ -96,6 +96,7 @@ interact={
 2d_physics/layer_5="DOORS"
 2d_physics/layer_6="ATTACKAREA"
 2d_physics/layer_7="CHECKPOINT"
+2d_physics/layer_8="PLATFORM"
 
 [rendering]
 

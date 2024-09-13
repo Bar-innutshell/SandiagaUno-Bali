@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player1
 
 # Constants
-const SPEED = 1000
+const SPEED = 600
 const MAX_HORIZONTAL_SPEED = 180
 const SLOWDOWN_SPEED = 1800
 const JUMP_VELOCITY = -100000
@@ -11,7 +11,7 @@ const WALL_JUMP = 700
 const JUMP_WALL = -350
 const WALL_SLIDE_GRAVITY = 10
 const WALL_SLIDE_SPEED = 30
-const DASH_SPEED = 800.0
+const DASH_SPEED = 600.0
 const DASH_DURATION = 0.2
 const KNOCKBACK_STRENGTH = 30.0
 const KNOCKBACK_DECAY = 50.0
@@ -29,6 +29,7 @@ const SHOOT_COOLDOWN = 0.8
 @onready var audio_stream_attack: AudioStreamPlayer2D = $audio/AudioStreamPlayer2D_attack
 @onready var muzzle: Marker2D = $Muzzle
 @onready var can_dash_timer = $can_dash
+@onready var attack_combo_reset: Timer = $attack_combo_reset
 
 # Preloaded scenes
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
@@ -59,6 +60,11 @@ var shoot_cooldown_timer = 0.0
 # Define the combo sequence
 var combo_animations = ["thrust", "uppercut", "swing"]
 var current_combo_step = 0
+var combo_input_count = 0
+
+# New constants for wall detection
+const WALL_DETECTION_DISTANCE = 10.0
+const WALL_SLIDE_THRESHOLD = 5.0
 
 func _ready():
 	GameManager.playerBody = self
@@ -88,7 +94,9 @@ func handle_input():
 	direction = Input.get_axis("move_left", "move_right")
 	
 	if Input.is_action_just_pressed("attack"):
+		combo_input_count += 1
 		start_attack()
+		attack_combo_reset.start(1.0)  # Restart the timer on each attack input
 	
 	if Input.is_action_just_pressed("shot") and shoot_cooldown_timer <= 0:
 		shoot()
@@ -107,7 +115,7 @@ func handle_jump(delta):
 func handle_wall_slide(delta):
 	is_wall_sliding = false
 
-	if is_on_wall() and !is_on_floor():
+	if is_near_wall() and !is_on_floor() and velocity.y > WALL_SLIDE_THRESHOLD:
 		is_wall_sliding = true
 	
 	if is_wall_sliding:
@@ -117,8 +125,13 @@ func handle_wall_slide(delta):
 			velocity.y += (WALL_SLIDE_GRAVITY * delta)
 			velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
 	
-	if Input.is_action_just_pressed("jump") and nextToWall() and !is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_near_wall() and !is_on_floor():
 		wall_jump(delta)
+
+func is_near_wall():
+	return $RightWall.is_colliding() or $LeftWall.is_colliding() or \
+		   $RightWall2.is_colliding() or $LeftWall2.is_colliding() or \
+		   $RightWall3.is_colliding() or $LeftWall3.is_colliding()
 
 func wall_jump(delta):
 	velocity.y = JUMP_VELOCITY * delta
@@ -130,7 +143,8 @@ func wall_jump(delta):
 	is_wall_sliding = false
 
 func handle_dash(delta):
-	if Input.is_action_just_pressed("dash") and can_dash and is_on_floor():
+	if Input.is_action_just_pressed("dash") and can_dash and is_on_floor() and direction != 0:
+		audio_stream_dashing.play()
 		start_dash()
 	
 	if dashing:
@@ -146,7 +160,6 @@ func start_dash():
 	dash_timer = 0.0
 	dash_direction = Vector2(direction, 0).normalized()
 	can_dash_timer.start()
-	audio_stream_dashing.play()
 
 func end_dash():
 	dashing = false
@@ -204,24 +217,30 @@ func shoot():
 	get_parent().add_child(bullet_instance)
 	shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
 
-
 func start_attack():
 	if not is_attacking:
 		is_attacking = true
 		play_next_combo_animation()
 
 func play_next_combo_animation():
-	if current_combo_step < combo_animations.size():
+	if combo_input_count > 0 and current_combo_step < combo_animations.size():
 		var animation_name = combo_animations[current_combo_step]
 		hit_animation_player.play("punch")
 		animated_sprite.play(animation_name)
 		current_combo_step += 1
+		combo_input_count -= 1
 		await animated_sprite.animation_finished
 		play_next_combo_animation()
 	else:
 		# Reset combo
 		current_combo_step = 0
 		is_attacking = false
+
+func _on_attack_combo_reset_timeout():
+	# Reset combo if the timer times out
+	combo_input_count = 0
+	current_combo_step = 0
+	is_attacking = false
 
 func apply_knockback(attacker_position: Vector2):
 	knockback = true
@@ -243,7 +262,7 @@ func player_death():
 	HealthManager.set_health(1)  # Use the new set_health function
 
 func check_fall_death():
-	if position.y >= 1000:
+	if position.y >= 600:
 		player_death()
 
 func _on_hurtbox_body_entered(body: CharacterBody2D):

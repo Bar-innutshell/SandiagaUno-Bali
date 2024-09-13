@@ -150,10 +150,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0etwv"]
-size = Vector2(24, 21)
+size = Vector2(11, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wv3ht"]
-radius = 22.0
 
 [node name="LebahCorrupt" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -161,14 +160,13 @@ collision_mask = 3
 script = ExtResource("1_qwds8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -15)
-scale = Vector2(3, 3)
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_k252t")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10.5)
+position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_0etwv")
 
 [node name="Timer" type="Timer" parent="."]
@@ -181,7 +179,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1, -14)
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_wv3ht")
 debug_color = Color(0.937255, 0.129412, 0.541176, 0.419608)
 

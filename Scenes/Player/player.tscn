@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dputwpr3lovr"]
+[gd_scene load_steps=125 format=3 uid="uid://dputwpr3lovr"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player1.gd" id="1_7sjdf"]
 [ext_resource type="Shader" uid="uid://bf6s3qwwuyjy0" path="res://Scenes/Player/player_hit_flash_shader.tres" id="2_0d4ye"]
@@ -11,9 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cphn0djeml7so" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright-2.png" id="9_evhqf"]
 [ext_resource type="AudioStream" uid="uid://do88jsrryhwkt" path="res://Assets/Sound/Sound Effects/Player/Step(Tanah dan Batu)/Grass/2.wav" id="10_pru8p"]
 [ext_resource type="Texture2D" uid="uid://c5cy586cn12d" path="res://Assets/Player_SEED/Knight/Attack/knightattack-uppercutswing-toright-2.png" id="10_wv4oy"]
+[ext_resource type="Texture2D" uid="uid://fkf07ajou2se" path="res://Assets/Player_SEED/Knight/Jump/knightjump-toleft.png" id="11_6pnnm"]
 [ext_resource type="AudioStream" uid="uid://bs6wglhsrnjda" path="res://Assets/Sound/Sound Effects/Player/Jump/3.wav" id="11_7gq72"]
 [ext_resource type="AudioStream" uid="uid://ce041jggu6uup" path="res://Assets/Sound/Sound Effects/Player/Dash/Dash Var 1/2.wav" id="12_8vp5i"]
 [ext_resource type="AudioStream" uid="uid://d0e1do3v381w" path="res://Assets/Sound/Sound Effects/Player/Player Hit/Hit.wav" id="13_iuw5c"]
+[ext_resource type="Script" path="res://Scenes/Player/attack_area.gd" id="13_rnv1o"]
 [ext_resource type="AudioStream" uid="uid://hhc4fu1mjd74" path="res://Assets/Sound/Sound Effects/Player/Player Died/Player Died.wav" id="14_dpr6p"]
 [ext_resource type="AudioStream" uid="uid://ctcg37xb2jofl" path="res://Assets/Sound/Sound Effects/Player/Mantul/Mantul.wav" id="15_8dthq"]
 [ext_resource type="AudioStream" uid="uid://domgdhh70bfom" path="res://Assets/Sound/Sound Effects/Player/Sword/Thrust-3.wav" id="16_ga0o4"]
@@ -384,6 +386,22 @@ region = Rect2(576, 0, 48, 48)
 atlas = ExtResource("10_wv4oy")
 region = Rect2(624, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kffup"]
+atlas = ExtResource("11_6pnnm")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqus3"]
+atlas = ExtResource("11_6pnnm")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_773vj"]
+atlas = ExtResource("11_6pnnm")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaltp"]
+atlas = ExtResource("11_6pnnm")
+region = Rect2(48, 0, 16, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xco0p"]
 animations = [{
 "frames": [{
@@ -456,7 +474,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ygm1")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 30.0
 }, {
@@ -698,16 +716,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g8oxa")
+"texture": SubResource("AtlasTexture_kffup")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4qikn")
+"texture": SubResource("AtlasTexture_aqus3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7ajf")
+"texture": SubResource("AtlasTexture_773vj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hdtgi")
+"texture": SubResource("AtlasTexture_xaltp")
 }],
 "loop": true,
 "name": &"wall_slide",
@@ -718,7 +736,7 @@ animations = [{
 size = Vector2(14, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5luq"]
-size = Vector2(22, 25)
+size = Vector2(22, 26)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_63q46"]
 height = 34.0
@@ -796,15 +814,15 @@ height = 24.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 130
 script = ExtResource("1_7sjdf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_m7vsi")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"thrust"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -812,15 +830,17 @@ position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_mxg5v")
 
 [node name="Muzzle" type="Marker2D" parent="." groups=["attack"]]
-position = Vector2(27, -12)
+position = Vector2(18, -10)
 script = ExtResource("36_4b631")
 
 [node name="AttackArea" type="Area2D" parent="Muzzle" groups=["attack"]]
-position = Vector2(-9, 0)
+position = Vector2(0, -2)
 collision_layer = 2
 collision_mask = 4
+script = ExtResource("13_rnv1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle/AttackArea"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_i5luq")
 disabled = true
 
@@ -841,32 +861,32 @@ libraries = {
 [node name="LeftWall" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(-10.9999, 18)
+target_position = Vector2(-6.99995, 14)
 
 [node name="LeftWall2" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(11.0001, 16)
+target_position = Vector2(10.0001, 14)
 
 [node name="LeftWall3" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(-18, 13.0001)
+target_position = Vector2(-17, 13.0001)
 
 [node name="RightWall" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(-11, -18)
+target_position = Vector2(-7.00005, -14)
 
 [node name="RightWall2" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(10.9999, -16)
+target_position = Vector2(8.99995, -14)
 
 [node name="RightWall3" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
 rotation = 1.5708
-target_position = Vector2(-18, -13)
+target_position = Vector2(-17, -12.9999)
 
 [node name="dash" type="Timer" parent="."]
 wait_time = 0.2
@@ -875,6 +895,9 @@ one_shot = true
 [node name="can_dash" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="attack_combo_reset" type="Timer" parent="."]
+autostart = true
 
 [node name="audio" type="Node" parent="."]
 
@@ -901,12 +924,12 @@ stream = ExtResource("15_8dthq")
 [node name="AudioStreamPlayer2D_attack" type="AudioStreamPlayer2D" parent="audio"]
 stream = ExtResource("16_ga0o4")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CheckpointArea" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 64
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointArea"]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_ox0tx")
 debug_color = Color(0.190877, 0.641939, 0, 0.42)
@@ -914,3 +937,4 @@ debug_color = Color(0.190877, 0.641939, 0, 0.42)
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="dash" to="." method="_on_dash_timeout"]
 [connection signal="timeout" from="can_dash" to="." method="_on_can_dash_timeout"]
+[connection signal="timeout" from="attack_combo_reset" to="." method="_on_attack_combo_reset_timeout"]
