@@ -14,7 +14,7 @@ var is_goblin_chase: bool = false
 var is_attacking: bool = false
 var is_dying: bool = false
 
-@export var health_amount : int = 3
+@export var health_amount : int = 210
 @export var damage_amount : int = 1
 
 var player: CharacterBody2D

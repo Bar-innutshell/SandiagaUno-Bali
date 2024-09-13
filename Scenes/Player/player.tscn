@@ -226,27 +226,27 @@ region = Rect2(96, 0, 16, 32)
 atlas = ExtResource("4_vuwtu")
 region = Rect2(112, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eyc75"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk8q7"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hgfv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbt6w"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_875o3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8r4j"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(32, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7lat"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgy1l"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(48, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n3oy2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch8a5"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(64, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yraw0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1ui0"]
 atlas = ExtResource("7_q5c6i")
 region = Rect2(80, 0, 16, 32)
 
@@ -576,22 +576,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eyc75")
+"texture": SubResource("AtlasTexture_tk8q7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6hgfv")
+"texture": SubResource("AtlasTexture_pbt6w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_875o3")
+"texture": SubResource("AtlasTexture_o8r4j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h7lat")
+"texture": SubResource("AtlasTexture_qgy1l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n3oy2")
+"texture": SubResource("AtlasTexture_ch8a5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yraw0")
+"texture": SubResource("AtlasTexture_e1ui0")
 }],
 "loop": true,
 "name": &"run",
@@ -822,8 +822,9 @@ script = ExtResource("1_7sjdf")
 material = SubResource("ShaderMaterial_m7vsi")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"death"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.561419
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)

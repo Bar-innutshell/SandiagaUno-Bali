@@ -4,7 +4,7 @@ var bullet_impact_effect = preload("res://Scenes/Weapon/bullet_impact.tscn")
 
 @export var speed : int = 300
 var direction : int = 1  # Default direction is right
-@export var damage_amount : int = 1
+@export var damage_amount : int = 10
 
 func _ready():
 	update_sprite_direction()

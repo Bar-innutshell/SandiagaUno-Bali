@@ -8,7 +8,7 @@ var current_delta: float = 0.0
 var dir: Vector2
 @export var speed = 30
 @export var chase_speed = 60  # Separate speed for chasing
-@export var health_amount : int = 3
+@export var health_amount : int = 60
 @export var damage_amount : int = 1
 
 var is_chasing: bool = false

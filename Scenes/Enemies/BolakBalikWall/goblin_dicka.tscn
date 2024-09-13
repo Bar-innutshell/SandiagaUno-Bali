@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bm8qe74d6s1v4"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/mr_crab.gd" id="1_gg5fq"]
+[ext_resource type="Script" path="res://Scenes/Enemies/BolakBalikWall/goblin_cebol.gd" id="1_1l71s"]
 [ext_resource type="Texture2D" uid="uid://bvaj8qigpydpt" path="res://Assets/enemy_SEED/goblin/idle/goblin lari.png" id="3_1gkbq"]
 [ext_resource type="AudioStream" uid="uid://dc1ldoxsnvsw6" path="res://Sounds/SFX/Monster/Lebah/1 hit 2 death.wav" id="3_im5v3"]
 
@@ -48,7 +48,7 @@ size = Vector2(14, 18)
 
 [node name="GoblinCebol" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
-script = ExtResource("1_gg5fq")
+script = ExtResource("1_1l71s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

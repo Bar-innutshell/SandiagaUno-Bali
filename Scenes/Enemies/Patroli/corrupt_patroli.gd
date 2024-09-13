@@ -5,7 +5,7 @@ const NAME = "enemy"
 @export var patrol_points : Node
 @export var speed : float = 50.0
 @export var wait_time : float = 1.0
-@export var health_amount : int = 3
+@export var health_amount : int = 100
 @export var damage_amount : int = 1
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
