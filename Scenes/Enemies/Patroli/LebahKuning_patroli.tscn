@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://2by1awhy1nq4"]
+[gd_scene load_steps=22 format=3 uid="uid://2by1awhy1nq4"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Patroli/kuning_patroli.gd" id="1_7fumg"]
 [ext_resource type="Texture2D" uid="uid://bderi0o8lb7n3" path="res://Assets/enemy_SEED/lebah suka/lebah-mati.png" id="2_chk5g"]
 [ext_resource type="Texture2D" uid="uid://caj3qu1p1an6v" path="res://Assets/enemy_SEED/lebah suka/bee-idle-right.png" id="3_58x4u"]
-[ext_resource type="Texture2D" uid="uid://d4ms3rxriyogr" path="res://Assets/enemy_SEED/lebah suka/burung-mati.png" id="4_hyh24"]
+[ext_resource type="AudioStream" uid="uid://dc1ldoxsnvsw6" path="res://Sounds/SFX/Monster/Lebah/1 hit 2 death.wav" id="4_mffe8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ukxb"]
 atlas = ExtResource("2_chk5g")
@@ -44,22 +44,6 @@ region = Rect2(256, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7xw1"]
 atlas = ExtResource("2_chk5g")
 region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8p3hq"]
-atlas = ExtResource("4_hyh24")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_430e3"]
-atlas = ExtResource("4_hyh24")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xeh8"]
-atlas = ExtResource("4_hyh24")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dffr"]
-atlas = ExtResource("4_hyh24")
-region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8u25u"]
 atlas = ExtResource("3_58x4u")
@@ -112,23 +96,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 18.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8p3hq")
+"texture": SubResource("AtlasTexture_6ukxb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_430e3")
+"texture": SubResource("AtlasTexture_56ls4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7xeh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dffr")
+"texture": SubResource("AtlasTexture_usype")
 }],
 "loop": false,
-"name": &"hurt",
+"name": &"hit",
 "speed": 10.0
 }, {
 "frames": [{
@@ -147,6 +128,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u25u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej0fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laqbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofcc3")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0etwv"]
@@ -162,7 +160,7 @@ script = ExtResource("1_7fumg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_8bl1v")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -181,6 +179,10 @@ collision_mask = 2
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_wv3ht")
 debug_color = Color(0.937255, 0.129412, 0.541176, 0.419608)
+
+[node name="AudioStreamPlayer_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mffe8")
+pitch_scale = 3.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

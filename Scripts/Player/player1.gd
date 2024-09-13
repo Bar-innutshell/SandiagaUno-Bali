@@ -256,6 +256,7 @@ func start_attack():
 func play_next_combo_animation():
 	if combo_input_count > 0 and current_combo_step < combo_animations.size():
 		var animation_name = combo_animations[current_combo_step]
+		audio_stream_attack.play()
 		hit_animation_player.play("punch")
 		animated_sprite.play(animation_name)
 		current_combo_step += 1

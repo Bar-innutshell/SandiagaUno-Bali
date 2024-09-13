@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/attack_area.gd" id="13_rnv1o"]
 [ext_resource type="AudioStream" uid="uid://hhc4fu1mjd74" path="res://Sounds/SFX/Player/Player Died/Player Died.wav" id="14_dpr6p"]
 [ext_resource type="AudioStream" uid="uid://ctcg37xb2jofl" path="res://Sounds/SFX/Player/Mantul/Mantul.wav" id="15_8dthq"]
-[ext_resource type="AudioStream" uid="uid://domgdhh70bfom" path="res://Sounds/SFX/Player/Sword/Thrust-3.wav" id="16_ga0o4"]
+[ext_resource type="AudioStream" uid="uid://c847saywbnnun" path="res://Sounds/SFX/Player/Sword/Swing-2.wav" id="20_r1dke"]
 [ext_resource type="Script" path="res://Scripts/Player/muzzle.gd" id="36_4b631"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7vsi"]
@@ -903,26 +903,33 @@ autostart = true
 
 [node name="AudioStreamPlayer2D_walking" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("10_pru8p")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D_Jump" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("11_7gq72")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D_dash" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("12_8vp5i")
+volume_db = -10.0
 
 [node name="AudioStreamPlayer2D_hit" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("13_iuw5c")
+volume_db = -10.0
 
 [node name="AudioStreamPlayer2D_died" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("14_dpr6p")
+volume_db = -10.0
 
 [node name="AudioStreamPlayer2D_mantul" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("15_8dthq")
+volume_db = -10.0
 
 [node name="AudioStreamPlayer2D_attack" type="AudioStreamPlayer" parent="audio"]
-stream = ExtResource("16_ga0o4")
+stream = ExtResource("20_r1dke")
+volume_db = -10.0
 
 [node name="CheckpointArea" type="Area2D" parent="."]
 collision_layer = 64

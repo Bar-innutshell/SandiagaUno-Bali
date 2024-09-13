@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea2D
+@onready var audio_stream_player_death: AudioStreamPlayer = $AudioStreamPlayer_death
 
 var current_delta: float = 0.0
 var dir: Vector2
@@ -78,6 +79,7 @@ func handle_animation():
 
 func start_death():
 	is_dying = true
+	audio_stream_player_death.play()
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
 	queue_free()
