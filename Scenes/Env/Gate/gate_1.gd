@@ -6,23 +6,19 @@ extends Node2D
 
 var door_open : bool
 
-func _on_exit_area_2d_body_entered(body):
-	if body.is_in_group("Player"):
-		var player = body as CharacterBody2D
-		player.queue_free()
-	
-	await get_tree().create_timer(3.0).timeout
-	SceneManager.transition_to_scene(next_scene)
+@onready var interaction_area: InteractionArea = $InteractionArea
 
+func _ready():
+    if interaction_area:
+        interaction_area.interact = Callable(self, "_on_interact")
+    else:
+        print("Error: InteractionArea node not found")
+
+func _on_interact():
+    SceneManager.transition_to_scene(next_scene)
 
 func _on_activate_door_area_2d_body_entered(body):
-	if body.is_in_group("Player"):
-		if !door_open:
-			door_open = true
-			collision_shape_2d.set_deferred("disabled", true)
-
-
-func _on_activate_door_area_2d_body_exited(body):
-	if body.is_in_group("Player"):
-		if door_open:
-			door_open = false
+    if body.is_in_group("Player"):
+        if not door_open:
+            door_open = true
+            collision_shape_2d.set_deferred("disabled", true)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c45ncee7fvbyv"]
+[gd_scene load_steps=9 format=3 uid="uid://c45ncee7fvbyv"]
 
 [ext_resource type="Script" path="res://Scenes/Env/Gate/gate_1.gd" id="1_p2iab"]
 [ext_resource type="Texture2D" uid="uid://cvbb5bkq2h11j" path="res://Assets/environment_SEED/walawe.png" id="2_gwaj5"]
+[ext_resource type="PackedScene" uid="uid://b0w30x5itoepo" path="res://Interact/interactionArea.tscn" id="3_1os3r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwgtj"]
 atlas = ExtResource("2_gwaj5")
@@ -21,13 +22,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4rhb"]
 size = Vector2(53, 44)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_03tco"]
-size = Vector2(19, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oooqm"]
 size = Vector2(52, 44)
 
-[node name="Gate1" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imx7d"]
+size = Vector2(26, 33)
+
+[node name="GateFanumTax" type="StaticBody2D"]
 z_index = 1
 position = Vector2(0, 4)
 script = ExtResource("1_p2iab")
@@ -42,15 +43,6 @@ centered = false
 position = Vector2(66.5, -26)
 shape = SubResource("RectangleShape2D_c4rhb")
 
-[node name="ExitArea2D" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea2D"]
-position = Vector2(65.5, -19)
-shape = SubResource("RectangleShape2D_03tco")
-debug_color = Color(0.74902, 0.447059, 0.32549, 0.419608)
-
 [node name="ActivateDoorArea2D" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 2
@@ -60,6 +52,12 @@ position = Vector2(14, -26)
 shape = SubResource("RectangleShape2D_oooqm")
 debug_color = Color(0.427451, 0.592157, 0.32549, 0.419608)
 
-[connection signal="body_entered" from="ExitArea2D" to="." method="_on_exit_area_2d_body_entered"]
+[node name="InteractionArea" parent="." instance=ExtResource("3_1os3r")]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(66, -21)
+shape = SubResource("RectangleShape2D_imx7d")
+
 [connection signal="body_entered" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_entered"]
 [connection signal="body_exited" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg05lsiyyb2nx"]
+[gd_scene load_steps=9 format=3 uid="uid://cg05lsiyyb2nx"]
 
 [ext_resource type="Script" path="res://Scenes/Env/Gate/gate_1.gd" id="1_tlxtx"]
 [ext_resource type="Texture2D" uid="uid://cvbb5bkq2h11j" path="res://Assets/environment_SEED/walawe.png" id="2_tvwoq"]
+[ext_resource type="PackedScene" uid="uid://b0w30x5itoepo" path="res://Interact/interactionArea.tscn" id="3_0e7yy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_juj3t"]
 atlas = ExtResource("2_tvwoq")
@@ -21,13 +22,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4rhb"]
 size = Vector2(54, 41)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_03tco"]
-size = Vector2(19, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oooqm"]
-size = Vector2(52, 41)
+size = Vector2(54, 41)
 
-[node name="Gate1" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_542xq"]
+size = Vector2(26, 33)
+
+[node name="GateOhio" type="StaticBody2D"]
 z_index = 1
 position = Vector2(0, 4)
 script = ExtResource("1_tlxtx")
@@ -42,24 +43,22 @@ centered = false
 position = Vector2(65, -24.5)
 shape = SubResource("RectangleShape2D_c4rhb")
 
-[node name="ExitArea2D" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea2D"]
-position = Vector2(65.5, -19)
-shape = SubResource("RectangleShape2D_03tco")
-debug_color = Color(0.74902, 0.447059, 0.32549, 0.419608)
-
 [node name="ActivateDoorArea2D" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateDoorArea2D"]
-position = Vector2(12, -25)
+position = Vector2(11, -24.5)
 shape = SubResource("RectangleShape2D_oooqm")
 debug_color = Color(0.427451, 0.592157, 0.32549, 0.419608)
 
-[connection signal="body_entered" from="ExitArea2D" to="." method="_on_exit_area_2d_body_entered"]
+[node name="InteractionArea" parent="." instance=ExtResource("3_0e7yy")]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(66, -21)
+shape = SubResource("RectangleShape2D_542xq")
+
 [connection signal="body_entered" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_entered"]
 [connection signal="body_exited" from="ActivateDoorArea2D" to="." method="_on_activate_door_area_2d_body_exited"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

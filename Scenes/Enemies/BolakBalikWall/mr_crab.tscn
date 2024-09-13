@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://dgbsewj66lght"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/mr_crab.gd" id="1_5yg3g"]
-[ext_resource type="Texture2D" uid="uid://deoru8s57aqgm" path="res://Assets/sprites/enemies/crab-idle/crab-idle-1.png" id="1_tph87"]
-[ext_resource type="Texture2D" uid="uid://cnmv60uvhq0al" path="res://Assets/sprites/enemies/crab-idle/crab-idle-2.png" id="2_l7qo5"]
-[ext_resource type="Texture2D" uid="uid://berjlulxvrrg7" path="res://Assets/sprites/enemies/crab-idle/crab-idle-3.png" id="3_qc4ve"]
-[ext_resource type="Texture2D" uid="uid://cilv5gctrbiin" path="res://Assets/sprites/enemies/crab-idle/crab-idle-4.png" id="4_12ncp"]
-[ext_resource type="Texture2D" uid="uid://de08pb5dhg5n1" path="res://Assets/sprites/enemies/crab-walk/crab-walk-1.png" id="5_eon3v"]
-[ext_resource type="Texture2D" uid="uid://b0y3lw2w0ltcq" path="res://Assets/sprites/enemies/crab-walk/crab-walk-2.png" id="6_fxamq"]
-[ext_resource type="Texture2D" uid="uid://dcht7ho3w156i" path="res://Assets/sprites/enemies/crab-walk/crab-walk-3.png" id="7_64md1"]
-[ext_resource type="Texture2D" uid="uid://djervgx7ph1mt" path="res://Assets/sprites/enemies/crab-walk/crab-walk-4.png" id="8_k7be4"]
+[ext_resource type="Texture2D" uid="uid://deoru8s57aqgm" path="res://Scenes/Enemies/Patroli/crab/crab-idle/crab-idle-1.png" id="1_tph87"]
+[ext_resource type="Texture2D" uid="uid://cnmv60uvhq0al" path="res://Scenes/Enemies/Patroli/crab/crab-idle/crab-idle-2.png" id="2_l7qo5"]
+[ext_resource type="Texture2D" uid="uid://berjlulxvrrg7" path="res://Scenes/Enemies/Patroli/crab/crab-idle/crab-idle-3.png" id="3_qc4ve"]
+[ext_resource type="Texture2D" uid="uid://cilv5gctrbiin" path="res://Scenes/Enemies/Patroli/crab/crab-idle/crab-idle-4.png" id="4_12ncp"]
+[ext_resource type="Texture2D" uid="uid://de08pb5dhg5n1" path="res://Scenes/Enemies/Patroli/crab/crab-walk/crab-walk-1.png" id="5_eon3v"]
+[ext_resource type="Texture2D" uid="uid://b0y3lw2w0ltcq" path="res://Scenes/Enemies/Patroli/crab/crab-walk/crab-walk-2.png" id="6_fxamq"]
+[ext_resource type="Texture2D" uid="uid://dcht7ho3w156i" path="res://Scenes/Enemies/Patroli/crab/crab-walk/crab-walk-3.png" id="7_64md1"]
+[ext_resource type="Texture2D" uid="uid://djervgx7ph1mt" path="res://Scenes/Enemies/Patroli/crab/crab-walk/crab-walk-4.png" id="8_k7be4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mub2s"]
 animations = [{

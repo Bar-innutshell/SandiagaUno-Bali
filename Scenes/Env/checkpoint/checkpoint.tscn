@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://ce40f5tfnulmp"]
 
 [ext_resource type="Script" path="res://Scenes/Env/checkpoint/checkpoint.gd" id="1_2h4wt"]
-[ext_resource type="Texture2D" uid="uid://ddjfbs1h1o1uf" path="res://Assets/spritesheets/enemies/jumper-idle.png" id="2_33np4"]
-[ext_resource type="Texture2D" uid="uid://c8anga83y2pqs" path="res://Assets/spritesheets/enemies/jumper-jump.png" id="2_nlxv5"]
+[ext_resource type="Texture2D" uid="uid://ddjfbs1h1o1uf" path="res://Scenes/Env/checkpoint/jumper-idle.png" id="2_33np4"]
+[ext_resource type="Texture2D" uid="uid://c8anga83y2pqs" path="res://Scenes/Env/checkpoint/jumper-jump.png" id="2_nlxv5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctfgp"]
 atlas = ExtResource("2_nlxv5")

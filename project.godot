@@ -46,6 +46,7 @@ Player=""
 Enemy=""
 attack=""
 Items=""
+pause_group=""
 
 [input]
 

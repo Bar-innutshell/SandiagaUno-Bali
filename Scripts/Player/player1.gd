@@ -35,8 +35,8 @@ const SHOOT_COOLDOWN = 0.3
 var bullet = preload("res://Scenes/Weapon/bullets.tscn")
 
 # sound
-var playerGrassWalkingSound = load("res://Assets/Sound/SFX/player_walking.mp3")
-var playerSnowWalkingSound = load("res://Assets/Sound/SFX/player_jumping.mp3")
+var playerGrassWalkingSound
+var playerSnowWalkingSound
 
 # Movement variables
 var direction = 0

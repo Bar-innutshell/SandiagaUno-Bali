@@ -222,7 +222,7 @@ size = Vector2(17, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_m3m4r"]
 radius = 109.115
 
-[node name="GoblinCorrupt" type="CharacterBody2D" groups=["Enemy"]]
+[node name="GoblinCorrupt" type="CharacterBody2D" groups=["Enemy", "pause_group"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_uie7t")
