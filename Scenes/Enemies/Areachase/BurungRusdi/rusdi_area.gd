@@ -61,7 +61,7 @@ func roam(delta):
 	velocity = dir * speed
 
 func _on_timer_timeout():
-	$Timer.wait_time = choose([0.5, 0.8])
+	$Timer.wait_time = choose([0.8, 1.0, 1.2])
 	if !is_chasing:
 		dir = choose([Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT])
 

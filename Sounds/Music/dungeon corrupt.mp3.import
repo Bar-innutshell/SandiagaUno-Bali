@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr301l2csuswx"
+path="res://.godot/imported/dungeon corrupt.mp3-765758964f63b2078035b2f3e1df1ecc.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/dungeon corrupt.mp3"
+dest_files=["res://.godot/imported/dungeon corrupt.mp3-765758964f63b2078035b2f3e1df1ecc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

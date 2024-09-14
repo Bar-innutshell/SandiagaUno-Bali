@@ -29,7 +29,7 @@ size = Vector2(54, 41)
 size = Vector2(26, 33)
 
 [node name="GateOhio" type="StaticBody2D"]
-z_index = 1
+z_index = -1
 position = Vector2(0, 4)
 script = ExtResource("1_tlxtx")
 

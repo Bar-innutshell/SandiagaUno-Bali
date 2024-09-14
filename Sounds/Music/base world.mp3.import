@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://jwutqjlhiqhx"
+path="res://.godot/imported/base world.mp3-b445206a0bf6565af4365891dfee9331.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/base world.mp3"
+dest_files=["res://.godot/imported/base world.mp3-b445206a0bf6565af4365891dfee9331.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Chase/king_sigma.gd" id="1_fnedy"]
 [ext_resource type="Texture2D" uid="uid://b82pu1il8jriu" path="res://Scenes/Enemies/Areachase/KingSigma/idle-nugget.png" id="2_3ow0g"]
-[ext_resource type="AudioStream" uid="uid://dokv1be02n5ut" path="res://Sounds/SFX/Monster/Slime/Slime dead var 2.mp3" id="3_5oebj"]
+[ext_resource type="AudioStream" uid="uid://cwkvnur3hnqgh" path="res://Sounds/SFX/04_Fire_explosion_04_medium/04_Fire_explosion_04_medium.wav" id="3_ejhlp"]
 [ext_resource type="AudioStream" uid="uid://bpr0nhxsu32fe" path="res://Sounds/SFX/Monster/Slime/Slime jump var 2.mp3" id="4_ee7vk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c65wf"]
@@ -412,7 +412,8 @@ shape = SubResource("CircleShape2D_vw7mb")
 debug_color = Color(0.774743, 0.419454, 0.37698, 0.42)
 
 [node name="AudioStreamPlayer_death" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5oebj")
+stream = ExtResource("3_ejhlp")
+volume_db = 5.0
 
 [node name="AudioStreamPlayer_jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ee7vk")

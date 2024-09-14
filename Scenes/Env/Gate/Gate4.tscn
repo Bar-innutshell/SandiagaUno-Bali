@@ -34,6 +34,7 @@ position = Vector2(0, 4)
 script = ExtResource("1_p2iab")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 position = Vector2(0, -96)
 sprite_frames = SubResource("SpriteFrames_a2dk5")
 animation = &"open"

@@ -83,3 +83,4 @@ position = Vector2(518, -26)
 
 [node name="GateOhio" parent="." index="14" instance=ExtResource("9_k08qf")]
 position = Vector2(780, -12)
+next_scene = "Level1"
