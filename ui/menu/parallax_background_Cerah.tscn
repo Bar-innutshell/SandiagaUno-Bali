@@ -1,0 +1,202 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1foitnuwphew"]
+
+[ext_resource type="Texture2D" uid="uid://bsv40cebuih7u" path="res://Assets/Background/Revisis Fix/Awan Langit_Sunrise (1).png" id="1_kjxr4"]
+[ext_resource type="Texture2D" uid="uid://b36j2227febtf" path="res://Assets/Background/Revisis Fix/Gunung_Sunrise (1).png" id="2_p5rvx"]
+[ext_resource type="Texture2D" uid="uid://bsnfvsc57dbv6" path="res://Assets/Background/Revisis Fix/Bg_Pohon Hijau.png" id="3_nwya0"]
+[ext_resource type="PackedScene" uid="uid://ppsrmrmdtv5s" path="res://ui/menu/biji_mainmenu.tscn" id="4_gqwhf"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+offset = Vector2(0, -36.02)
+scale = Vector2(0.6, 0.6)
+transform = Transform2D(0.6, 0, 0, 0.6, 0, -36.02)
+
+[node name="Awan" type="ParallaxLayer" parent="."]
+texture_filter = 1
+position = Vector2(941.353, 451.243)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Awan"]
+position = Vector2(-19, -161.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Awan"]
+position = Vector2(1005, -161.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Awan"]
+position = Vector2(-2067.02, -161.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Awan"]
+position = Vector2(-1043.02, -161.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Awan"]
+z_index = -1
+position = Vector2(1053.98, -389.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="Awan"]
+z_index = -1
+position = Vector2(29.98, -389.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="Awan"]
+z_index = -1
+position = Vector2(-994.02, -389.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Sprite2D8" type="Sprite2D" parent="Awan"]
+z_index = -1
+position = Vector2(-2018.02, -389.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_kjxr4")
+centered = false
+
+[node name="Gunung" type="ParallaxLayer" parent="."]
+texture_filter = 1
+position = Vector2(941.353, 451.243)
+motion_scale = Vector2(0.5, 0.8)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Gunung"]
+position = Vector2(-19, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p5rvx")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Gunung"]
+position = Vector2(1005, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p5rvx")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Gunung"]
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p5rvx")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Gunung"]
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p5rvx")
+centered = false
+
+[node name="Pohon" type="ParallaxLayer" parent="."]
+texture_filter = 1
+position = Vector2(-1106.67, 95.0333)
+motion_scale = Vector2(0.9, 0.889)
+motion_mirroring = Vector2(511.885, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(-17, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(2030, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+offset = Vector2(-0.12, -0.04)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(3054, 61.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+offset = Vector2(-0.255, -0.04)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(4079, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D8" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D9" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(2032, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+offset = Vector2(-0.12, -0.04)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Sprite2D11" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(1008, 878.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+offset = Vector2(-0.255, -0.04)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Pohon"]
+modulate = Color(0.489622, 0.489622, 0.489622, 1)
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("3_nwya0")
+centered = false
+
+[node name="Biji_mainmenu" parent="." instance=ExtResource("4_gqwhf")]
+position = Vector2(448, 208.04)

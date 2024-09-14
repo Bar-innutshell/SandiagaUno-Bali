@@ -11,8 +11,8 @@ const WALL_JUMP = 700
 const JUMP_WALL = -350
 const WALL_SLIDE_GRAVITY = 10
 const WALL_SLIDE_SPEED = 30
-const DASH_SPEED = 600.0
-const DASH_DURATION = 0.2
+const DASH_SPEED = 400.0
+const DASH_DURATION = 0.4
 const KNOCKBACK_STRENGTH = 30.0
 const KNOCKBACK_DECAY = 50.0
 const SHOOT_COOLDOWN = 0.3
@@ -39,6 +39,7 @@ var playerGrassWalkingSound
 var playerSnowWalkingSound
 
 # Movement variables
+var has_double_jump : bool = false
 var direction = 0
 var is_wall_sliding = false
 
@@ -58,7 +59,7 @@ var current_animation = ""
 var shoot_cooldown_timer = 0.0
 
 # Define the combo sequence
-var combo_animations = ["thrust", "uppercut", "swing"]
+var combo_animations = ["swing", "uppercut", "thrust"]
 var current_combo_step = 0
 var combo_input_count = 0
 
@@ -72,6 +73,7 @@ var is_dead = false
 func _ready():
 	GameManager.playerBody = self
 	GameManager.player = self
+	GameManager.reset_checkpoint_status()
 	set_safe_margin(1.0)  # Adjust as needed
 
 func _physics_process(delta):
@@ -111,6 +113,8 @@ func handle_input():
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		has_double_jump = false
 
 func handle_jump(delta):
 	if is_dead:
@@ -121,6 +125,11 @@ func handle_jump(delta):
 			velocity.y = JUMP_VELOCITY * delta
 			velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
 			audio_stream_jumping.play()
+		elif not has_double_jump:
+			# Double jump in air
+			velocity.y = JUMP_VELOCITY * delta
+			velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+			has_double_jump = true
 
 func handle_wall_slide(delta):
 	if is_dead:
@@ -160,7 +169,7 @@ func handle_dash(delta):
 	if is_dead:
 		return  # Skip dash handling if the player is dead
 	
-	if Input.is_action_just_pressed("dash") and can_dash and is_on_floor() and direction != 0:
+	if Input.is_action_just_pressed("dash") and can_dash and direction != 0:
 		audio_stream_dashing.play()
 		start_dash()
 	
@@ -217,6 +226,8 @@ func update_animation():
 		new_animation = "hit"
 	elif is_wall_sliding:
 		new_animation = "wall_slide"
+	elif dashing:
+		new_animation = "dash"
 	elif not is_on_floor():
 		new_animation = "jump"
 	elif abs(velocity.x) > 0:
@@ -294,7 +305,8 @@ func player_death():
 	audio_stream_died.play()
 	await animated_sprite.animation_finished
 
-	# Respawn player and reset health
+	GameManager.check_checkpoint_status()
+	# If the scene hasn't reloaded, respawn the player
 	GameManager.respawn_player()
 	HealthManager.set_health(1)  # Use the new set_health function
 
@@ -302,7 +314,7 @@ func player_death():
 	is_dead = false
 
 func check_fall_death():
-	if position.y >= 600:
+	if position.y >= 1000:
 		player_death()
 
 func _on_hurtbox_body_entered(body: CharacterBody2D):

@@ -1,15 +1,12 @@
-[gd_scene load_steps=13 format=4 uid="uid://dhvpdxw00bmvt"]
+[gd_scene load_steps=10 format=4 uid="uid://dhvpdxw00bmvt"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_c36qg"]
 [ext_resource type="Script" path="res://Scenes/Levels/test_level.gd" id="2_k30re"]
 [ext_resource type="PackedScene" uid="uid://daje703bakkv2" path="res://Scenes/Env/health_pickup.tscn" id="2_v1rxr"]
 [ext_resource type="AudioStream" uid="uid://di8qwuik85axq" path="res://Sounds/Music/level_theme_alifheimr.mp3" id="3_lv83a"]
-[ext_resource type="PackedScene" uid="uid://6n1oi11jo3ff" path="res://collectibles/blue_coin/blue_coin.tscn" id="5_ekqoi"]
-[ext_resource type="PackedScene" uid="uid://k4qmylidb7fm" path="res://collectibles/green_diamond/green_diamond.tscn" id="7_58e3b"]
-[ext_resource type="PackedScene" uid="uid://bq3jkhl50fu" path="res://collectibles/pink_gem/pink_gem.tscn" id="8_g7ajy"]
+[ext_resource type="PackedScene" uid="uid://bxc1bdfh2qwhx" path="res://collectibles/peri_mulyono/BijiHijau.tscn" id="8_k4agi"]
+[ext_resource type="PackedScene" uid="uid://cg05lsiyyb2nx" path="res://Scenes/Env/Gate/Gate1.tscn" id="9_k08qf"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="9_lwtj6"]
-[ext_resource type="PackedScene" uid="uid://cxilejs35uqha" path="res://Scenes/keys/key.tscn" id="11_dmp0s"]
-[ext_resource type="PackedScene" uid="uid://bm8qe74d6s1v4" path="res://Scenes/Enemies/BolakBalikWall/goblin_dicka.tscn" id="12_murl0"]
 [ext_resource type="PackedScene" uid="uid://2by1awhy1nq4" path="res://Scenes/Enemies/Patroli/LebahKuning_patroli.tscn" id="12_x2sy3"]
 [ext_resource type="PackedScene" uid="uid://bavqjmvh8prng" path="res://Scenes/Enemies/Patroli/LebahCorrupt_patroli.tscn" id="13_js8t8"]
 
@@ -22,24 +19,7 @@ volume_db = 5.0
 autoplay = true
 bus = &"Music"
 
-[node name="Coins" type="Node" parent="." index="3"]
-
-[node name="BlueCoin" parent="Coins" index="0" instance=ExtResource("5_ekqoi")]
-position = Vector2(326, -27)
-
-[node name="BlueCoin2" parent="Coins" index="1" instance=ExtResource("5_ekqoi")]
-position = Vector2(356, -28)
-
-[node name="BlueCoin3" parent="Coins" index="2" instance=ExtResource("5_ekqoi")]
-position = Vector2(388, -27)
-
-[node name="GreenDiamond" parent="Coins" index="3" instance=ExtResource("7_58e3b")]
-position = Vector2(358, -79)
-
-[node name="PinkGem" parent="Coins" index="4" instance=ExtResource("8_g7ajy")]
-position = Vector2(744, -87)
-
-[node name="Pickups" type="Node" parent="." index="4"]
+[node name="Pickups" type="Node" parent="." index="3"]
 
 [node name="HealthPickup" parent="Pickups" index="0" instance=ExtResource("2_v1rxr")]
 position = Vector2(554, -31)
@@ -56,13 +36,13 @@ tile_map_data = PackedByteArray("AAAAAAAAAAANAAgAAAAAAAEAAAANAAkAAAAAAAIAAAANAAo
 [node name="Checkpoint" parent="TileMap" index="3" instance=ExtResource("9_lwtj6")]
 position = Vector2(69, -44)
 
-[node name="Player" parent="." index="6"]
+[node name="Player" parent="." index="5"]
 position = Vector2(122, -17)
 
-[node name="PlayerCamera2D" parent="." index="7"]
+[node name="PlayerCamera2D" parent="." index="6"]
 position = Vector2(241, -24)
 
-[node name="LebahIkterus" parent="." index="8" node_paths=PackedStringArray("patrol_points") instance=ExtResource("12_x2sy3")]
+[node name="LebahIkterus" parent="." index="7" node_paths=PackedStringArray("patrol_points") instance=ExtResource("12_x2sy3")]
 position = Vector2(672, -22)
 patrol_points = NodePath("PatrolPoints")
 
@@ -74,7 +54,7 @@ position = Vector2(584, -33)
 [node name="Point2" type="Marker2D" parent="LebahIkterus/PatrolPoints" index="1"]
 position = Vector2(1096, -32)
 
-[node name="LebahCorrupt" parent="." index="9" node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_js8t8")]
+[node name="LebahCorrupt" parent="." index="8" node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_js8t8")]
 position = Vector2(792, -134)
 patrol_points = NodePath("PatrolPoints")
 
@@ -86,9 +66,20 @@ position = Vector2(789, -186)
 [node name="Point2" type="Marker2D" parent="LebahCorrupt/PatrolPoints" index="1"]
 position = Vector2(790, -107)
 
-[node name="Key" parent="." index="10" instance=ExtResource("11_dmp0s")]
-position = Vector2(165, -30)
-key_id = "69"
+[node name="BijiHijau" parent="." index="9" instance=ExtResource("8_k4agi")]
+position = Vector2(308, -26)
 
-[node name="GoblinCebol" parent="." index="11" instance=ExtResource("12_murl0")]
-position = Vector2(301, -17)
+[node name="BijiHijau2" parent="." index="10" instance=ExtResource("8_k4agi")]
+position = Vector2(401, -26)
+
+[node name="BijiHijau3" parent="." index="11" instance=ExtResource("8_k4agi")]
+position = Vector2(359, -67)
+
+[node name="BijiHijau4" parent="." index="12" instance=ExtResource("8_k4agi")]
+position = Vector2(471, -73)
+
+[node name="BijiHijau5" parent="." index="13" instance=ExtResource("8_k4agi")]
+position = Vector2(518, -26)
+
+[node name="GateOhio" parent="." index="14" instance=ExtResource("9_k08qf")]
+position = Vector2(780, -12)

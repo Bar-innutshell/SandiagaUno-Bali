@@ -1,32 +1,131 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqm71wt701u0"]
+[gd_scene load_steps=29 format=3 uid="uid://cqm71wt701u0"]
 
 [ext_resource type="Script" path="res://ui/menu/main_menu_screen.gd" id="1_d1gqu"]
-[ext_resource type="Texture2D" uid="uid://riw5epitme28" path="res://ui/environment-preview.png" id="1_lth0m"]
+[ext_resource type="Texture2D" uid="uid://cg5uljnlngik3" path="res://Assets/cover_SEED/button set/button-start.png" id="2_4nes3"]
 [ext_resource type="Theme" uid="uid://drv8uvn23ptbt" path="res://ui/theme/game_theme.tres" id="2_mgnvx"]
-[ext_resource type="Texture2D" uid="uid://bbhqr4m1gcnn" path="res://ui/player-run-4.png" id="3_dmdiq"]
-[ext_resource type="Texture2D" uid="uid://13vp2vbi46e3" path="res://ui/crab-walk-1.png" id="4_xnnhr"]
+[ext_resource type="PackedScene" uid="uid://b1foitnuwphew" path="res://ui/menu/parallax_background_Cerah.tscn" id="2_oj3bo"]
+[ext_resource type="Texture2D" uid="uid://bhp3bkyxhbvfr" path="res://Assets/cover_SEED/logo-rev-3.png" id="4_8i327"]
+[ext_resource type="Texture2D" uid="uid://blfeexh4i41gg" path="res://Assets/cover_SEED/button set/button-option.png" id="4_g3x0q"]
+[ext_resource type="Texture2D" uid="uid://dk0bs6x2qlyx8" path="res://Assets/cover_SEED/button set/button-exit.png" id="5_qj518"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rl6v"]
+atlas = ExtResource("2_4nes3")
+region = Rect2(0, 0, 100, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mik45"]
+atlas = ExtResource("2_4nes3")
+region = Rect2(100, 0, 100, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxd82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rl6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mik45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rl6v")
+}],
+"loop": false,
+"name": &"play",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kex6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7bdt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20gfb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mxtq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l1yi"]
+atlas = ExtResource("4_g3x0q")
+region = Rect2(0, 0, 100, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8qmq"]
+atlas = ExtResource("4_g3x0q")
+region = Rect2(100, 0, 100, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgxp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l1yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8qmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l1yi")
+}],
+"loop": false,
+"name": &"options",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kubyj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qum5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vct8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_55jo7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovjk1"]
+atlas = ExtResource("5_qj518")
+region = Rect2(0, 0, 100, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvem4"]
+atlas = ExtResource("5_qj518")
+region = Rect2(100, 0, 100, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nurej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovjk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvem4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovjk1")
+}],
+"loop": false,
+"name": &"quit",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_84jgd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxixf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7167h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fi6y3"]
 
 [node name="MainMenuScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 2
 script = ExtResource("1_d1gqu")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -332.0
-offset_top = -68.0
-offset_right = 244.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_lth0m")
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_oj3bo")]
+
+[node name="Logo-rev-3" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(253, 68)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_8i327")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_mgnvx")
@@ -36,36 +135,61 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+[node name="PlayButtonSprite" type="AnimatedSprite2D" parent="MarginContainer/PanelContainer"]
+texture_filter = 5
+position = Vector2(-2, 17)
+sprite_frames = SubResource("SpriteFrames_kxd82")
+animation = &"play"
+frame = 2
+frame_progress = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
+[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/PlayButtonSprite"]
+offset_left = -44.0
+offset_top = -20.0
+offset_right = 47.0
+offset_bottom = 20.0
+size_flags_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kex6k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_p7bdt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_20gfb")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8mxtq")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "PLAY"
+[node name="SettingsButtonSprite" type="AnimatedSprite2D" parent="MarginContainer/PanelContainer"]
+texture_filter = 5
+position = Vector2(-1, 59)
+sprite_frames = SubResource("SpriteFrames_vgxp6")
+animation = &"options"
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "SETTINGS"
+[node name="SettingsButton" type="Button" parent="MarginContainer/PanelContainer/SettingsButtonSprite"]
+offset_left = -44.0
+offset_top = -19.0
+offset_right = 46.0
+offset_bottom = 19.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kubyj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qum5i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vct8i")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_55jo7")
+metadata/_edit_use_anchors_ = true
 
-[node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "EXIT"
+[node name="ExitButtonSprite" type="AnimatedSprite2D" parent="MarginContainer/PanelContainer"]
+texture_filter = 5
+position = Vector2(0, 100)
+sprite_frames = SubResource("SpriteFrames_nurej")
+animation = &"quit"
 
-[node name="Player-run-4" type="Sprite2D" parent="."]
-position = Vector2(166, 231)
-texture = ExtResource("3_dmdiq")
+[node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/ExitButtonSprite"]
+offset_left = -45.0
+offset_top = -20.0
+offset_right = 44.0
+offset_bottom = 19.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_84jgd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxixf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7167h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fi6y3")
+metadata/_edit_use_anchors_ = true
 
-[node name="Crab-walk-1" type="Sprite2D" parent="."]
-position = Vector2(246, 237)
-texture = ExtResource("4_xnnhr")
-
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/PlayButtonSprite/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/SettingsButtonSprite/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/ExitButtonSprite/ExitButton" to="." method="_on_exit_button_pressed"]

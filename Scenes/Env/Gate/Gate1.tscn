@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cg05lsiyyb2nx"]
 
-[ext_resource type="Script" path="res://Scenes/Env/Gate/gate_1.gd" id="1_tlxtx"]
+[ext_resource type="Script" path="res://Scenes/Env/Gate/gate.gd" id="1_tlxtx"]
 [ext_resource type="Texture2D" uid="uid://cvbb5bkq2h11j" path="res://Assets/environment_SEED/walawe.png" id="2_tvwoq"]
 [ext_resource type="PackedScene" uid="uid://b0w30x5itoepo" path="res://Interact/interactionArea.tscn" id="3_0e7yy"]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/game_screen.gd" id="1_jadqt"]
 [ext_resource type="PackedScene" uid="uid://cqhro705skse6" path="res://ui/health_bar/health_bar.tscn" id="1_qquvf"]
-[ext_resource type="Texture2D" uid="uid://bn2eyu7maqlb6" path="res://collectibles/coins-and-gems.png" id="2_iatnl"]
+[ext_resource type="Texture2D" uid="uid://c2cenlwpwkpee" path="res://Assets/Biji_SEED/Biji Owo/biji-owo-Ijo-pek smail.png" id="3_2cdpu"]
 [ext_resource type="Texture2D" uid="uid://bgjmmk70bwjwl" path="res://ui/icons8-pause-12.png" id="4_uxs0m"]
 
 [node name="GameScreen" type="CanvasLayer"]
@@ -36,10 +36,11 @@ custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
-texture = ExtResource("2_iatnl")
+position = Vector2(-1, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2cdpu")
 centered = false
-hframes = 20
-vframes = 4
+hframes = 6
 
 [node name="CollectibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
