@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfmiefsnqkop1"
-path="res://.godot/imported/Bg_Kegelapan_Awan gunung_Versi baru.png-36b2a03348795bb56e1ab00460c6975d.ctex"
+uid="uid://bxd2h3e000dfd"
+path="res://.godot/imported/knighthitdamage-rev.png-d40da0cd9606657f22b380df9dee78c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/environment/Layer 2/Bg_Kegelapan_Awan gunung_Versi baru.png"
-dest_files=["res://.godot/imported/Bg_Kegelapan_Awan gunung_Versi baru.png-36b2a03348795bb56e1ab00460c6975d.ctex"]
+source_file="res://Assets/Player_SEED/rev-1-png/knighthitdamage-rev.png"
+dest_files=["res://.godot/imported/knighthitdamage-rev.png-d40da0cd9606657f22b380df9dee78c5.ctex"]
 
 [params]
 

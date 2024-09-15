@@ -13,8 +13,8 @@ const WALL_SLIDE_GRAVITY = 10
 const WALL_SLIDE_SPEED = 30
 const DASH_SPEED = 400.0
 const DASH_DURATION = 0.4
-const KNOCKBACK_STRENGTH = 30.0
-const KNOCKBACK_DECAY = 50.0
+const KNOCKBACK_STRENGTH = 400.0
+const KNOCKBACK_DURATION = 0.25
 const SHOOT_COOLDOWN = 0.3
 
 # Node references
@@ -68,6 +68,10 @@ var is_wall_slide_enabled = false  # Untuk menyimpan status wall slide
 # Death flag
 var is_dead = false
 
+# Modify the knockback variables
+var knockback_active: bool = false
+var knockback_tween: Tween
+
 func _ready():
 	GameManager.playerBody = self
 	GameManager.player = self
@@ -83,8 +87,10 @@ func _physics_process(delta):
 	handle_jump(delta)
 	handle_wall_slide(delta)
 	handle_dash(delta)
-	handle_knockback(delta)
-	handle_movement(delta)
+	
+	if not knockback_active:
+		handle_movement(delta)
+	
 	update_animation()
 	update_muzzle_position()
 	move_and_slide()
@@ -190,17 +196,6 @@ func end_dash():
 	dashing = false
 	velocity = dash_direction * MAX_HORIZONTAL_SPEED
 
-func handle_knockback(delta):
-	if is_dead:
-		return  # Skip knockback handling if the player is dead
-	
-	if knockback:
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
-		velocity += knockback_velocity
-		if knockback_velocity.length() < 10:
-			knockback = false
-			knockback_velocity = Vector2.ZERO
-
 func handle_movement(delta):
 	if is_dead:
 		return  # Skip movement handling if the player is dead
@@ -288,13 +283,28 @@ func _on_attack_combo_reset_timeout():
 	is_attacking = false
 
 func apply_knockback(attacker_position: Vector2):
-	if is_dead:
-		return  # Skip knockback if the player is dead
-	
-	knockback = true
+	if is_dead or knockback_active:
+		return  # Skip knockback if the player is dead or already in knockback
+
 	var knockback_direction = (global_position - attacker_position).normalized()
-	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
-	knockback_velocity.y -= 5
+	var knockback_force = knockback_direction * KNOCKBACK_STRENGTH
+	
+	knockback_active = true
+	
+	# Stop any existing knockback tween
+	if knockback_tween:
+		knockback_tween.kill()
+	
+	knockback_tween = create_tween()
+	knockback_tween.tween_method(
+		func(progress: float):
+			var interpolation = 1.0 - progress
+			velocity = knockback_force * interpolation,
+		0.0, 1.0, KNOCKBACK_DURATION
+	)
+	knockback_tween.tween_callback(func():
+		knockback_active = false
+	)
 
 func player_death():
 	# Set the death flag

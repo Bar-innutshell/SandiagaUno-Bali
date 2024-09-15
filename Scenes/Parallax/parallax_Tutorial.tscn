@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr8ged3v0s2kh"]
 
-[ext_resource type="Texture2D" uid="uid://bfmiefsnqkop1" path="res://Assets/environment/Layer 2/Bg_Kegelapan_Awan gunung_Versi baru.png" id="1_pv83g"]
+[ext_resource type="Texture2D" uid="uid://bfmiefsnqkop1" path="res://Assets/environment_SEED/Layer 2/Bg_Kegelapan_Awan gunung_Versi baru.png" id="1_pv83g"]
 [ext_resource type="Texture2D" uid="uid://7q1mhxkpakpr" path="res://Assets/Background/bg_dinding dungeon_ori.png" id="1_t04oi"]
-[ext_resource type="Texture2D" uid="uid://tqluhp3l4g8r" path="res://Assets/environment/Layer 2/Bg_Pohon gelap_New.png" id="2_8hk10"]
+[ext_resource type="Texture2D" uid="uid://tqluhp3l4g8r" path="res://Assets/environment_SEED/Layer 2/Bg_Pohon gelap_New.png" id="2_8hk10"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 offset = Vector2(0, -36.02)

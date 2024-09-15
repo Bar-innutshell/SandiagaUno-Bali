@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomicx63tlpv4"
-path="res://.godot/imported/Bg_Gunwan_New.png-b34f3ec3c40c7cf6dc8d0306695f21db.ctex"
+uid="uid://oobeoot6uc7c"
+path="res://.godot/imported/knightdied-rev.png-6ce707facb260856a920d2c4a00c403a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/environment/Layer 2/Bg_Gunwan_New.png"
-dest_files=["res://.godot/imported/Bg_Gunwan_New.png-b34f3ec3c40c7cf6dc8d0306695f21db.ctex"]
+source_file="res://Assets/Player_SEED/rev-1-png/knightdied-rev.png"
+dest_files=["res://.godot/imported/knightdied-rev.png-6ce707facb260856a920d2c4a00c403a.ctex"]
 
 [params]
 

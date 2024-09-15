@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dkn781cqnopix" path="res://Assets/Background/Revisis Fix/Awan double (revisi2).png" id="1_7hd61"]
 [ext_resource type="Texture2D" uid="uid://dd0b3jnbi0x61" path="res://Assets/Background/Revisis Fix/Gunung_Kegelapant.png" id="2_fcc6h"]
-[ext_resource type="Texture2D" uid="uid://tqluhp3l4g8r" path="res://Assets/environment/Layer 2/Bg_Pohon gelap_New.png" id="2_rp07g"]
+[ext_resource type="Texture2D" uid="uid://tqluhp3l4g8r" path="res://Assets/environment_SEED/Layer 2/Bg_Pohon gelap_New.png" id="2_rp07g"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 offset = Vector2(0, -36.02)
