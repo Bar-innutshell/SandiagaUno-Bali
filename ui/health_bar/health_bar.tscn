@@ -20,3 +20,11 @@ texture = ExtResource("1_0snvl")
 [node name="Heart3" type="Sprite2D" parent="."]
 position = Vector2(39, 6)
 texture = ExtResource("1_0snvl")
+
+[node name="Heart4" type="Sprite2D" parent="."]
+position = Vector2(55, 6)
+texture = ExtResource("1_0snvl")
+
+[node name="Heart5" type="Sprite2D" parent="."]
+position = Vector2(71, 6)
+texture = ExtResource("1_0snvl")

@@ -26,6 +26,9 @@ func _ready():
 	
 	SettingsManager.load_settings()
 
+func _process(delta):
+	pause_game()
+
 func start_game():
 	if get_tree().paused:
 		continue_game()
@@ -42,13 +45,16 @@ func upgrade_player():
 	health_upgrade += 1
 
 func pause_game():
-	get_tree().paused = true
-	
-	var pause_menu_screen_instance = pause_menu_screen.instantiate()
-	get_tree().get_root().add_child(pause_menu_screen_instance)
+	if Input.is_action_just_pressed("pause"):    
+		get_tree().paused = true
+		var pause_menu_screen_instance = pause_menu_screen.instantiate()
+		get_tree().get_root().add_child(pause_menu_screen_instance)
 
 func continue_game():
 	get_tree().paused = false
+	var pause_menu_screen_instance = get_tree().get_root().get_node("PauseMenuScreen")
+	if pause_menu_screen_instance:
+		pause_menu_screen_instance.queue_free()
 
 func main_menu():
 	var main_menu_screen_instance = main_menu_screen.instantiate()

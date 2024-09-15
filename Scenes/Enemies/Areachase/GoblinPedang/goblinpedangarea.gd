@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var audio_stream_death: AudioStreamPlayer2D = $AudioStreamPlayer2D_death
 
 @export var speed = 1000
-@export var chase_speed = 2000  # Separate speed for chasing
+@export var chase_speed = 4000  # Separate speed for chasing
 var current_delta: float = 0.0
 var dir: Vector2
 var direction: int
@@ -19,14 +19,16 @@ var is_dying: bool = false
 
 var player: CharacterBody2D
 
-var knockback_dir
-var knockback = false
-var player_dir
-var knockback_velocity: Vector2 = Vector2.ZERO  # Variabel knockback
-@export var knockback_strength: float = 3500.0  # Besar knockback
-@export var knockback_decay: float = 50.0  # Kecepatan peluruhan knockback
+# Common constants for all enemy types
+const KNOCKBACK_STRENGTH = 400.0
+const KNOCKBACK_DURATION = 0.25
+var knockback_active: bool = false
+
+var spawn_position: Vector2
+@export var roam_range: float = 100.0  # Range for horizontal roaming
 
 func _ready():
+	spawn_position = position
 	$Timer.start()
 
 func _physics_process(delta):
@@ -39,22 +41,15 @@ func _physics_process(delta):
 		velocity.x = 0
 
 	# Handle knockback
-	if knockback:
-		handle_knockback(delta)
-	else:
+	if not knockback_active:
 		player = GameManager.playerBody
 		if player != null and is_goblin_chase:
 			chase_player(delta)
+		else:
+			roam(delta)
 
 	move_and_slide()
 	handle_animation()
-
-func handle_knockback(delta):
-	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-	velocity = knockback_velocity
-	if knockback_velocity.length() < 10:
-		knockback = false
-		knockback_velocity = Vector2.ZERO
 
 func chase_player(delta):
 	if player != null:
@@ -63,12 +58,14 @@ func chase_player(delta):
 		dir.x = abs(velocity.x) / velocity.x
 
 func roam(delta):
+	if abs(position.x - spawn_position.x) > roam_range:
+		dir.x = -dir.x  # Change direction if out of range
 	velocity = dir * speed * delta
 
 func _on_timer_timeout():
 	$Timer.wait_time = choose([0.5, 0.8])
 	if !is_goblin_chase:
-		dir = choose([Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT])
+		dir = Vector2.RIGHT if randf() > 0.5 else Vector2.LEFT
 
 func handle_animation():
 	if is_dying:
@@ -84,7 +81,7 @@ func start_death():
 	is_dying = true
 	audio_stream_death.play()
 	animated_sprite.play("death")
-    # Wait for the animation to finish
+	# Wait for the animation to finish
 	await animated_sprite.animation_finished
 	queue_free()
 
@@ -95,13 +92,9 @@ func choose(array):
 func _on_hurtbox_area_entered(area):
 	if is_dying:
 		return
-	if area.get_parent().has_method("get_damage_amount"):
+	if area.get_parent().has_method("get_damage_amount") or area.is_in_group("attack"):
 		take_damage(area.get_parent().damage_amount)
-	if area.is_in_group("attack"):
-		take_damage(area.get_parent().damage_amount)
-		player_dir = area.get_parent().dir
-		knockback_dir = player_dir
-		apply_knockback(current_delta)
+		apply_knockback(area.global_position)
 
 func take_damage(amount):
 	health_amount -= amount
@@ -109,17 +102,23 @@ func take_damage(amount):
 	if health_amount <= 0:
 		start_death()
 
-func apply_knockback(delta: float):
-	knockback = true
-	if direction == player_dir:
-		knockback_dir *= 1
-	knockback_velocity = Vector2(knockback_strength * knockback_dir * delta, -knockback_strength * 0.5 * delta)
+func apply_knockback(attacker_position: Vector2) -> void:
+	var knockback_direction = (global_position - attacker_position).normalized()
+	var knockback_force = knockback_direction * KNOCKBACK_STRENGTH
+	
+	knockback_active = true
+	var tween = create_tween()
+	tween.tween_method(
+		func(progress: float):
+			var interpolation = 1.0 - progress
+			velocity = knockback_force * interpolation, 0.0, 1.0, KNOCKBACK_DURATION
+	)
+	tween.tween_callback(func(): knockback_active = false)
 
 func _on_attack_area_2d_body_entered(body:Node2D):
 	if body.is_in_group("Player"):
 		is_goblin_chase = true
 		is_attacking = true
-
 
 func _on_attack_area_2d_body_exited(body:Node2D):
 	if body.is_in_group("Player"):

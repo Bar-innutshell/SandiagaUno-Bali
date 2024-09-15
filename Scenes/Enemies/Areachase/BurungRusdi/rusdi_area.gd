@@ -17,25 +17,19 @@ var is_dying: bool = false
 
 var player: CharacterBody2D
 
-var knockback_dir
-var knockback = false
-var player_dir
-var direction = 1
-var knockback_velocity: Vector2 = Vector2.ZERO
-@export var knockback_strength: float = 4000.0
-@export var knockback_decay: float = 50.0
+# Common constants for all enemy types
+const KNOCKBACK_STRENGTH = 400.0
+const KNOCKBACK_DURATION = 0.25
+var knockback_active: bool = false
 
 func _ready():
 	$Timer.start()
 
 func _physics_process(delta):
-	current_delta = delta
 	if is_dying:
 		return
 
-	if knockback:
-		handle_knockback(delta)
-	else:
+	if not knockback_active:
 		player = GameManager.playerBody
 		if player != null and is_chasing:
 			chase_player(delta)
@@ -44,13 +38,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	handle_animation()
-
-func handle_knockback(delta):
-	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-	velocity = knockback_velocity
-	if knockback_velocity.length() < 10:
-		knockback = false
-		knockback_velocity = Vector2.ZERO
 
 func chase_player(delta):
 	velocity = position.direction_to(player.position) * chase_speed
@@ -91,13 +78,9 @@ func choose(array):
 func _on_hurtbox_area_entered(area):
 	if is_dying:
 		return
-	if area.get_parent().has_method("get_damage_amount"):
+	if area.get_parent().has_method("get_damage_amount") or area.is_in_group("attack"):
 		take_damage(area.get_parent().damage_amount)
-	if area.is_in_group("attack"):
-		take_damage(area.get_parent().damage_amount)
-		player_dir = area.get_parent().dir
-		knockback_dir = player_dir
-		apply_knockback(current_delta)
+		apply_knockback(area.global_position)
 
 func take_damage(amount):
 	health_amount -= amount
@@ -105,11 +88,18 @@ func take_damage(amount):
 	if health_amount <= 0:
 		start_death()
 
-func apply_knockback(delta: float):
-	knockback = true
-	if direction == player_dir:
-		knockback_dir *= 1
-	knockback_velocity = Vector2(knockback_strength * knockback_dir * delta, -knockback_strength * 0.5 * delta)
+func apply_knockback(attacker_position: Vector2) -> void:
+	var knockback_direction = (global_position - attacker_position).normalized()
+	var knockback_force = knockback_direction * KNOCKBACK_STRENGTH
+	
+	knockback_active = true
+	var tween = create_tween()
+	tween.tween_method(
+		func(progress: float):
+			var interpolation = 1.0 - progress
+			velocity = knockback_force * interpolation, 0.0, 1.0, KNOCKBACK_DURATION
+	)
+	tween.tween_callback(func(): knockback_active = false)
 
 func _on_attack_area_2d_body_entered(body: Node2D):
 	if body.is_in_group("Player"):

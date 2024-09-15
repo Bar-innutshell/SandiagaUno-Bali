@@ -96,7 +96,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 15.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -160,8 +160,10 @@ script = ExtResource("1_7fumg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_8bl1v")
-animation = &"hit"
+animation = &"death"
 autoplay = "idle"
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -3.5)
@@ -170,6 +172,9 @@ shape = SubResource("RectangleShape2D_0etwv")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="death_timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -185,4 +190,5 @@ stream = ExtResource("4_mffe8")
 pitch_scale = 3.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="death_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

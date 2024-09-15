@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5uljnlngik3" path="res://Assets/cover_SEED/button set/button-start.png" id="2_4nes3"]
 [ext_resource type="Theme" uid="uid://drv8uvn23ptbt" path="res://ui/theme/game_theme.tres" id="2_mgnvx"]
 [ext_resource type="PackedScene" uid="uid://b1foitnuwphew" path="res://ui/menu/parallax_background_Cerah.tscn" id="2_oj3bo"]
-[ext_resource type="Texture2D" uid="uid://bhp3bkyxhbvfr" path="res://Assets/cover_SEED/logo-rev-3.png" id="4_8i327"]
+[ext_resource type="Texture2D" uid="uid://kqivs4i2opvs" path="res://Assets/cover_SEED/logo-rev-4.png" id="4_df54b"]
 [ext_resource type="Texture2D" uid="uid://blfeexh4i41gg" path="res://Assets/cover_SEED/button set/button-option.png" id="4_g3x0q"]
 [ext_resource type="Texture2D" uid="uid://dk0bs6x2qlyx8" path="res://Assets/cover_SEED/button set/button-exit.png" id="5_qj518"]
 
@@ -114,11 +114,10 @@ script = ExtResource("1_d1gqu")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_oj3bo")]
 
-[node name="Logo-rev-3" type="Sprite2D" parent="."]
-texture_filter = 5
-position = Vector2(253, 68)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("4_8i327")
+[node name="Logo-rev-4" type="Sprite2D" parent="."]
+position = Vector2(256, 79)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("4_df54b")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

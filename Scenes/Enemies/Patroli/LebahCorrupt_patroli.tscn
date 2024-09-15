@@ -96,7 +96,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 15.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -144,7 +144,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0etwv"]
@@ -160,7 +160,7 @@ script = ExtResource("1_qwds8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_k252t")
-animation = &"move"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -171,6 +171,9 @@ shape = SubResource("RectangleShape2D_0etwv")
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="death_timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4

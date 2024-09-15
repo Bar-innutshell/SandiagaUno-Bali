@@ -1,8 +1,49 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm8qe74d6s1v4"]
+[gd_scene load_steps=22 format=3 uid="uid://bm8qe74d6s1v4"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/BolakBalikWall/goblin_cebol.gd" id="1_1l71s"]
+[ext_resource type="Texture2D" uid="uid://bm5u46vpgx8ih" path="res://Assets/enemy_SEED/goblin/goblin kecil mati.png" id="2_ox0ib"]
 [ext_resource type="Texture2D" uid="uid://bvaj8qigpydpt" path="res://Assets/enemy_SEED/goblin/idle/goblin lari.png" id="3_1gkbq"]
 [ext_resource type="AudioStream" uid="uid://dc1ldoxsnvsw6" path="res://Sounds/SFX/Monster/Lebah/1 hit 2 death.wav" id="3_im5v3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58xtj"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsi0p"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_218ed"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6vrl"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd747"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvhor"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccd0y"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwm22"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5xwg"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t152"]
+atlas = ExtResource("2_ox0ib")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7g6s"]
 atlas = ExtResource("3_1gkbq")
@@ -22,6 +63,41 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mub2s"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58xtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsi0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_218ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6vrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd747")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvhor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccd0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwm22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5xwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t152")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k7g6s")
@@ -53,9 +129,10 @@ script = ExtResource("1_1l71s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_mub2s")
-animation = &"walk"
+animation = &"death"
 autoplay = "walk"
-frame_progress = 0.233763
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -8)
@@ -85,5 +162,6 @@ debug_color = Color(0.774743, 0.419454, 0.37698, 0.42)
 
 [node name="AudioStreamPlayer_death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_im5v3")
+pitch_scale = 4.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

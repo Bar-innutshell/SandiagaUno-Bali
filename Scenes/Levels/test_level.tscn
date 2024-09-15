@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dhvpdxw00bmvt"]
+[gd_scene load_steps=12 format=4 uid="uid://dhvpdxw00bmvt"]
 
 [ext_resource type="PackedScene" uid="uid://q5wh0p6tlawn" path="res://Scenes/Levels/baselevel.tscn" id="1_c36qg"]
 [ext_resource type="Script" path="res://Scenes/Levels/test_level.gd" id="2_k30re"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bxc1bdfh2qwhx" path="res://collectibles/peri_mulyono/BijiHijau.tscn" id="8_k4agi"]
 [ext_resource type="PackedScene" uid="uid://cg05lsiyyb2nx" path="res://Scenes/Env/Gate/Gate1.tscn" id="9_k08qf"]
 [ext_resource type="PackedScene" uid="uid://ce40f5tfnulmp" path="res://Scenes/Env/checkpoint/checkpoint.tscn" id="9_lwtj6"]
+[ext_resource type="PackedScene" uid="uid://dx2q4h865l1jt" path="res://Scenes/Enemies/Chase/KingSigma.tscn" id="10_y4egv"]
+[ext_resource type="PackedScene" uid="uid://cxilejs35uqha" path="res://Scenes/keys/key.tscn" id="11_iandd"]
 [ext_resource type="PackedScene" uid="uid://2by1awhy1nq4" path="res://Scenes/Enemies/Patroli/LebahKuning_patroli.tscn" id="12_x2sy3"]
 [ext_resource type="PackedScene" uid="uid://bavqjmvh8prng" path="res://Scenes/Enemies/Patroli/LebahCorrupt_patroli.tscn" id="13_js8t8"]
 
@@ -55,16 +57,16 @@ position = Vector2(584, -33)
 position = Vector2(1096, -32)
 
 [node name="LebahCorrupt" parent="." index="8" node_paths=PackedStringArray("patrol_points") instance=ExtResource("13_js8t8")]
-position = Vector2(792, -134)
+position = Vector2(760, -159)
 patrol_points = NodePath("PatrolPoints")
 
 [node name="PatrolPoints" type="Node" parent="LebahCorrupt" index="4"]
 
 [node name="Point1" type="Marker2D" parent="LebahCorrupt/PatrolPoints" index="0"]
-position = Vector2(789, -186)
+position = Vector2(757, -211)
 
 [node name="Point2" type="Marker2D" parent="LebahCorrupt/PatrolPoints" index="1"]
-position = Vector2(790, -107)
+position = Vector2(758, -132)
 
 [node name="BijiHijau" parent="." index="9" instance=ExtResource("8_k4agi")]
 position = Vector2(308, -26)
@@ -84,3 +86,11 @@ position = Vector2(518, -26)
 [node name="GateOhio" parent="." index="14" instance=ExtResource("9_k08qf")]
 position = Vector2(780, -12)
 next_scene = "Level1"
+
+[node name="KingSigma" parent="." index="15" instance=ExtResource("10_y4egv")]
+position = Vector2(352, -16)
+key_id = "69"
+
+[node name="Key" parent="." index="16" instance=ExtResource("11_iandd")]
+position = Vector2(151, -24)
+key_id = "69"

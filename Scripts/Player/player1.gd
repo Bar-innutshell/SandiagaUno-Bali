@@ -63,280 +63,282 @@ var combo_input_count = 0
 # New constants for wall detection
 const WALL_DETECTION_DISTANCE = 10.0
 const WALL_SLIDE_THRESHOLD = 5.0
+var is_wall_slide_enabled = false  # Untuk menyimpan status wall slide
 
 # Death flag
 var is_dead = false
 
 func _ready():
-    GameManager.playerBody = self
-    GameManager.player = self
-    GameManager.reset_checkpoint_status()
-    set_safe_margin(1.0)  # Adjust as needed
+	GameManager.playerBody = self
+	GameManager.player = self
+	GameManager.reset_checkpoint_status()
+	set_safe_margin(1.0)  # Adjust as needed
 
 func _physics_process(delta):
-    if is_dead:
-        return  # Skip processing if the player is dead
-    
-    handle_input()
-    apply_gravity(delta)
-    handle_jump(delta)
-    handle_wall_slide(delta)
-    handle_dash(delta)
-    handle_knockback(delta)
-    handle_movement(delta)
-    update_animation()
-    update_muzzle_position()
-    move_and_slide()
-    check_fall_death()
-    
-    # Update the shoot cooldown timer
-    if shoot_cooldown_timer > 0:
-        shoot_cooldown_timer -= delta
+	if is_dead:
+		return  # Skip processing if the player is dead
+	
+	handle_input()
+	apply_gravity(delta)
+	handle_jump(delta)
+	handle_wall_slide(delta)
+	handle_dash(delta)
+	handle_knockback(delta)
+	handle_movement(delta)
+	update_animation()
+	update_muzzle_position()
+	move_and_slide()
+	check_fall_death()
+	
+	# Update the shoot cooldown timer
+	if shoot_cooldown_timer > 0:
+		shoot_cooldown_timer -= delta
 
 func handle_input():
-    if is_dead:
-        return  # Skip input handling if the player is dead
-    
-    direction = Input.get_axis("move_left", "move_right")
-    
-    if Input.is_action_just_pressed("attack"):
-        combo_input_count += 1
-        start_attack()
-        attack_combo_reset.start(1.0)  # Restart the timer on each attack input
-    
-    if Input.is_action_just_pressed("shot") and shoot_cooldown_timer <= 0:
-        shoot()
+	if is_dead:
+		return  # Skip input handling if the player is dead
+	
+	direction = Input.get_axis("move_left", "move_right")
+	
+	if Input.is_action_just_pressed("attack"):
+		combo_input_count += 1
+		start_attack()
+		attack_combo_reset.start(1.0)  # Restart the timer on each attack input
+	
+	if Input.is_action_just_pressed("shot") and shoot_cooldown_timer <= 0:
+		shoot()
 
 func apply_gravity(delta):
-    if not is_on_floor():
-        velocity += get_gravity() * delta
-    else:
-        has_double_jump = false
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		has_double_jump = false
 
 func handle_jump(delta):
-    if is_dead:
-        return  # Skip jump handling if the player is dead
-    
-    if Input.is_action_just_pressed("jump"):
-        if is_on_floor():
-            velocity.y = JUMP_VELOCITY * delta
-            velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
-            audio_stream_jumping.play()
-        elif not has_double_jump:
-            # Double jump in air
-            velocity.y = JUMP_VELOCITY * delta
-            velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
-            has_double_jump = true
+	if is_dead:
+		return  # Skip jump handling if the player is dead
+	
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY * delta
+			velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+			audio_stream_jumping.play()
+		elif not has_double_jump:
+			# Double jump in air
+			velocity.y = JUMP_VELOCITY * delta
+			velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+			has_double_jump = true
 
 func handle_wall_slide(delta):
-    if is_dead:
-        return  # Skip wall slide handling if the player is dead
-    
-    is_wall_sliding = false
+	# Check if the player is next to a wall and not on the floor
+	if Input.is_action_pressed("wallslide") and nextToWall() and not is_on_floor():
+		is_wall_sliding = true
+	else:
+		is_wall_sliding = false
 
-    if is_near_wall() and !is_on_floor() and velocity.y > WALL_SLIDE_THRESHOLD:
-        is_wall_sliding = true
-    
-    if is_wall_sliding:
-        if velocity.y > WALL_SLIDE_SPEED:
-            velocity.y = WALL_SLIDE_SPEED
-        else:
-            velocity.y += (WALL_SLIDE_GRAVITY * delta)
-            velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
-    
-    if Input.is_action_just_pressed("jump") and is_near_wall() and !is_on_floor():
-        wall_jump(delta)
+	if is_wall_sliding:
+		if velocity.y > WALL_SLIDE_SPEED:
+			velocity.y = WALL_SLIDE_SPEED
+		else:
+			velocity.y += (WALL_SLIDE_GRAVITY * delta)
+			velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
+
+	if Input.is_action_just_pressed("jump") and nextToWall() and !is_on_floor() and is_wall_sliding:
+		wall_jump(delta)
+
+func _on_WallSlideResetTimer_timeout():
+	is_wall_slide_enabled = false  # Reset the wall slide state when the timer times out
 
 func is_near_wall():
-    return $RightWall.is_colliding() or $LeftWall.is_colliding() or \
-           $RightWall2.is_colliding() or $LeftWall2.is_colliding() or \
-           $RightWall3.is_colliding() or $LeftWall3.is_colliding()
+	return $RightWall.is_colliding() or $LeftWall.is_colliding() or \
+		   $RightWall2.is_colliding() or $LeftWall2.is_colliding() or \
+		   $RightWall3.is_colliding() or $LeftWall3.is_colliding()
 
 func wall_jump(delta):
-    velocity.y = JUMP_VELOCITY * delta
-    velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
-    if nextToRightWall():
-        velocity.x = -WALL_JUMP
-    elif nextToLeftWall():
-        velocity.x = WALL_JUMP
-    audio_stream_mantul.play()
-    is_wall_sliding = false
+	velocity.y = JUMP_VELOCITY * delta
+	velocity.y = clamp(velocity.y, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED)
+	if nextToRightWall():
+		velocity.x = -WALL_JUMP
+	elif nextToLeftWall():
+		velocity.x = WALL_JUMP
+	audio_stream_mantul.play()
+	is_wall_sliding = false
 
 func handle_dash(delta):
-    if is_dead:
-        return  # Skip dash handling if the player is dead
-    
-    if Input.is_action_just_pressed("dash") and can_dash and direction != 0:
-        audio_stream_dashing.play()
-        start_dash()
-    
-    if dashing:
-        dash_timer += delta
-        if dash_timer < DASH_DURATION:
-            velocity = dash_direction * DASH_SPEED
-        else:
-            end_dash()
+	if is_dead:
+		return  # Skip dash handling if the player is dead
+	
+	if Input.is_action_just_pressed("dash") and can_dash and direction != 0:
+		audio_stream_dashing.play()
+		start_dash()
+	
+	if dashing:
+		dash_timer += delta
+		if dash_timer < DASH_DURATION:
+			velocity = dash_direction * DASH_SPEED
+		else:
+			end_dash()
 
 func start_dash():
-    dashing = true
-    can_dash = false
-    dash_timer = 0.0
-    dash_direction = Vector2(direction, 0).normalized()
-    can_dash_timer.start()
+	dashing = true
+	can_dash = false
+	dash_timer = 0.0
+	dash_direction = Vector2(direction, 0).normalized()
+	can_dash_timer.start()
 
 func end_dash():
-    dashing = false
-    velocity = dash_direction * MAX_HORIZONTAL_SPEED
+	dashing = false
+	velocity = dash_direction * MAX_HORIZONTAL_SPEED
 
 func handle_knockback(delta):
-    if is_dead:
-        return  # Skip knockback handling if the player is dead
-    
-    if knockback:
-        knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
-        velocity += knockback_velocity
-        if knockback_velocity.length() < 10:
-            knockback = false
-            knockback_velocity = Vector2.ZERO
+	if is_dead:
+		return  # Skip knockback handling if the player is dead
+	
+	if knockback:
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, KNOCKBACK_DECAY * delta)
+		velocity += knockback_velocity
+		if knockback_velocity.length() < 10:
+			knockback = false
+			knockback_velocity = Vector2.ZERO
 
 func handle_movement(delta):
-    if is_dead:
-        return  # Skip movement handling if the player is dead
-    
-    if not dashing and not knockback:
-        if direction != 0:
-            velocity.x += direction * SPEED * delta
-            velocity.x = clamp(velocity.x, -MAX_HORIZONTAL_SPEED, MAX_HORIZONTAL_SPEED)
-            if is_on_floor() and not audio_stream_walking.playing:
-                audio_stream_walking.play()
-        else:
-            velocity.x = move_toward(velocity.x, 0, SLOWDOWN_SPEED * delta)
-            if not is_on_floor() or velocity.x == 0:
-                audio_stream_walking.stop()
+	if is_dead:
+		return  # Skip movement handling if the player is dead
+	
+	if not dashing and not knockback:
+		if direction != 0:
+			velocity.x += direction * SPEED * delta
+			velocity.x = clamp(velocity.x, -MAX_HORIZONTAL_SPEED, MAX_HORIZONTAL_SPEED)
+			if is_on_floor() and not audio_stream_walking.playing:
+				audio_stream_walking.play()
+		else:
+			velocity.x = move_toward(velocity.x, 0, SLOWDOWN_SPEED * delta)
+			if not is_on_floor() or velocity.x == 0:
+				audio_stream_walking.stop()
 
 func update_animation():
-    var new_animation = ""
-    
-    if is_attacking:
-        new_animation = "thrust"
-    elif knockback:
-        new_animation = "hit"
-    elif is_wall_sliding:
-        new_animation = "wall_slide"
-    elif dashing:
-        new_animation = "dash"
-    elif not is_on_floor():
-        new_animation = "jump"
-    elif shoot_cooldown_timer > 0:
-        new_animation = "runshoot" if abs(velocity.x) > 0 else "shoot"
-    elif abs(velocity.x) > 0:
-        new_animation = "run"
-    else:
-        new_animation = "idle"
-    
-    if new_animation != current_animation:
-        animated_sprite.play(new_animation)
-        current_animation = new_animation
-    
-    animated_sprite.flip_h = direction < 0 if direction != 0 else animated_sprite.flip_h
+	var new_animation = ""
+	
+	if is_attacking:
+		new_animation = "thrust"
+	elif knockback:
+		new_animation = "hit"
+	elif is_wall_sliding:
+		new_animation = "wall_slide"
+	elif dashing:
+		new_animation = "dash"
+	elif not is_on_floor():
+		new_animation = "jump"
+	elif shoot_cooldown_timer > 0:
+		new_animation = "runshoot" if abs(velocity.x) > 0 else "shoot"
+	elif abs(velocity.x) > 0:
+		new_animation = "run"
+	else:
+		new_animation = "idle"
+	
+	if new_animation != current_animation:
+		animated_sprite.play(new_animation)
+		current_animation = new_animation
+	
+	animated_sprite.flip_h = direction < 0 if direction != 0 else animated_sprite.flip_h
 
 func update_muzzle_position():
-    muzzle.position.x = abs(muzzle.position.x) * sign(direction) if direction != 0 else muzzle.position.x
+	muzzle.position.x = abs(muzzle.position.x) * sign(direction) if direction != 0 else muzzle.position.x
 
 func shoot():
-    if is_dead:
-        return  # Skip shooting if the player is dead
-    
-    var bullet_instance = bullet.instantiate()
-    bullet_instance.direction = 1 if not animated_sprite.flip_h else -1
-    bullet_instance.global_position = muzzle.global_position
-    get_parent().add_child(bullet_instance)
-    shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
-    
-    # Play shoot audio
-    audio_stream_shoot.play()
+	if is_dead:
+		return  # Skip shooting if the player is dead
+	
+	var bullet_instance = bullet.instantiate()
+	bullet_instance.direction = 1 if not animated_sprite.flip_h else -1
+	bullet_instance.global_position = muzzle.global_position
+	get_parent().add_child(bullet_instance)
+	shoot_cooldown_timer = SHOOT_COOLDOWN  # Reset the cooldown timer
+	
+	# Play shoot audio
+	audio_stream_shoot.play()
 
 func start_attack():
-    if is_dead:
-        return  # Skip attacking if the player is dead
-    
-    if not is_attacking:
-        is_attacking = true
-        play_next_combo_animation()
+	if is_dead:
+		return  # Skip attacking if the player is dead
+	
+	if not is_attacking:
+		is_attacking = true
+		play_next_combo_animation()
 
 func play_next_combo_animation():
-    if combo_input_count > 0 and current_combo_step < combo_animations.size():
-        var animation_name = combo_animations[current_combo_step]
-        audio_stream_attack.play()
-        hit_animation_player.play("punch")
-        animated_sprite.play(animation_name)
-        current_combo_step += 1
-        combo_input_count -= 1
-        await animated_sprite.animation_finished
-        play_next_combo_animation()
-    else:
-        # Reset combo
-        current_combo_step = 0
-        is_attacking = false
+	if combo_input_count > 0 and current_combo_step < combo_animations.size():
+		var animation_name = combo_animations[current_combo_step]
+		audio_stream_attack.play()
+		hit_animation_player.play("punch")
+		animated_sprite.play(animation_name)
+		current_combo_step += 1
+		combo_input_count -= 1
+		await animated_sprite.animation_finished
+		play_next_combo_animation()
+	else:
+		# Reset combo
+		current_combo_step = 0
+		is_attacking = false
 
 func _on_attack_combo_reset_timeout():
-    # Reset combo if the timer times out
-    combo_input_count = 0
-    current_combo_step = 0
-    is_attacking = false
+	# Reset combo if the timer times out
+	combo_input_count = 0
+	current_combo_step = 0
+	is_attacking = false
 
 func apply_knockback(attacker_position: Vector2):
-    if is_dead:
-        return  # Skip knockback if the player is dead
-    
-    knockback = true
-    var knockback_direction = (global_position - attacker_position).normalized()
-    knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
-    knockback_velocity.y -= 5
+	if is_dead:
+		return  # Skip knockback if the player is dead
+	
+	knockback = true
+	var knockback_direction = (global_position - attacker_position).normalized()
+	knockback_velocity = knockback_direction * KNOCKBACK_STRENGTH 
+	knockback_velocity.y -= 5
 
 func player_death():
-    # Set the death flag
-    is_dead = true
-    
-    # Reset knockback variables
-    knockback = false
-    knockback_velocity = Vector2.ZERO
-    
-    # Play animation and audio
-    animated_sprite.play("death")
-    audio_stream_died.play()
-    await animated_sprite.animation_finished
+	# Set the death flag
+	is_dead = true
+	
+	# Reset knockback variables
+	knockback = false
+	knockback_velocity = Vector2.ZERO
+	
+	# Play animation and audio
+	animated_sprite.play("death")
+	audio_stream_died.play()
+	await animated_sprite.animation_finished
 
-    GameManager.check_checkpoint_status()
-    # If the scene hasn't reloaded, respawn the player
-    GameManager.respawn_player()
-    HealthManager.set_health(1)  # Use the new set_health function
+	GameManager.check_checkpoint_status()
+	# If the scene hasn't reloaded, respawn the player
+	GameManager.respawn_player()
+	HealthManager.set_health(1)  # Use the new set_health function
 
-    # Reset the death flag
-    is_dead = false
+	# Reset the death flag
+	is_dead = false
 
 func check_fall_death():
-    if position.y >= 1000:
-        player_death()
+	if position.y >= 1500:
+		player_death()
 
 func _on_hurtbox_body_entered(body: CharacterBody2D):
-    if body.is_in_group("Enemy"):
-        audio_stream_hit.play()
-        animated_sprite.play("hit")
-        apply_knockback(body.global_position)
-        HealthManager.decrease_health(body.damage_amount)
-        
-    if HealthManager.current_health == 0:
-        player_death()
+	if body.is_in_group("Enemy"):
+		audio_stream_hit.play()
+		animated_sprite.play("hit")
+		apply_knockback(body.global_position)
+		HealthManager.decrease_health(body.damage_amount)
+		
+	if HealthManager.current_health == 0:
+		player_death()
 
 func nextToWall():
-    return nextToRightWall() or nextToLeftWall()
+	return nextToRightWall() or nextToLeftWall()
 
 func nextToRightWall():
-    return $RightWall.is_colliding() or $RightWall2.is_colliding() or $RightWall3.is_colliding()
+	return $RightWall.is_colliding() or $RightWall2.is_colliding() or $RightWall3.is_colliding()
 
 func nextToLeftWall():
-    return $LeftWall.is_colliding() or $LeftWall2.is_colliding() or $LeftWall3.is_colliding()
+	return $LeftWall.is_colliding() or $LeftWall2.is_colliding() or $LeftWall3.is_colliding()
 
 func _on_can_dash_timeout():
-    can_dash = true
+	can_dash = true

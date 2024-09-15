@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var enemy_death_effect = preload("res://Scenes/Enemies/enemy_death_effect.tscn")
-
 const NAME = "enemy"
 var current_delta: float = 0.0
 
@@ -14,13 +12,13 @@ var canSwitch : bool = true
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var audio_stream_death: AudioStreamPlayer = $AudioStreamPlayer_death
 
-var knockback_dir
-var knockback = false
-var player_dir
-var knockback_velocity: Vector2 = Vector2.ZERO
-@export var knockback_strength: float = 8000.0
-@export var knockback_decay: float = 50.0
+# Common constants for all enemy types
+const KNOCKBACK_STRENGTH = 400.0
+const KNOCKBACK_DURATION = 0.25
+var knockback_active: bool = false
+var is_dead: bool = false
 
 func _ready():
 	ray_cast_right.set_collision_mask_value(1, true)  # Detect walls in layer 1
@@ -32,16 +30,14 @@ func _ready():
 	ray_cast_left.set_collision_mask_value(3, false)  # Do not detect platform
 
 func _physics_process(delta):
+	if is_dead:
+		velocity = Vector2.ZERO
+		return
+
 	current_delta = delta
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	if !$RayCast2D.is_colliding() and canSwitch:
-		direction *= -1
-		canSwitch = false
-	else:
-		canSwitch = true
 
 	if direction < 0:
 		velocity.x = SPEED * -1.0 * delta
@@ -65,15 +61,13 @@ func _physics_process(delta):
 		if collider and not collider.is_in_group("Player") and not collider.is_in_group("Platform"):
 			direction = 1
 
-	# Handle knockback
-	if knockback:
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-		velocity += knockback_velocity
-		if knockback_velocity.length() < 10:
-			knockback = false
-			knockback_velocity = Vector2.ZERO
-	else:
-		# Normal movement
+	if not knockback_active:
+		if !$RayCast2D.is_colliding() and canSwitch:
+			direction *= -1
+			canSwitch = false
+		else:
+			canSwitch = true
+			
 		velocity.x = direction * SPEED * delta
 
 	position.x += direction * SPEED * delta
@@ -81,33 +75,28 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area : Area2D):
-	if area.get_parent().has_method("get_damage_amount"):
-		print("Bullet area entered")
+	if area.get_parent().has_method("get_damage_amount") or area.is_in_group("attack"):
 		var node = area.get_parent() as Node
 		health_amount -= node.damage_amount
-		print("Health amount: ", health_amount)
+		apply_knockback(area.global_position)
 		if health_amount <= 0:
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
-			get_parent().add_child(enemy_death_effect_instance)
-			HitStopManager.hit_stop_short()
-			queue_free()
-	if area.is_in_group("attack"):
-		var node = area.get_parent() as Node
-		health_amount -= node.damage_amount
-		player_dir = node.dir
-		knockback_dir = player_dir
-		apply_knockback(current_delta)
-		print("Health amount: ", health_amount)
-		if health_amount <= 0:
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
-			get_parent().add_child(enemy_death_effect_instance)
+			is_dead = true
+			audio_stream_death.play()
+			animated_sprite.play("death")
+			await animated_sprite.animation_finished
 			HitStopManager.hit_stop_short()
 			queue_free()
 
-func apply_knockback(delta: float):
-	knockback = true
-	if direction == player_dir:
-		knockback_dir *= 1
-	knockback_velocity.x = knockback_strength * knockback_dir * delta  # Determine knockback direction
+func apply_knockback(attacker_position: Vector2) -> void:
+	var knockback_direction = (global_position - attacker_position).normalized()
+	var knockback_force = knockback_direction * KNOCKBACK_STRENGTH
+	
+	knockback_active = true
+	var tween = create_tween()
+	tween.tween_method(
+		func(progress: float):
+			var interpolation = 1.0 - progress
+			velocity = knockback_force * interpolation
+			move_and_slide()
+	, 0.0, 1.0, KNOCKBACK_DURATION)
+	tween.tween_callback(func(): knockback_active = false)

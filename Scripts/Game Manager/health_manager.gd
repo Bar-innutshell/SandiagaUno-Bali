@@ -2,7 +2,7 @@ extends Node
 
 signal on_health_changed(new_health: int)
 
-var max_health: int = 3
+var max_health: int = 5
 var current_health: int = max_health
 
 func decrease_health(amount: int):
