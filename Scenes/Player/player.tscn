@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cphn0djeml7so" path="res://Assets/Player_SEED/Knight/Attack/knightattack-thrust-toright-2.png" id="9_evhqf"]
 [ext_resource type="AudioStream" uid="uid://do88jsrryhwkt" path="res://Sounds/SFX/Player/Step(Tanah dan Batu)/Grass/2.wav" id="10_pru8p"]
 [ext_resource type="Texture2D" uid="uid://glq33vy4bwej" path="res://Assets/Player_SEED/Knight/knightattack-uppercutswing-rev/knightattack-uppercutswing-rev.png" id="10_ueitm"]
-[ext_resource type="Texture2D" uid="uid://fkf07ajou2se" path="res://Assets/Player_SEED/Knight/Jump/knightjump-toleft.png" id="11_6pnnm"]
 [ext_resource type="AudioStream" uid="uid://bs6wglhsrnjda" path="res://Sounds/SFX/Player/Jump/3.wav" id="11_7gq72"]
 [ext_resource type="AudioStream" uid="uid://ce041jggu6uup" path="res://Sounds/SFX/Player/Dash/Dash Var 1/2.wav" id="12_8vp5i"]
+[ext_resource type="Texture2D" uid="uid://d0a0ep2th6syt" path="res://Assets/Player_SEED/knightjump.png" id="12_ujehy"]
 [ext_resource type="AudioStream" uid="uid://d0e1do3v381w" path="res://Sounds/SFX/Player/Player Hit/Hit.wav" id="13_iuw5c"]
 [ext_resource type="Script" path="res://Scenes/Player/attack_area.gd" id="13_rnv1o"]
 [ext_resource type="AudioStream" uid="uid://hhc4fu1mjd74" path="res://Sounds/SFX/Player/Player Died/Player Died.wav" id="14_dpr6p"]
@@ -416,21 +416,21 @@ region = Rect2(576, 0, 48, 48)
 atlas = ExtResource("10_ueitm")
 region = Rect2(624, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kffup"]
-atlas = ExtResource("11_6pnnm")
-region = Rect2(0, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf1ne"]
+atlas = ExtResource("12_ujehy")
+region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aqus3"]
-atlas = ExtResource("11_6pnnm")
-region = Rect2(16, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_36l0p"]
+atlas = ExtResource("12_ujehy")
+region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_773vj"]
-atlas = ExtResource("11_6pnnm")
-region = Rect2(32, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqn7s"]
+atlas = ExtResource("12_ujehy")
+region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xaltp"]
-atlas = ExtResource("11_6pnnm")
-region = Rect2(48, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyevr"]
+atlas = ExtResource("12_ujehy")
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xco0p"]
 animations = [{
@@ -794,16 +794,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kffup")
+"texture": SubResource("AtlasTexture_cf1ne")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aqus3")
+"texture": SubResource("AtlasTexture_36l0p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_773vj")
+"texture": SubResource("AtlasTexture_rqn7s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xaltp")
+"texture": SubResource("AtlasTexture_hyevr")
 }],
 "loop": true,
 "name": &"wall_slide",
@@ -897,11 +897,10 @@ script = ExtResource("1_7sjdf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_m7vsi")
-position = Vector2(0, -22)
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_xco0p")
-animation = &"hit"
+animation = &"wall_slide"
 autoplay = "idle"
-offset = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)

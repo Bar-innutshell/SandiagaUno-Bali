@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddjfbs1h1o1uf"
-path="res://.godot/imported/jumper-idle.png-c29178039beb97cbf3cceca7340fb551.ctex"
+uid="uid://biiho375mqiuy"
+path="res://.godot/imported/Bendera Cek point.png-6e62866c44e744b92130594b4e721858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Env/checkpoint/jumper-idle.png"
-dest_files=["res://.godot/imported/jumper-idle.png-c29178039beb97cbf3cceca7340fb551.ctex"]
+source_file="res://Scenes/Env/checkpoint/Bendera Cek point.png"
+dest_files=["res://.godot/imported/Bendera Cek point.png-6e62866c44e744b92130594b4e721858.ctex"]
 
 [params]
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://i8stm6d3jncn"]
+[gd_scene load_steps=15 format=4 uid="uid://i8stm6d3jncn"]
 
 [ext_resource type="Texture2D" uid="uid://b5vrqkq2a24e1" path="res://Assets/Tilemap/fixed_tileset_.png" id="1_16gjo"]
 [ext_resource type="Texture2D" uid="uid://bgvw3xxeqmceo" path="res://Assets/Tilemap/sapling.png" id="2_xi3oj"]
 [ext_resource type="Texture2D" uid="uid://cdwsm8wknynx" path="res://Assets/Tilemap/bersiaplah.png" id="3_tioc5"]
+[ext_resource type="PackedScene" uid="uid://bxid00bdvrwdc" path="res://Scenes/Dialog/chapter1_aftr_dungeon.tscn" id="4_frnrf"]
+[ext_resource type="PackedScene" uid="uid://ctun1s1k0avwk" path="res://Scenes/Dialog/chapter2.tscn" id="5_bmoig"]
+[ext_resource type="PackedScene" uid="uid://dfmmn3rcyc3rs" path="res://Scenes/Dialog/cutscenes.tscn" id="5_mjqyg"]
+[ext_resource type="PackedScene" uid="uid://cxphya857wfu" path="res://Scenes/Dialog/chapter2_got_benih.tscn" id="6_e1fkn"]
 [ext_resource type="PackedScene" uid="uid://dputwpr3lovr" path="res://Scenes/Player/player.tscn" id="12_xl6n2"]
 [ext_resource type="PackedScene" uid="uid://bukmrd5n4hmig" path="res://Scenes/Player/player_camera_2d.tscn" id="13_8hv45"]
 
@@ -112,6 +116,18 @@ tile_set = SubResource("TileSet_excli")
 [node name="nIGGRDRASIL" type="TileMapLayer" parent="Nigger"]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_jappx")
+
+[node name="Area2D" parent="Nigger" instance=ExtResource("4_frnrf")]
+position = Vector2(177, -509)
+
+[node name="Cutscene" parent="Nigger/Area2D" instance=ExtResource("5_mjqyg")]
+position = Vector2(1, -3)
+
+[node name="Area2D2" parent="Nigger" instance=ExtResource("5_bmoig")]
+position = Vector2(454, -362)
+
+[node name="Area2D3" parent="Nigger" instance=ExtResource("6_e1fkn")]
+position = Vector2(301, -115)
 
 [node name="Player" parent="." instance=ExtResource("12_xl6n2")]
 position = Vector2(596, -460)

@@ -20,7 +20,7 @@ func _ready():
 		config.set_value("keybinding", "interact", "E")
 		config.set_value("keybinding", "shot", "Mouse2")
 		config.set_value("keybinding", "attack", "Mouse1")
-		config.set_value("keybinding", "dash", "Q")
+		config.set_value("keybinding", "dash", "E")
 		config.set_value("keybinding", "pause", "Escape")
 		config.set_value("keybinding", "wallslide", "Shift")
 

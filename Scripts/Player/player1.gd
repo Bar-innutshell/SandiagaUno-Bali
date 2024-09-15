@@ -215,7 +215,7 @@ func update_animation():
 	var new_animation = ""
 	
 	if is_attacking:
-		new_animation = "thrust"
+		new_animation = "swing"
 	elif knockback:
 		new_animation = "hit"
 	elif is_wall_sliding:
