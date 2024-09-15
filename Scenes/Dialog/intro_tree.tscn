@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh02yo4cpf2hn"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/intro_tree.gd" id="1_30ppw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxoyb"]
+radius = 23.0868
+
+[node name="intro_tree" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_30ppw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lxoyb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

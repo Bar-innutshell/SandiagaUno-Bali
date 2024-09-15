@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3g7xu5760di1"]
+
+[ext_resource type="Script" path="res://Scripts/Dialog/chapter_3_inside_dungeon.gd" id="1_gqmas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kj6wu"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_gqmas")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kj6wu")
