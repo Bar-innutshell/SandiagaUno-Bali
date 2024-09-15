@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://befqsio2mt1ht"]
+
+[ext_resource type="Texture2D" uid="uid://cwtl8fs86p723" path="res://Assets/Tilemap/tileset(w stairs)/tileset w stairs.png" id="1_ho8s3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww0tx"]
+size = Vector2(46, 6)
+
+[node name="Platform_panas" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ho8s3")
+region_enabled = true
+region_rect = Rect2(144, 128, 48, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ww0tx")
+one_way_collision = true
+one_way_collision_margin = 50.0

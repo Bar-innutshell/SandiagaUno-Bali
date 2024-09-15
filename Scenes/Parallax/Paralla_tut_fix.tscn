@@ -1,0 +1,942 @@
+[gd_scene load_steps=2 format=3 uid="uid://bulj1cn6nq8sa"]
+
+[ext_resource type="Texture2D" uid="uid://d35s3k56epf3h" path="res://Assets/Background/Revisis Fix/awanwanwawn.png" id="1_sph0y"]
+
+[node name="Batu_Background" type="Node2D"]
+z_index = -100
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2095, -584)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2096, -1529)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2094, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1007, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2065.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1041.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background5" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2094, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2063, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1039, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background6" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2094, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2062, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1038, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background7" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2094, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17.98, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1006.02, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2066, 798.18)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1042, 798)
+scale = Vector2(2.03516, 2.00076)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+
+[node name="Background2" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2101, 1753)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background4" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2102, 808)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background3" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2100, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1007, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2065.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1041.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background5" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2100, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2063, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1039, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background6" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2100, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2062, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1038, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background7" type="ParallaxLayer" parent="ParallaxBackground2"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(2100, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-17.98, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground2/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(1006.02, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground2/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-2066, 798.18)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground2/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-1042, 798)
+scale = Vector2(2.03516, 2.00076)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
+
+[node name="Background2" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6197, 1753)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background4" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6198, 808)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background3" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6196, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1007, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2065.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1041.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background5" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6196, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2063, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1039, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background6" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6196, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2062, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1038, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background7" type="ParallaxLayer" parent="ParallaxBackground3"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6196, 1070)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-17.98, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground3/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(1006.02, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground3/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-2066, 798.18)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground3/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+position = Vector2(-1042, 798)
+scale = Vector2(2.03516, 2.00076)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="ParallaxBackground4" type="ParallaxBackground" parent="."]
+
+[node name="Background2" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6191, -584)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -356.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background2"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background4" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6192, -1529)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-19, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1005, -354.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2067.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background4"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1043.02, -353.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background3" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6190, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1007, -145.23)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2065.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background3"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1041.02, -144.05)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background5" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6190, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1091)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2063, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background5"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1039, -1090.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background6" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6190, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-14.98, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1009.02, -1089)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2062, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background6"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1038, -1087.82)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Background7" type="ParallaxLayer" parent="ParallaxBackground4"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+z_index = -100
+position = Vector2(6190, -1267)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-17.98, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground4/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(1006.02, 798)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground4/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-2066, 798.18)
+scale = Vector2(2, 2)
+texture = ExtResource("1_sph0y")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground4/Background7"]
+modulate = Color(0.230315, 0.230315, 0.230315, 1)
+z_index = -100
+position = Vector2(-1042, 798)
+scale = Vector2(2.03516, 2.00076)
+texture = ExtResource("1_sph0y")
+centered = false

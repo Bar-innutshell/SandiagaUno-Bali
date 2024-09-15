@@ -1,24 +1,25 @@
-[gd_scene load_steps=37 format=4 uid="uid://b5exspta1owxy"]
+[gd_scene load_steps=38 format=4 uid="uid://bo22f7emiq4l5"]
 
 [ext_resource type="Texture2D" uid="uid://bgvw3xxeqmceo" path="res://Assets/Tilemap/sapling.png" id="1_ptcnw"]
 [ext_resource type="Texture2D" uid="uid://cdwsm8wknynx" path="res://Assets/Tilemap/bersiaplah.png" id="2_20qj4"]
 [ext_resource type="PackedScene" uid="uid://d24271iramixf" path="res://Scenes/Env/Gate/Gate2.tscn" id="3_4ag70"]
-[ext_resource type="Texture2D" uid="uid://dasvyyw4ji4ee" path="res://Assets/Tilemap/pohon lv 1 alternate.png" id="3_qffc8"]
+[ext_resource type="Texture2D" uid="uid://k1ori02j3shs" path="res://Assets/Tilemap/pohon lv 1 alternate.png" id="3_qffc8"]
 [ext_resource type="PackedScene" uid="uid://dr4xfok6fkprm" path="res://Scenes/Env/Gate/Gate3.tscn" id="4_ryugy"]
-[ext_resource type="Texture2D" uid="uid://dsnwcyg34net6" path="res://Assets/Tilemap/pohon lv 1.png" id="4_vcq2f"]
+[ext_resource type="Texture2D" uid="uid://bksqv0btqel7s" path="res://Assets/Tilemap/pohon lv 1.png" id="4_vcq2f"]
 [ext_resource type="PackedScene" uid="uid://c45ncee7fvbyv" path="res://Scenes/Env/Gate/Gate4.tscn" id="5_e25tq"]
-[ext_resource type="Texture2D" uid="uid://38np2l5vd83w" path="res://Assets/Tilemap/pohon lv 2.png" id="5_y2yxj"]
-[ext_resource type="Texture2D" uid="uid://byu5cmpx7oy0a" path="res://Assets/Tilemap/pohon lv 3.png" id="6_1s8aa"]
+[ext_resource type="Texture2D" uid="uid://bo3upmmoyq3ja" path="res://Assets/Tilemap/pohon lv 2.png" id="5_y2yxj"]
+[ext_resource type="Texture2D" uid="uid://doil44h4v5jky" path="res://Assets/Tilemap/pohon lv 3.png" id="6_1s8aa"]
 [ext_resource type="PackedScene" uid="uid://g0kmt21rpeu7" path="res://Scenes/Env/Gate/Gate5.tscn" id="6_rhsu0"]
-[ext_resource type="Texture2D" uid="uid://no4kspdr3ynd" path="res://Assets/Tilemap/pohon lv 4.png" id="7_k538k"]
+[ext_resource type="Texture2D" uid="uid://dq5rv1raxcwx2" path="res://Assets/Tilemap/pohon lv 4.png" id="7_k538k"]
 [ext_resource type="PackedScene" uid="uid://bivdy0usqp44c" path="res://Scenes/Env/Gate/Gate6.tscn" id="7_pprco"]
 [ext_resource type="PackedScene" uid="uid://dputwpr3lovr" path="res://Scenes/Player/player.tscn" id="8_8geid"]
-[ext_resource type="Texture2D" uid="uid://bmxl6c83e4pk0" path="res://Assets/Tilemap/pohon lv 4 corrupt.png" id="8_pynw7"]
+[ext_resource type="Texture2D" uid="uid://g22ggsvf7otr" path="res://Assets/Tilemap/pohon lv 4 corrupt.png" id="8_pynw7"]
 [ext_resource type="PackedScene" uid="uid://bukmrd5n4hmig" path="res://Scenes/Player/player_camera_2d.tscn" id="9_dmxoe"]
 [ext_resource type="Texture2D" uid="uid://b5vrqkq2a24e1" path="res://Assets/Tilemap/fixed_tileset_.png" id="10_8klty"]
-[ext_resource type="Texture2D" uid="uid://doxjke74o6ial" path="res://Assets/Tilemap/tileset w stairs.png" id="11_p6274"]
-[ext_resource type="Texture2D" uid="uid://d2f1glcstu2dw" path="res://Assets/Tilemap/tileset(no stairs).png" id="18_6io4x"]
+[ext_resource type="Texture2D" uid="uid://bgg81eaqrcfs3" path="res://Assets/Tilemap/tileset w stairs.png" id="11_p6274"]
+[ext_resource type="Texture2D" uid="uid://d35fsr3koflg0" path="res://Assets/Tilemap/tileset(no stairs).png" id="18_6io4x"]
 [ext_resource type="PackedScene" path="res://Scenes/Dungeon/platform_rumput.tscn" id="19_db1pb"]
+[ext_resource type="PackedScene" uid="uid://ymw7uxqsjxb4" path="res://Scenes/Parallax/parallax_BaseGame.tscn" id="20_m61dt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o2w85"]
 texture = ExtResource("1_ptcnw")
@@ -655,3 +656,5 @@ libraries = {
 "": SubResource("AnimationLibrary_cchfp")
 }
 autoplay = "RESET"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("20_m61dt")]

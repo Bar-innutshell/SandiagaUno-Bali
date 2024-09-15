@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://buc1tbv468lx6"]
+
+[ext_resource type="Texture2D" uid="uid://bq7j5v5vik4vr" path="res://Assets/Background/Bg_Kegelapan_Awan gunung_(revisi).png" id="1_semnw"]
+[ext_resource type="Texture2D" uid="uid://dh4vwhfwkfcj1" path="res://Assets/Background/Bg_Pohon gelap_New.png" id="2_ssqxr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, -236)
+texture = ExtResource("1_semnw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(256, -236)
+texture = ExtResource("1_semnw")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 1)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(0, -236)
+texture = ExtResource("1_semnw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(256, -236)
+texture = ExtResource("1_semnw")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, -205)
+texture = ExtResource("2_ssqxr")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(256, -205)
+texture = ExtResource("2_ssqxr")
+centered = false

@@ -1,0 +1,178 @@
+[gd_scene load_steps=4 format=3 uid="uid://ymw7uxqsjxb4"]
+
+[ext_resource type="Texture2D" uid="uid://dkn781cqnopix" path="res://Assets/Background/Revisis Fix/Awan double (revisi2).png" id="1_7hd61"]
+[ext_resource type="Texture2D" uid="uid://dd0b3jnbi0x61" path="res://Assets/Background/Revisis Fix/Gunung_Kegelapant.png" id="2_fcc6h"]
+[ext_resource type="Texture2D" uid="uid://tqluhp3l4g8r" path="res://Assets/environment/Layer 2/Bg_Pohon gelap_New.png" id="2_rp07g"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+offset = Vector2(0, -36.02)
+transform = Transform2D(1, 0, 0, 1, 0, -36.02)
+
+[node name="Awan" type="ParallaxLayer" parent="."]
+position = Vector2(2070.02, -77.77)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Awan"]
+position = Vector2(-19, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Awan"]
+position = Vector2(1005, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Awan"]
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Awan"]
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Awan"]
+position = Vector2(1004.98, -825.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="Awan"]
+position = Vector2(-19.02, -825.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="Awan"]
+position = Vector2(-1043.02, -825.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Sprite2D8" type="Sprite2D" parent="Awan"]
+position = Vector2(-2066.02, -825.21)
+scale = Vector2(2, 2)
+texture = ExtResource("1_7hd61")
+centered = false
+
+[node name="Gunung" type="ParallaxLayer" parent="."]
+position = Vector2(2070.02, -77.77)
+motion_scale = Vector2(0.5, 0.8)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Gunung"]
+position = Vector2(-19, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("2_fcc6h")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Gunung"]
+position = Vector2(1005, -355.98)
+scale = Vector2(2, 2)
+texture = ExtResource("2_fcc6h")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Gunung"]
+position = Vector2(-2067.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("2_fcc6h")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Gunung"]
+position = Vector2(-1043.02, -355.8)
+scale = Vector2(2, 2)
+texture = ExtResource("2_fcc6h")
+centered = false
+
+[node name="Pohon" type="ParallaxLayer" parent="."]
+position = Vector2(22, -433.98)
+motion_scale = Vector2(0.9, 0.889)
+motion_mirroring = Vector2(511.885, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pohon"]
+position = Vector2(-17, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pohon"]
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Pohon"]
+position = Vector2(2030, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+offset = Vector2(-0.12, -0.04)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Pohon"]
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Pohon"]
+position = Vector2(3054, 61.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+offset = Vector2(-0.255, -0.04)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Pohon"]
+position = Vector2(1006, 60.41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="Pohon"]
+position = Vector2(4079, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D8" type="Sprite2D" parent="Pohon"]
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D9" type="Sprite2D" parent="Pohon"]
+position = Vector2(2032, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+offset = Vector2(-0.12, -0.04)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Pohon"]
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+
+[node name="Sprite2D11" type="Sprite2D" parent="Pohon"]
+position = Vector2(1008, 878.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
+offset = Vector2(-0.255, -0.04)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Pohon"]
+position = Vector2(3056, 879.59)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_rp07g")
+centered = false
